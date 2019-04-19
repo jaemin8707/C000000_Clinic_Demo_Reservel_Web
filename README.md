@@ -1,2 +1,2 @@
-# C000000_Demo_Reservel_Web
-リザベルwebデモ版
+﻿# C000000_Demo_Reservel_Web
+リザベルweb（デモ版）
