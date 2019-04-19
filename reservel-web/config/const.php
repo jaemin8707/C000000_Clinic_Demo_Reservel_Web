@@ -1,0 +1,96 @@
+<?php
+
+return [
+    'PLACE_NAME' => [
+        '1'               => '院内',
+        '2'               => '院外',
+    ],
+    'PLACE' => [
+        'IN_HOSPITAL'     => 1,
+        'OUT_HOSPITAL'    => 2,
+    ],
+    'CARE_TYPE_NAME' => [
+        '1' => [
+            'name'        => '初診',
+            'class_name'  => 'clinicFirst'
+               ],
+        '2' => [
+            'name'        => '再診',
+            'class_name'  => 'clinicRepeat'
+               ]
+    ],
+    'CARE_TYPE' => [
+        'FIRST'           => 1,
+        'REGULAR'         => 2,
+    ],
+
+    'RESERVE_STATUS' => [
+        'WAITING'               => 10,
+        'CALLED'                => 20,
+        'EXAMINE'               => 30,
+        'DONE'                  => 40,
+        'CANCEL_BY_PATIANT'     => -1,
+        'CANCEL_BY_HOSPITAL'    => -2,
+        'CALLED_TIMEUP_CANCEL'  => -3,
+        'EXAMINE_TIMEUP_CANCEL' => -4,
+    ],
+    'NEXTBUTTON_BY_STATUS' => [
+        10 => [
+            'TEXT'    => '呼出済みに変更',
+            'CSS'     => 'btn_status_call',
+            'VALUE'   => 20,
+        ],
+        20 => [
+            'TEXT'    => '診察中に変更',
+            'CSS'     => 'btn_status_examination',
+            'VALUE'   => 30,
+        ],
+        30 => [
+            'TEXT'    => '完了に変更',
+            'CSS'     => 'btn_status',
+            'VALUE'   => 40,
+        ],
+
+    ],
+    'CURRENTSTATUS_STRING' => [
+        10 => '待ち' ,
+        20 => '呼出済み' ,
+        30 => '診察中' ,
+        40 => '完了' ,
+        -1 => 'キャンセル(患者)' ,
+        -2 => 'キャンセル(病院)' ,
+        -3 => 'キャンセル(自動)' ,
+        -4 => 'キャンセル(自動)',
+    ],
+    'SETTINGBUTTON_BY_TABTICKETABLE' => [
+        'true'  => [
+            'TEXT'    => '院内予約受付を一時中断する',
+            'CSS'     => 'btn_able',
+            'VALUE'   => 'false',
+        ],
+        'false' =>  [
+            'TEXT'    => '院内予約受付を再開する',
+            'CSS'     => 'btn_disable',
+            'VALUE'   => 'true',
+        ],
+    ],
+    'SETTINGBUTTON_BY_WEBTICKETABLE' => [
+        'true'  => [
+            'TEXT'    => 'WEB予約受付を一時中断する',
+            'CSS'     => 'btn_able',
+            'VALUE'   => 'false',
+        ],
+        'false' =>  [
+            'TEXT'    => 'WEB予約受付を再開する',
+            'CSS'     => 'btn_disable',
+            'VALUE'   => 'true',
+        ],
+    ],
+    'RESERVE_MAIL_TITLE' => env('RESERVE_MAIL_TITLE', '[あかつき動物病院]ご予約を受付けしました'),
+    'REMIND_MAIL_TITLE'  => env('REMIND_MAIL_TITLE' , '[あかつき動物病院]まもなく診察の予定です'),
+
+    'USER_ID' => [
+      'api.reserve.numbering' => '-101',
+      'reserve.store' => '-102',
+    ]
+];
