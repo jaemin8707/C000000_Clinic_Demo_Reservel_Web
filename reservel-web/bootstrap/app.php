@@ -28,21 +28,8 @@ $app = new Illuminate\Foundation\Application(
 */
 
 switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
-    case 'fuji.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.fuji');
-        break;
-    case 'lee.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.lee');
-        break;
-    case 'otn.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.otn');
-        break;
-    case 'stg.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.stg');
-        break;
-    case 'akatsuki-reservel.jp':
-    case 'next.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.prod');
+    case 'demo.resevel.jp':
+        $app->loadEnvironmentFrom('.env.demo');
         break;
 }
 
