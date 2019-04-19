@@ -26,8 +26,8 @@ switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
         $app->loadEnvironmentFrom('.env.lee');
         break;
     case 'demo.reservel.jp':
-    $app->loadEnvironmentFrom('.env.demo');
-    break;
+        $app->loadEnvironmentFrom('.env.demo');
+        break;
 }
 
 /*
