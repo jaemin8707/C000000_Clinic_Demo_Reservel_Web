@@ -21,16 +21,13 @@ $app = new Illuminate\Foundation\Application(
 |--------------------------------------------------------------------------
 */
 
-/*
-|--------------------------------------------------------------------------
-| 環境によって読み込む.envファイル切り替え
-|--------------------------------------------------------------------------
-*/
-
 switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
-    case 'demo.resevel.jp':
-        $app->loadEnvironmentFrom('.env.demo');
+    case 'lee-demo-reservel.uh-oh.jp':
+        $app->loadEnvironmentFrom('.env.lee');
         break;
+    case 'demo.reservel.jp':
+    $app->loadEnvironmentFrom('.env.demo');
+    break;
 }
 
 /*

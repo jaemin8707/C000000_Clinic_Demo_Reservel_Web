@@ -14,6 +14,7 @@
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
 /*
 |--------------------------------------------------------------------------
 | 環境によって読み込む.envファイル切り替え
@@ -21,22 +22,12 @@ $app = new Illuminate\Foundation\Application(
 */
 
 switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
-    case 'fuji.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.fuji');
-        break;
-    case 'lee.akatsuki-reservel.jp':
+    case 'lee-demo-reservel.uh-oh.jp':
         $app->loadEnvironmentFrom('.env.lee');
         break;
-    case 'otn.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.otn');
-        break;
-    case 'stg.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.stg');
-        break;
-    case 'akatsuki-reservel.jp':
-    case 'next.akatsuki-reservel.jp':
-        $app->loadEnvironmentFrom('.env.prod');
-        break;
+    case 'demo.reservel.jp':
+    $app->loadEnvironmentFrom('.env.demo');
+    break;
 }
 
 /*
