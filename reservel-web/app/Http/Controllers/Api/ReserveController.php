@@ -80,7 +80,7 @@ class ReserveController extends Controller
       * @return Response(JSON)
       * 
       **/
-    public function numbering(int $careType) {
+    public function numbering(int $careType, Request $request) {
 
         Log::Debug('受付番号発番処理 Start');
 
@@ -91,6 +91,7 @@ class ReserveController extends Controller
         $reserve = new Reserve;
         $reserve->reception_no = $reception_no;
         $reserve->care_type    = $careType;
+        $reserve->medical_card_no = $request->patient_no;
         $reserve->place = config('const.PLACE.IN_HOSPITAL');
         $reserve->status = config('const.RESERVE_STATUS.WAITING');
         $reserve->save();
