@@ -92,5 +92,6 @@ return [
     'USER_ID' => [
       'api.reserve.numbering' => '-101',
       'reserve.store' => '-102',
+      'reserve.cancel_complete' => '-102',
     ]
 ];

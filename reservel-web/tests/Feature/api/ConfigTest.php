@@ -28,9 +28,9 @@ class ConfigTest extends PassortGrantTestCase
 
                                'result' => 
                                [
-                                   "name"   =>"あかつき動物病院",
-                                   "tel"   =>"03-6404-6049",
-                                   "url"   =>"http://www.akatsuki-ah.com/",
+                                   "name"   =>"サンプル動物病院",
+                                   "tel"   =>"0255694637",
+                                   "url"   =>"http://example.com/",
                                    "optimes"=>
                                    [
                                        ["stime"=>"09:00","etime"=>"11:00"],
