@@ -16,6 +16,10 @@ class Reserve extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $dates = ['created_at', 'updated_at'];
 
+    public function petType() {
+        return $this->belongsTo('PetType', 'reserve_id');
+    }
+
     public function formattedCallTime() {
         return (isset($this->call_time) && $this->status==config('const.RESERVE_STATUS.CALLED'))
                     ? date('H:i', strtotime($this->call_time))

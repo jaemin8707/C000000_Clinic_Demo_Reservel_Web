@@ -111,7 +111,6 @@ class ReserveController extends Controller {
         $reserve->name            = $request->name;
         $reserve->email           = $request->email;
         $reserve->tel             = $request->tel;
-        $reserve->pet_type        = $request->pet_type;
         $reserve->pet_name        = $request->pet_name;
         $reserve->conditions      = $request->pet_symptom;
         $reserve->cancel_token    = $token;

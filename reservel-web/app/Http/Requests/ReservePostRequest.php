@@ -28,7 +28,6 @@ class ReservePostRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email',
             'tel' => 'required|digits_between:8,11',
-            'pet_type' => 'required|max:255',
             'pet_name' => 'required|max:255',
             'pet_symptom' => 'max:255',
         ];

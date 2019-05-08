@@ -50,6 +50,7 @@ class ReserveController extends Controller
         $reserves = Reserve::where('created_at','>=',DB::RAW('CURDATE()'))
                            ->orderBy('reception_no')
                            ->get();
+                           var_dump($reserves);
         //待ちの数
         $waitCnt = Reserve::where(function($query) {
                                       $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))

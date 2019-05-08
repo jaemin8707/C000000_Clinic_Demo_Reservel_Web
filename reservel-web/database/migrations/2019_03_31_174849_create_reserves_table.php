@@ -21,7 +21,6 @@ class CreateReservesTable extends Migration
             $table->tinyInteger('status')->comment('状況:10.待ち、20.呼び出し済、30.診察中、40.完了、-1.キャンセル');
             $table->string('name', 50)->nullable()->comment('名前:院外受付のみ');
             $table->string('medical_card_no', 100)->nullable()->comment('診察券番号:院外受付のみ');
-            $table->string('pet_type', 255)->nullable()->comment('ペット種類:複数入力可、院外受付のみ');
             $table->string('pet_name', 255)->nullable()->comment('ペット名:複数入力可、院外受付のみ');
             $table->string('tel', 25)->nullable()->comment('電話番号:院外受付のみ');
             $table->string('email', 255)->nullable()->comment('メールアドレス:院外受付のみ');
