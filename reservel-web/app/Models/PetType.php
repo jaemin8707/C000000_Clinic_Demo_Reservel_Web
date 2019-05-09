@@ -1,13 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class PetType extends Model
 {
+    protected $table = 'pet_type';
+    protected $fillable = ['pet_type'];
     //
     public function reserves () {
-        return $this->hasMany('Reserve', 'reserve_id');
+        return $this->belongsTo(Reverse::class);
     }
 }

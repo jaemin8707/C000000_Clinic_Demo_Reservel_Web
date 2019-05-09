@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\UserBy;
+use App\Models\PetType;
 
 class Reserve extends Model
 {
@@ -16,8 +17,14 @@ class Reserve extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $dates = ['created_at', 'updated_at'];
 
+    //動物種類
     public function petType() {
-        return $this->belongsTo('PetType', 'reserve_id');
+        return $this->hasMany(PetType::class);
+    }
+
+    //来院目的
+    public function purpose() {
+        return $this->hasMany(Purpose::class);
     }
 
     public function formattedCallTime() {

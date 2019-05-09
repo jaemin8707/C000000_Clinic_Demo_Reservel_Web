@@ -54,6 +54,7 @@ class ReserveController extends Controller {
         $webTicketable = Setting::where('code','=','webTicketable')
                              ->value("value");
         $setting = new Setting();
+        
 
         return view('index', compact('reserveFirst', 'reserveRegular', 'webTicketable', 'setting'));
     }
@@ -96,27 +97,35 @@ class ReserveController extends Controller {
       **/
     public function store(ReservePostRequest $request) {
 
-        //受付番号採番
-        $reception_no = DB::table('reserve_seq')->insertGetId([]);
+        DB::beginTransaction();
+        try{
+            //受付番号採番
+            $reception_no = DB::table('reserve_seq')->insertGetId([]);
 
-        //受付キャンセル用のトークン発行
-        $token = str_random(32);
-        // DB保存
-        $reserve = new Reserve;
-        $reserve->medical_card_no = $request->patient_no;
-        $reserve->reception_no    = $reception_no;
-        $reserve->care_type       = $request->careType;
-        $reserve->place           = config('const.PLACE.OUT_HOSPITAL');
-        $reserve->status          = config('const.RESERVE_STATUS.WAITING');
-        $reserve->name            = $request->name;
-        $reserve->email           = $request->email;
-        $reserve->tel             = $request->tel;
-        $reserve->pet_name        = $request->pet_name;
-        $reserve->conditions      = $request->pet_symptom;
-        $reserve->cancel_token    = $token;
+            //受付キャンセル用のトークン発行
+            $token = str_random(32);
+            // DB保存
+            $reserve = new Reserve;
+            $reserve->medical_card_no = $request->patient_no;
+            $reserve->reception_no    = $reception_no;
+            $reserve->care_type       = $request->careType;
+            $reserve->place           = config('const.PLACE.OUT_HOSPITAL');
+            $reserve->status          = config('const.RESERVE_STATUS.WAITING');
+            $reserve->name            = $request->name;
+            $reserve->email           = $request->email;
+            $reserve->tel             = $request->tel;
+            $reserve->pet_name        = $request->pet_name;
+            $reserve->conditions      = $request->pet_symptom;
+            $reserve->cancel_token    = $token;
 
-        $reserve->save();
-
+            $reserve->save();
+            $reserve->PetType()->createMany($request->pet_type);
+            $reserve->Purpose()->createMany($request->purpose);
+        }catch(Exception $e){
+            DB::rollback();
+            return redirect(route('index'));
+        }
+        DB::commit();
         // メール送信
         Mail::to($reserve->email)
             ->send(new ReserveMail($reserve)); // 引数にリクエストデータを渡す

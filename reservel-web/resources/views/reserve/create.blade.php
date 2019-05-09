@@ -5,6 +5,7 @@
 @section('heading', '予約受付')
 @include('layouts.header')
 <?php $careTypeName = config('const.CARE_TYPE_NAME')[$careType]; ?>
+<?php $petTypeName = config('const.PET_TYPE_NAME'); ?>
 <main>
 	<div class="wrapper">
 		<section>
@@ -37,20 +38,20 @@
 					<dd><input type="tel" id="tel" name="tel" value="{{old('tel')}}" placeholder="例）0331234567" required /></dd>
 					<dt class="required"><label for="pet_type">ペットの種類</label></dt>
 					<dd>
-					@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
-						<input type="checkbox" id="pet_type" name="pet_type[]" value="{{$petKey}}" {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
+					@foreach ($petTypeName as $petKey => $petName)
+						<input type="checkbox" value="{{$petKey}}" id="pet_type_{{$petKey}}" name="pet_type[]"  {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
 					@endforeach
 					</dd>
 					<dt class="required"><label for="pet_name">ペットの名前</label></dt>
 					<dd><input type="text" id="pet_name" name="pet_name" value="{{old('pet_name')}}" placeholder="例）ポチ、ミケなど" required /></dd>
-					@if($careType==config('const.CARE_TYPE.REGULAR'))
+@if($careType==config('const.CARE_TYPE.REGULAR'))
 					<dt class="required"><label for="purpose">来院目的</label></dt>
 					<dd>
 					@foreach (config('const.PURPOSE') as $purposeKey => $purpose)
 						<input type="checkbox" id="purpose" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
 					@endforeach
 					</dd>
-					@endif
+@endif
 					<dt><label for="pet_symptom">症状など</label></dt>
 					<dd><textarea id="pet_symptom" name="pet_symptom" placeholder="例）おもちゃを飲み込んだ" rows="5" accesskey="s"></textarea></dd>
 				</dl>
