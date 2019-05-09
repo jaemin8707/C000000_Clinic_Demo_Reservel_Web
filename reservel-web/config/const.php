@@ -65,11 +65,12 @@ return [
     'PET_TYPE_NAME' => [
         1 => '犬',
         2 => '猫',
-        99 => 'その他'
+        3 => 'うさぎ'
     ],
     'PET_TYPE' => [
         'DOG' => 1,
         'CAT' => 2,
+        'RABBIT' => 3,
         'OTHER' => 99,
     ],
     'PURPOSE' => [

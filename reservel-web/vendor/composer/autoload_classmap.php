@@ -37,6 +37,8 @@ return array(
     'App\\Mail\\ReserveMail' => $baseDir . '/app/Mail/ReserveMail.php',
     'App\\Models\\OauthClient' => $baseDir . '/app/Models/OauthClient.php',
     'App\\Models\\PasswordReset' => $baseDir . '/app/Models/PasswordReset.php',
+    'App\\Models\\PetType' => $baseDir . '/app/Models/PetType.php',
+    'App\\Models\\Purpose' => $baseDir . '/app/Models/Purpose.php',
     'App\\Models\\Reception' => $baseDir . '/app/Models/Reception.php',
     'App\\Models\\Reserve' => $baseDir . '/app/Models/Reserve.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
