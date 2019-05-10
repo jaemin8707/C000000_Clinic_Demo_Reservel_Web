@@ -100,7 +100,7 @@
 5	0	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:resetNumbering --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_ResetNumbering.log 2>&1
 
 # DBバックアップ
-7	0,12,18,21	*	*	*	cd /home/itc-dev/laravel_project/backup/akatsuki;./dbbackup.sh >> `date +\%Y\%m\%d`_dbbackup.log 2>&1
+7	0,12,18,21	*	*	*	cd /home/itc-dev/laravel_project/backup/otake;./dbbackup.sh >> `date +\%Y\%m\%d`_dbbackup.log 2>&1
 # DBバックアップ(hourly)
-*/10	*	*	*	*	cd /home/itc-dev/laravel_project/backup/akatsuki/hourly;./dbbackup_hourly.sh >> `date +\%Y\%m\%d`_dbbackup_hourly.log 2>&1
+*/10	*	*	*	*	cd /home/itc-dev/laravel_project/backup/otake/hourly;./dbbackup_hourly.sh >> `date +\%Y\%m\%d`_dbbackup_hourly.log 2>&1
 
