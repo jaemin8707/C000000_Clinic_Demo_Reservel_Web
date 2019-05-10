@@ -398,10 +398,10 @@ ul.list {
  width: 5%;
 }
 .a_reserve_time {
- width: 8%;
+ width: 5%;
 }
 .a_status {
- width: 14%;
+ width: 8%;
  font-size:18px;
 }
 .a_status_edit {
@@ -409,15 +409,23 @@ ul.list {
 }
 
 .a_patient_no {
- width: 11%;
+ width: 10%;
+}
+
+.a_pet_type{
+ width:8%;
 }
 
 .a_c_num {
- width: 20%;
+ width: 10%;
+}
+
+.a_purpose {
+  width: 8%;
 }
 
 .a_name {
- width: 20%;
+ width: 15%;
 }
 
 .a_button_area {
