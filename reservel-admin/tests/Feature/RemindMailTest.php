@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\Reserve;
+use App\Models\PetType;
 use App\Models\Setting;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -40,28 +41,32 @@ class RemindMailTest extends TestCase
       $call_date = date('Y-m-d H:i:s');
       $reserve1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-        'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'一番太郎','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+1@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
+      factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
+      $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-        'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'一番太郎','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+1@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
 
       $reserve2 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'二番次郎','tel'=>'0123456789','pet_type'=>'猫',
+        'name'=>'二番次郎','tel'=>'0123456789',
         'pet_name'=>'キャット','conditions'=>'ひげ抜ける','medical_card_no'=>null,
         'email'=>'j-lee+2@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
+        factory(PetType::class)->create(['reserve_id'=>$reserve2->id, 'pet_type' => 1]);
+        $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve2->id,'pet_type' => 1]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve2->id,
         'place'=>2,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'二番次郎','tel'=>'0123456789','pet_type'=>'猫',
+        'name'=>'二番次郎','tel'=>'0123456789',
         'pet_name'=>'キャット','conditions'=>'ひげ抜ける',
         'email'=>'j-lee+2@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
@@ -69,28 +74,32 @@ class RemindMailTest extends TestCase
       
       $reserve3 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'三番三郎','tel'=>'0123456789','pet_type'=>'ウサギ',
+        'name'=>'三番三郎','tel'=>'0123456789',
         'pet_name'=>'ラビット','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+3@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
+        factory(PetType::class)->create(['reserve_id'=>$reserve3->id, 'pet_type' => 1]);
+        $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve3->id,'pet_type' => 1]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve3->id,
         'place'=>2,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'三番三郎','tel'=>'0123456789','pet_type'=>'ウサギ',
+        'name'=>'三番三郎','tel'=>'0123456789',
         'pet_name'=>'ラビット','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+3@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
 
       $reserve4 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'四番四郎','tel'=>'0123456789','pet_type'=>'ゴジラ',
+        'name'=>'四番四郎','tel'=>'0123456789',
         'pet_name'=>'ゴジ','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+4@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
+        factory(PetType::class)->create(['reserve_id'=>$reserve4->id, 'pet_type' => 1]);
+        $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve4->id,'pet_type' => 1]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve4->id,
         'place'=>2,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'四番四郎','tel'=>'0123456789','pet_type'=>'ゴジラ',
+        'name'=>'四番四郎','tel'=>'0123456789',
         'pet_name'=>'ゴジ','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+4@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
@@ -133,28 +142,28 @@ class RemindMailTest extends TestCase
       $call_date = date('Y-m-d H:i:s');
       $reserve1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-        'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'一番太郎','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+1@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-        'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'一番太郎','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+1@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
 
       $reserve2 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'二番次郎','tel'=>'0123456789','pet_type'=>'猫',
+        'name'=>'二番次郎','tel'=>'0123456789',
         'pet_name'=>'キャット','conditions'=>'ひげ抜ける','medical_card_no'=>null,
         'email'=>'j-lee+2@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve2->id,
         'place'=>2,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'二番次郎','tel'=>'0123456789','pet_type'=>'猫',
+        'name'=>'二番次郎','tel'=>'0123456789',
         'pet_name'=>'キャット','conditions'=>'ひげ抜ける',
         'email'=>'j-lee+2@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
@@ -162,28 +171,28 @@ class RemindMailTest extends TestCase
       
       $reserve3 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'三番三郎','tel'=>'0123456789','pet_type'=>'ウサギ',
+        'name'=>'三番三郎','tel'=>'0123456789',
         'pet_name'=>'ラビット','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+3@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve3->id,
         'place'=>2,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'三番三郎','tel'=>'0123456789','pet_type'=>'ウサギ',
+        'name'=>'三番三郎','tel'=>'0123456789',
         'pet_name'=>'ラビット','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+3@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
 
       $reserve4 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'四番四郎','tel'=>'0123456789','pet_type'=>'ゴジラ',
+        'name'=>'四番四郎','tel'=>'0123456789',
         'pet_name'=>'ゴジ','conditions'=>'目の出血','medical_card_no'=>null,
         'email' => null,
         'created_at'=>date('Y-m-d'),]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve4->id,
         'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'四番四郎','tel'=>'0123456789','pet_type'=>'ゴジラ',
+        'name'=>'四番四郎','tel'=>'0123456789',
         'pet_name'=>'ゴジ','conditions'=>'目の出血','medical_card_no'=>null,
         'email' => null,
         'created_at'=>date('Y-m-d'),]);
@@ -226,7 +235,7 @@ class RemindMailTest extends TestCase
       //2日前の受付 リマインドメール未送信
       $reserve_2_1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'2日前1','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'2日前1','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+2daysbefore1@it-craft.co.jp',
         'send_remind' => false,
@@ -234,7 +243,7 @@ class RemindMailTest extends TestCase
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve_2_1->id,
         'place'=>1,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'2日前1','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'2日前1','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+2daysbefore1@it-craft.co.jp',
         'send_remind' => false,
@@ -242,7 +251,7 @@ class RemindMailTest extends TestCase
 
       $reserve_2_2 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'2日前2','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'2日前2','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+2daysbefore2@it-craft.co.jp',
         'send_remind' => false,
@@ -250,7 +259,7 @@ class RemindMailTest extends TestCase
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve_2_2->id,
         'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'2日前2','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'2日前2','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+2daysbefore2@it-craft.co.jp',
         'send_remind' => false,
@@ -259,7 +268,7 @@ class RemindMailTest extends TestCase
       //1日前の受付 リマインドメール未送信
       $reserve1_1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'1日前1','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'1日前1','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+1daysbefore1@it-craft.co.jp',
         'send_remind' => false,
@@ -267,7 +276,7 @@ class RemindMailTest extends TestCase
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve1_1->id,
         'place'=>1,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'1日前1','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'1日前1','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+1daysbefore1@it-craft.co.jp',
         'send_remind' => false,
@@ -275,7 +284,7 @@ class RemindMailTest extends TestCase
 
       $reserve1_2 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'1日前2','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'1日前2','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+1daysbefore2@it-craft.co.jp',
         'send_remind' => false,
@@ -283,7 +292,7 @@ class RemindMailTest extends TestCase
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve1_2->id,
         'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'1日前2','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'1日前2','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+1daysbefore2@it-craft.co.jp',
         'send_remind' => false,
@@ -294,28 +303,28 @@ class RemindMailTest extends TestCase
       //当日受付
       $reserve1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-        'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'一番太郎','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
         'email'=>'j-lee+1@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-        'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+        'name'=>'一番太郎','tel'=>'0123456789',
         'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
         'email'=>'j-lee+1@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
 
       $reserve2 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'二番次郎','tel'=>'0123456789','pet_type'=>'猫',
+        'name'=>'二番次郎','tel'=>'0123456789',
         'pet_name'=>'キャット','conditions'=>'ひげ抜ける','medical_card_no'=>null,
         'email'=>'j-lee+2@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve2->id,
         'place'=>2,'reception_no'=>2,'care_type'=>1,'status'=>10,
-        'name'=>'二番次郎','tel'=>'0123456789','pet_type'=>'猫',
+        'name'=>'二番次郎','tel'=>'0123456789',
         'pet_name'=>'キャット','conditions'=>'ひげ抜ける',
         'email'=>'j-lee+2@it-craft.co.jp',
         'created_at'=>date('Y-m-d'),]);
@@ -323,7 +332,7 @@ class RemindMailTest extends TestCase
       
       $reserve3 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'三番三郎','tel'=>'0123456789','pet_type'=>'ウサギ',
+        'name'=>'三番三郎','tel'=>'0123456789',
         'pet_name'=>'ラビット','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+3@it-craft.co.jp',
         'send_remind' => false,
@@ -331,7 +340,7 @@ class RemindMailTest extends TestCase
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve3->id,
         'place'=>2,'reception_no'=>3,'care_type'=>1,'status'=>10,
-        'name'=>'三番三郎','tel'=>'0123456789','pet_type'=>'ウサギ',
+        'name'=>'三番三郎','tel'=>'0123456789',
         'pet_name'=>'ラビット','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+3@it-craft.co.jp',
         'send_remind' => false,
@@ -339,7 +348,7 @@ class RemindMailTest extends TestCase
 
       $reserve4 = factory(Reserve::class)->create([
         'place'=>2,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'四番四郎','tel'=>'0123456789','pet_type'=>'ゴジラ',
+        'name'=>'四番四郎','tel'=>'0123456789',
         'pet_name'=>'ゴジ','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+4@it-craft.co.jp',
         'send_remind' => false,
@@ -347,7 +356,7 @@ class RemindMailTest extends TestCase
       $this->assertDatabaseHas('reserves', [
         'id'=>$reserve4->id,
         'place'=>2,'reception_no'=>4,'care_type'=>1,'status'=>10,
-        'name'=>'四番四郎','tel'=>'0123456789','pet_type'=>'ゴジラ',
+        'name'=>'四番四郎','tel'=>'0123456789',
         'pet_name'=>'ゴジ','conditions'=>'目の出血','medical_card_no'=>null,
         'email'=>'j-lee+4@it-craft.co.jp',
         'send_remind' => false,
@@ -392,7 +401,7 @@ class RemindMailTest extends TestCase
         //2日前の受付 リマインドメール未送信
         $reserve_2_1 = factory(Reserve::class)->create([
           'place'=>1,'reception_no'=>3,'care_type'=>1,'status'=>10,
-          'name'=>'2日前1','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'2日前1','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
           'email'=>'j-lee+2daysbefore1@it-craft.co.jp',
           'send_remind' => false,
@@ -400,7 +409,7 @@ class RemindMailTest extends TestCase
         $this->assertDatabaseHas('reserves', [
           'id'=>$reserve_2_1->id,
           'place'=>1,'reception_no'=>3,'care_type'=>1,'status'=>10,
-          'name'=>'2日前1','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'2日前1','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
           'email'=>'j-lee+2daysbefore1@it-craft.co.jp',
           'send_remind' => false,
@@ -408,7 +417,7 @@ class RemindMailTest extends TestCase
 
         $reserve_2_2 = factory(Reserve::class)->create([
           'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-          'name'=>'2日前2','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'2日前2','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
           'email'=>'j-lee+2daysbefore2@it-craft.co.jp',
           'send_remind' => false,
@@ -416,7 +425,7 @@ class RemindMailTest extends TestCase
         $this->assertDatabaseHas('reserves', [
           'id'=>$reserve_2_2->id,
           'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-          'name'=>'2日前2','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'2日前2','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
           'email'=>'j-lee+2daysbefore2@it-craft.co.jp',
           'send_remind' => false,
@@ -425,7 +434,7 @@ class RemindMailTest extends TestCase
         //1日前の受付 リマインドメール未送信
         $reserve1_1 = factory(Reserve::class)->create([
           'place'=>1,'reception_no'=>2,'care_type'=>1,'status'=>10,
-          'name'=>'1日前1','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'1日前1','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
           'email'=>'j-lee+1daysbefore1@it-craft.co.jp',
           'send_remind' => false,
@@ -433,7 +442,7 @@ class RemindMailTest extends TestCase
         $this->assertDatabaseHas('reserves', [
           'id'=>$reserve1_1->id,
           'place'=>1,'reception_no'=>2,'care_type'=>1,'status'=>10,
-          'name'=>'1日前1','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'1日前1','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
           'email'=>'j-lee+1daysbefore1@it-craft.co.jp',
           'send_remind' => false,
@@ -441,7 +450,7 @@ class RemindMailTest extends TestCase
 
         $reserve1_2 = factory(Reserve::class)->create([
           'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-          'name'=>'1日前2','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'1日前2','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
           'email'=>'j-lee+1daysbefore2@it-craft.co.jp',
           'send_remind' => false,
@@ -449,7 +458,7 @@ class RemindMailTest extends TestCase
         $this->assertDatabaseHas('reserves', [
           'id'=>$reserve1_2->id,
           'place'=>1,'reception_no'=>4,'care_type'=>1,'status'=>10,
-          'name'=>'1日前2','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'1日前2','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
           'email'=>'j-lee+1daysbefore2@it-craft.co.jp',
           'send_remind' => false,
@@ -460,14 +469,14 @@ class RemindMailTest extends TestCase
         //当日受付
         $reserve1 = factory(Reserve::class)->create([
           'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-          'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'一番太郎','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折','medical_card_no'=>null,
           'email'=>'j-lee+1@it-craft.co.jp',
           'created_at'=>date('Y-m-d'),]);
         $this->assertDatabaseHas('reserves', [
           'id'=>$reserve1->id,
           'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
-          'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'犬',
+          'name'=>'一番太郎','tel'=>'0123456789',
           'pet_name'=>'ドッグ','conditions'=>'腕の骨折',
           'email'=>'j-lee+1@it-craft.co.jp',
           'created_at'=>date('Y-m-d'),]);

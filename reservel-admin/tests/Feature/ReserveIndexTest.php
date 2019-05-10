@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\Reserve;
+use App\Models\PetType;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -27,12 +28,13 @@ class ReserveIndexTest extends TestCase
 
       $reserve1 = factory(Reserve::class)->create(['place'=>1,'reception_no'=>1,'care_type'=>1,
       'status'=>10,'medical_card_no'=> null,'name'=>null,'email'=>null,'tel'=>null,
-      'pet_type'=>null,'pet_name'=>null,'conditions'=>null,'created_at'=>date('Y-m-d'),
+      'pet_name'=>null,'conditions'=>null,'created_at'=>date('Y-m-d'),
       ]);
-      
+      factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
+      $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
       $this->assertDatabaseHas('reserves', ['id'=>$reserve1->id,
       'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=> null,
-      'name'=>null,'email'=>null,'tel'=>null,'pet_type'=>null,'pet_name'=>null,
+      'name'=>null,'email'=>null,'tel'=>null,'pet_name'=>null,
       'conditions'=>null,'created_at'=>date('Y-m-d'),
       ]);
       
@@ -41,7 +43,7 @@ class ReserveIndexTest extends TestCase
         'status'=>20,
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'medical_card_no'=> null,
-        'name'=>null,'email'=>null,'tel'=>null,'pet_type'=>null,'pet_name'=>null,
+        'name'=>null,'email'=>null,'tel'=>null,'pet_name'=>null,
         'conditions'=>null,
         ])
         ->assertStatus(302)
@@ -56,7 +58,6 @@ class ReserveIndexTest extends TestCase
           'medical_card_no'=> null,
           'email'=> null,
           'tel'=> null,
-          'pet_type'=> null,
           'pet_name'=> null,
           'conditions'=> null,
           ]);
@@ -74,12 +75,15 @@ class ReserveIndexTest extends TestCase
 
     $reserve1 = factory(Reserve::class)->create(['place'=>1,'reception_no'=>1,'care_type'=>1,
     'status'=>10,'medical_card_no'=> null,'name'=>null,'email'=>null,'tel'=>null,
-    'pet_type'=>null,'pet_name'=>null,'conditions'=>null,'created_at'=>date('Y-m-d'),
+    'pet_name'=>null,'conditions'=>null,'created_at'=>date('Y-m-d'),
     ]);
-    
+
+    factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
+    $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
+
     $this->assertDatabaseHas('reserves', ['id'=>$reserve1->id,
     'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=> null,
-    'name'=>null,'email'=>null,'tel'=>null,'pet_type'=>null,'pet_name'=>null,
+    'name'=>null,'email'=>null,'tel'=>null,'pet_name'=>null,
     'conditions'=>null,'created_at'=>date('Y-m-d'),
     ]);
     
@@ -88,7 +92,7 @@ class ReserveIndexTest extends TestCase
       'status'=>10,
       'id'=>$reserve1->id,
       'place'=>1,'reception_no'=>1,'care_type'=>1,'medical_card_no'=> null,
-      'name'=>'test','email'=>null,'tel'=>null,'pet_type'=>null,'pet_name'=>null,
+      'name'=>'test','email'=>null,'tel'=>null,'pet_name'=>null,
       'conditions'=>null,
       ])
       ->assertStatus(302)
@@ -104,7 +108,6 @@ class ReserveIndexTest extends TestCase
         'medical_card_no'=> null,
         'email'=> null,
         'tel'=> null,
-        'pet_type'=> null,
         'pet_name'=> null,
         'conditions'=> null,
         ]);
