@@ -5,7 +5,6 @@
 @section('heading', '予約受付')
 @include('layouts.header')
 <?php $careTypeName = config('const.CARE_TYPE_NAME')[$careType]; ?>
-<?php $petTypeName = config('const.PET_TYPE_NAME'); ?>
 <main>
 	<div class="wrapper">
 		<section>
@@ -38,7 +37,7 @@
 					<dd><input type="tel" id="tel" name="tel" value="{{old('tel')}}" placeholder="例）0331234567" required /></dd>
 					<dt class="required"><label for="pet_type">ペットの種類</label></dt>
 					<dd>
-					@foreach ($petTypeName as $petKey => $petName)
+					@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
 						<input type="checkbox" value="{{$petKey}}" id="pet_type_{{$petKey}}" name="pet_type[]"  {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
 					@endforeach
 					</dd>
@@ -48,7 +47,7 @@
 					<dt class="required"><label for="purpose">来院目的</label></dt>
 					<dd>
 					@foreach (config('const.PURPOSE') as $purposeKey => $purpose)
-						<input type="checkbox" id="purpose" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
+						<input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
 					@endforeach
 					</dd>
 @endif
@@ -61,7 +60,7 @@
 				</div>
 				<div class="console">
 					<a href="{{route('index')}}" class="btn_cancel" accesskey="c">キャンセル</a>
-					<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button>
+					<button type="" id="btn_execution" class="btn_execution" accesskey="e">確　認</button>
 				</div>
 			</form>
 		</section>
@@ -96,15 +95,25 @@ $(function(){
 					localStorage.setItem('reserve.name', document.getElementById('name').value);
 					localStorage.setItem('reserve.email', document.getElementById('email').value);
 					localStorage.setItem('reserve.tel', document.getElementById('tel').value);
-					localStorage.setItem('reserve.pet_type', document.getElementById('pet_type').value);
 					localStorage.setItem('reserve.pet_name', document.getElementById('pet_name').value);
+					@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
+							localStorage.setItem('reserve.pet_type_' + <?php echo $petKey; ?>, document.getElementById("pet_type_" + <?php echo $petKey; ?>).checked);
+					@endforeach
+					@foreach (config('const.PURPOSE') as $purposeKey => $purposeName)
+							localStorage.setItem('reserve.purpose_' + <?php echo $purposeKey; ?>, document.getElementById("purpose_" + <?php echo $purposeKey; ?>).checked);
+					@endforeach
 			}else{
 					localStorage.removeItem('reserve.patient_no');
 					localStorage.removeItem('reserve.name');
 					localStorage.removeItem('reserve.email');
 					localStorage.removeItem('reserve.tel');
-					localStorage.removeItem('reserve.pet_type');
 					localStorage.removeItem('reserve.pet_name');
+					@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
+							localStorage.removeItem('reserve.pet_type_' + <?php echo $petKey; ?>);
+					@endforeach
+					@foreach (config('const.PURPOSE') as $purposeKey => $purposeName)
+							localStorage.removeItem('reserve.purpose_' + <?php echo $purposeKey; ?>);
+					@endforeach
 			}
 	});
 	@if ($careType==config('const.CARE_TYPE.REGULAR'))
@@ -115,8 +124,20 @@ $(function(){
 	$('#name').val(localStorage.getItem('reserve.name'));
 	$('#email').val(localStorage.getItem('reserve.email'));
 	$('#tel').val(localStorage.getItem('reserve.tel'));
-	$('#pet_type').val(localStorage.getItem('reserve.pet_type'));
 	$('#pet_name').val(localStorage.getItem('reserve.pet_name'));
+		@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
+				var petCheck = localStorage.getItem('reserve.pet_type_' + <?php echo $petKey; ?>);
+				if(petCheck != 'false') {
+					$('#pet_type_' + <?php echo $petKey; ?>).prop('checked', petCheck);
+				}
+		@endforeach
+		@foreach (config('const.PURPOSE') as $purposeKey => $purposeName)
+				var purposeCheck = localStorage.getItem('reserve.purpose_' + <?php echo $purposeKey; ?>);
+				if(purposeCheck != 'false') {
+					console.log(purposeCheck);
+					$('#purpose_' + <?php echo $purposeKey; ?>).prop('checked', purposeCheck);
+				}
+		@endforeach
 	@endif
 
 });

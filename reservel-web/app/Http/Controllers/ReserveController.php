@@ -120,7 +120,9 @@ class ReserveController extends Controller {
 
             $reserve->save();
             $reserve->PetType()->createMany($request->pet_type);
-            $reserve->Purpose()->createMany($request->purpose);
+            if ($request->careType == config('const.CARE_TYPE.REGULAR')) {
+                $reserve->Purpose()->createMany($request->purpose);
+            }
         }catch(Exception $e){
             DB::rollback();
             return redirect(route('index'));

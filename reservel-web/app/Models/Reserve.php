@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\UserBy;
-use App\Models\PetType;
 
 class Reserve extends Model
 {
