@@ -24,7 +24,7 @@ class ReservePostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $validation = [
             'name' => 'required|max:255',
             'email' => 'required|email',
             'tel' => 'required|digits_between:8,11',
@@ -32,6 +32,10 @@ class ReservePostRequest extends FormRequest
             'pet_name' => 'required|max:255',
             'pet_symptom' => 'max:255',
         ];
+        if ($this->input('careType') == 2) {
+            $validation['purpose'] = 'required';
+        }
+        return $validation;
     }
     public function messages() {
         return [
