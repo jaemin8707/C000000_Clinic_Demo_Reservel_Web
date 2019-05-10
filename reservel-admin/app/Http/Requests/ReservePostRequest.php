@@ -28,7 +28,6 @@ class ReservePostRequest extends FormRequest
             'name' => 'nullable|max:255',
             'email' => 'nullable|email',
             'tel' => 'nullable|digits_between:8,11',
-            'pet_type' => 'nullable|max:255',
             'pet_name' => 'nullable|max:255',
             'pet_symptom' => 'nullable|max:255',
         ];

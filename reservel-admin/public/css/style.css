@@ -581,6 +581,8 @@ ul.list {
     border-radius: 0.25rem;
     border: solid 2px #acacac;
     width: 100%; }
+  .form_items input[type="checkbox"]  {
+    width: 10%; }
   .form_items dt label, .form_items dt span {
     display: inline-block;
     margin-right: 2rem;

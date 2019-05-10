@@ -47,9 +47,19 @@
 					<dt><label for="tel">電話番号</label></dt>
 					<dd><input type="tel" id="tel" name="tel" value="{{$reserve->tel}}" /></dd>
 					<dt><label for="pet_type">ペットの種類</label></dt>
-					<dd><input type="text" id="pet_type" name="pet_type" value="{{old('pet_type', $reserve->pet_type)}}" /></dd>
+					<dd>
+						@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
+							<input type="checkbox" id="pet_type_{{$petKey}}" name="pet_type[{{$petKey}}][pet_type]" value="{{$petKey}}" {{ is_array(old("pet_type", $petType)) && in_array($petKey, old("pet_type", $petType), true)? 'checked="checked"' : '' }}/>{{$petName}}
+						@endforeach
+				  </dd>
 					<dt class="required"><label for="pet_name">ペットの名前</label></dt>
 					<dd><input type="text" id="pet_name" name="pet_name" value="{{old('pet_name', $reserve->pet_name)}}" /></dd>
+					<dt class="required"><label for="purpose">来院目的</label></dt>
+					<dd>
+					@foreach (config('const.PURPOSE') as $purposeKey => $purposeType)
+						<input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[{{$purposeKey}}][purpose]" value="{{$purposeKey}}" {{ is_array(old("purpose", $purpose)) && in_array($purposeKey, old("purpose", $purpose), true)? 'checked="checked"' : '' }}/>{{$purposeType}}
+					@endforeach
+					</dd>
 					<dt><label for="pet_symptom">症状など</label></dt>
 					<dd><textarea id="pet_symptom" name="pet_symptom" rows="5">{{old('conditions', $reserve->conditions)}}</textarea></dd>
 				</dl>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserve;
+use App\Models\PetType;
 use App\Models\Setting;
 use App\Mail\RemindSend;
 use App\Http\Requests\ReservePostRequest;
@@ -48,9 +49,9 @@ class ReserveController extends Controller
 
         //当日受付状況
         $reserves = Reserve::where('created_at','>=',DB::RAW('CURDATE()'))
+                           ->with('petType:reserve_id,pet_type', 'purpose:reserve_id,purpose')
                            ->orderBy('reception_no')
                            ->get();
-                           var_dump($reserves);
         //待ちの数
         $waitCnt = Reserve::where(function($query) {
                                       $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
@@ -69,6 +70,7 @@ class ReserveController extends Controller
 
         Log::Debug('予約一覧画面表示 End');
 
+
         return view('reserve.index', compact('reserves', 'waitCnt', 'tabTicketable', 'webTicketable'));
     }
 
@@ -82,10 +84,22 @@ class ReserveController extends Controller
     public function edit(Reserve $reserve)
     {
         Log::Debug('予約編集画面表示 Start');
+        //ペット種類取得
+        $petTypes = Reserve::find($reserve->id)->petType;
+        $petType = [];
+        foreach($petTypes as $pet){
+            $petType[] = $pet->pet_type;
+        }
 
+        //来院目的取得
+        $purposes = Reserve::find($reserve->id)->purpose;
+        $purpose = [];
+        foreach($purposes as $purposeType){
+            $purpose[] = $purposeType->purpose;
+        }
         Log::Debug('予約編集画面表示 End');
 
-        return view('reserve.edit', compact('reserve'));
+        return view('reserve.edit', compact('reserve', 'petType', 'purpose'));
     }
 
     /**
@@ -103,19 +117,36 @@ class ReserveController extends Controller
 
         Log::Debug('更新処理 Start');
 
-        $orgStatus = $reserve->status;
+        DB::beginTransaction();
+        try{
+            $orgStatus = $reserve->status;
 
-        $reserve->status          = $request->status;
-        $reserve->medical_card_no = $request->patient_no;
-        $reserve->name            = $request->name;
-        $reserve->email           = $request->email;
-        $reserve->tel             = $request->tel;
-        $reserve->pet_type        = $request->pet_type;
-        $reserve->pet_name        = $request->pet_name;
-        $reserve->conditions      = $request->pet_symptom;
-        DB::enableQueryLog();
-        $reserve->save();
-        Log::Debug(DB::getQueryLog());
+            $reserve->status          = $request->status;
+            $reserve->medical_card_no = $request->patient_no;
+            $reserve->name            = $request->name;
+            $reserve->email           = $request->email;
+            $reserve->tel             = $request->tel;
+            $reserve->pet_name        = $request->pet_name;
+            $reserve->conditions      = $request->pet_symptom;
+            DB::enableQueryLog();
+            $reserve->save();
+
+            $reserve->PetType()->delete();
+            if(isset($request->pet_type)) {
+                $reserve->PetType()->createMany($request->pet_type);
+            }
+            $reserve->Purpose()->delete();
+            if(isset($request->purpose)) {
+                $reserve->Purpose()->createMany($request->purpose);
+            }
+            
+            Log::Debug(DB::getQueryLog());
+        }catch(Exception $e){
+            DB::rollback();
+            Log::Debug('更新失敗 End');
+            return redirect(route('reserve.index'));
+        }
+        DB::commit();
 
         Log::Debug('更新処理 End');
 

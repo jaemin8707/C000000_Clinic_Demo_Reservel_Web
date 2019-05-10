@@ -56,7 +56,9 @@
 				<span class="a_status_edit">状態の変更</span>
 				<span class="a_reserve_time">呼出時刻</span>
 				<span class="a_patient_no">診察券番号</span>
+				<span class="a_pet_type">ペット種類</span>
 				<span class="a_c_num">ペット名</span>
+				<span class="a_purpose">来院目的</span>
 				<span class="a_name">氏　名</span>
 				<span class="a_button_area"> </span> 
 			</div>
@@ -84,7 +86,19 @@
 					</div>
 					<div class="a_reserve_time">{{$reserve->formattedCallTime()}}</div>
 					<div class="a_patient_no">{{$reserve->medical_card_no}}</div>
+					<div class="a_pet_type">
+						@foreach($reserve->petType as $pet)
+							{{config('const.PET_TYPE_NAME')[$pet->pet_type]}}
+							@if(!$loop->last) 、@endif
+						@endforeach
+					</div>
 					<div class="a_c_num">{{$reserve->pet_name}}</div>
+					<div class="a_purpose">
+							@foreach($reserve->purpose as $purpose)
+								{{config('const.PURPOSE')[$purpose->purpose]}}
+								@if(!$loop->last) 、@endif
+							@endforeach
+						</div>
 					<div class="a_name"><span>{{$reserve->name}}</span>
 						<div class="modal">
 							<form method="POST" action="{{route('reserve.update.name',['reserve'=>$reserve->id])}}">
