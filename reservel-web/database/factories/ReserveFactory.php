@@ -11,7 +11,6 @@ $factory->define(App\Models\Reserve::class, function (Faker $faker) {
         'status'          => $faker->randomElement([-1, 10, 20, 30, 40,]) ,
         'name'            => $faker->name,
         'medical_card_no' => $faker->word,
-        'pet_type'        => $faker->word,
         'pet_name'        => $faker->word,
         'tel'             => substr($faker->phoneNumber,0,15),
         'email'           => $faker->safeEmail,

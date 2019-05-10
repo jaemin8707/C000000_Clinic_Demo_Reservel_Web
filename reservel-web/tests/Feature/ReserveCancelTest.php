@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Reserve;
+use App\Models\PetType;
+use App\Models\Purpose;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -45,12 +47,14 @@ class ReserveCancelTest extends TestCase
        
         //受付キャンセル用のトークン発行
         $token = 'LtnfTa5qxlC5Yi1rKll0TJjO1axUgDHtaYIjZhSLlIU=';
-        $reserve1 = factory(Reserve::class)->create(['cancel_token' => $token, 'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'子','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
-        $this->assertDatabaseHas('reserves', ['cancel_token' => $token, 'id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'子','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $reserve1 = factory(Reserve::class)->create(['cancel_token' => $token, 'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789', 'pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        factory(PetType::class)->create(['reserve_id' => $reserve1->id, 'pet_type' => '1']);
+        $this->assertDatabaseHas('reserves', ['cancel_token' => $token, 'id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $this->assertDatabaseHas('pet_type', ['id'=>1,'reserve_id'=>$reserve1->id, 'pet_type' => 1]);
 
         $this->get('/reserve/cancel/'.$token)
             ->assertStatus(200)
-            ->assertSee('<h1>サンプル動物病院　予約キャンセル</h1')
+            ->assertSee('<h1>おおたけ動物病院　予約キャンセル</h1')
             ->assertSee('<div class="comprete_clinictype">キャンセルする受付番号：1</div>')
             ->assertSee('<div class="comprete_text">キャンセルしない場合はブラウザを閉じて下さい。</div>')
             ->assertSee('body div.popup_modals .modal_buttons .btn.btn_pmry{width:100px;background-color:#e74c3c;}')
@@ -70,8 +74,10 @@ class ReserveCancelTest extends TestCase
         
         //受付キャンセル用のトークン発行
         $token = 'LtnfTa5qxlC5Yi1rKll0TJjO1axUgDHtaYIjZhSLlIU=';
-        $reserve1 = factory(Reserve::class)->create(['cancel_token' => $token, 'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'子','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
-        $this->assertDatabaseHas('reserves', ['cancel_token' => $token, 'id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'子','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $reserve1 = factory(Reserve::class)->create(['cancel_token' => $token, 'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        factory(PetType::class)->create(['reserve_id' => $reserve1->id, 'pet_type' => '1']);
+        $this->assertDatabaseHas('reserves', ['cancel_token' => $token, 'id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'name'=>'一番太郎','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $this->assertDatabaseHas('pet_type', ['id'=>1,'reserve_id'=>$reserve1->id, 'pet_type' => 1]);
 
         $this->post('/reserve/cancel_complete',[
                         'id' => $reserve1->id,
@@ -79,7 +85,8 @@ class ReserveCancelTest extends TestCase
                    ])
             ->assertStatus(200);
             
-        $this->assertDatabaseHas('reserves', ['cancel_token' => null, 'id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>-1,'name'=>'一番太郎','tel'=>'0123456789','pet_type'=>'子','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $this->assertDatabaseHas('reserves', ['cancel_token' => null, 'id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>-1,'name'=>'一番太郎','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $this->assertDatabaseHas('pet_type', ['id'=>1,'reserve_id'=>$reserve1->id, 'pet_type' => 1]);
         
         Log::Info('受付キャンセル処理表示テスト End');
     }

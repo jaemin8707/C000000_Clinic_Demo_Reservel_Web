@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Artisan;
 
-class ReserveTest extends PassortGrantTestCase
+class ReserveTestApi extends PassortGrantTestCase
 {
 
     public function testCanGetReserveNoData()
