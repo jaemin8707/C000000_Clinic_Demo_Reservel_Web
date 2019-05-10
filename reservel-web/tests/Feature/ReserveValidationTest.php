@@ -28,7 +28,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => '',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -54,7 +54,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -80,7 +80,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => 'erroremail', //メール形式ではない。
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -103,7 +103,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => '', //メール未入力
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -126,7 +126,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => 'telNum',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -137,6 +137,29 @@ class ReserveValidationTest extends TestCase
               ->assertSee('<li>電話番号を半角数字を8桁以上、11桁以下を入力してください。</li>');
         Log::Info('初診予約申込バリデーションエラー(電話番号形式)表示テスト End');
     }
+
+     // 初診予約申込バリデーションエラーチェック（動物種類必須）
+     public function testCanView_PetTypeValidationError_typeFirst()
+     {
+         Log::Info('初診予約申込バリデーションエラー(動物種類必須)表示テスト Start');
+ 
+         $this->post('/reserve/confirm',[
+                         'careType'        => 1,
+                         'patient_no' => '',
+                         'name'        => 'testName',
+                         'email'       => 'testEmail@test.com',
+                         'tel'         => 'telNum',//電話番号に文字
+                         'pet_type'    => [],
+                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                     ])
+              ->assertStatus(302)
+              ->assertRedirect('/reserve/create/1');
+ 
+          $this->get('/reserve/create/1')
+               ->assertSee('<li>ペットの種類を必ず選択してください。</li>');
+         Log::Info('初診予約申込バリデーションエラー(動物種類必須)表示テスト End');
+     }
     
     // 初診予約申込バリデーションエラーチェック（ペット名）
     public function testCanView_PetNameRequireValidationError_typeFirst()
@@ -149,7 +172,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0312345678',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => '',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -172,7 +195,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0312345678',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -196,7 +219,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0312345678',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                     ])
@@ -220,7 +243,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => '',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -245,7 +268,7 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
@@ -270,9 +293,10 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => 'erroremail', //メール形式ではない。
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                        'purpose'     => [0 => '1', 1 => '2'],
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');
@@ -293,9 +317,10 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => '', //メール未入力
                         'tel'         => '0331234567',
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                        'purpose'     => [0 => '1', 1 => '2'],
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');
@@ -315,10 +340,11 @@ class ReserveValidationTest extends TestCase
                         'patient_no' => '123456',
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
-                        'tel'         => 'telNum',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'tel'         => 'telNum',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                        'purpose'     => [0 => '1', 1 => '2'],
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');
@@ -339,10 +365,11 @@ class ReserveValidationTest extends TestCase
                         'patient_no' => '123456',
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
-                        'tel'         => '0312345678',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'tel'         => '0312345678',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => '',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                        'purpose'     => [0 => '1', 1 => '2'],
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');
@@ -362,10 +389,11 @@ class ReserveValidationTest extends TestCase
                         'patient_no' => '123456',
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
-                        'tel'         => '0312345678',//電話番号に文字
-                        'pet_type'    => '犬、猫、ウサギ、インコ、トカゲ',
+                        'tel'         => '0312345678',
+                        'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                        'purpose'     => [0 => '1', 1 => '2'],
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');
@@ -375,6 +403,53 @@ class ReserveValidationTest extends TestCase
         Log::Info('初診予約申込バリデーションエラー(ペット名前255文字)表示テスト End');
     }
 
+    // 再診予約申込バリデーションエラーチェック（動物種類必須）
+    public function testCanView_PetTypeValidationError_typeRefeat()
+    {
+        Log::Info('再診予約申込バリデーションエラーチェック(動物種類必須)表示テスト Start');
+
+        $this->post('/reserve/confirm',[
+                        'careType'        => 2,
+                        'patient_no' => '',
+                        'name'        => 'testName',
+                        'email'       => 'testEmail@test.com',
+                        'tel'         => '0312345678',
+                        'pet_type'    => [],
+                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'pet_symptom' => 'おもちゃを飲み込んだ',
+                        'purpose'     => [0 => '1', 1 => '2'],
+                    ])
+            ->assertStatus(302)
+            ->assertRedirect('/reserve/create/2');
+
+        $this->get('/reserve/create/1')
+            ->assertSee('<li>ペットの種類を必ず選択してください。</li>');
+        Log::Info('初診予約申込バリデーションエラー(動物種類必須)表示テスト End');
+    }
+
+     // 再診予約申込バリデーションエラーチェック（来院目的必須）
+     public function testCanView_PurposeValidationError_typeRefeat()
+     {
+         Log::Info('再診予約申込バリデーションエラーチェック(来院目的必須)表示テスト Start');
+ 
+         $this->post('/reserve/confirm',[
+                         'careType'        => 2,
+                         'patient_no' => '',
+                         'name'        => 'testName',
+                         'email'       => 'testEmail@test.com',
+                         'tel'         => '0312345678',
+                         'pet_type'    => [0 => '1', 1 => '2'],
+                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                         'pet_symptom' => 'おもちゃを飲み込んだ',
+                         'purpose'     => [],
+                     ])
+             ->assertStatus(302)
+             ->assertRedirect('/reserve/create/2');
+ 
+         $this->get('/reserve/create/1')
+             ->assertSee('<li>来院目的を必ず選択してください。</li>');
+         Log::Info('初診予約申込バリデーションエラー(来院目的必須)表示テスト End');
+     }
     // 再診予約申込バリデーションエラーチェック（症状255文字）
     public function testCanView_PetSymptomValidationError_typeRefeat()
     {
@@ -385,10 +460,11 @@ class ReserveValidationTest extends TestCase
                         'patient_no' => '123456',
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
-                        'tel'         => '0312345678',//電話番号に文字
+                        'tel'         => '0312345678',
                         'pet_type'    => [0 => '1', 1 => '2'],
                         'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
                         'pet_symptom' => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
+                        'purpose'     => [0 => '1', 1 => '2'],
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');

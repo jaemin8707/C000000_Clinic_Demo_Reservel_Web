@@ -243,6 +243,7 @@ class ReserveTest extends TestCase
              ->assertSee('電話番号')
              ->assertSee('ペットの種類')
              ->assertSee('ペットの名前')
+             ->assertSee('来院目的')
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
              ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
