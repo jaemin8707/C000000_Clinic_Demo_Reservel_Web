@@ -60,7 +60,7 @@
 				</div>
 				<div class="console">
 					<a href="{{route('index')}}" class="btn_cancel" accesskey="c">キャンセル</a>
-					<button type="" id="btn_execution" class="btn_execution" accesskey="e">確　認</button>
+					<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button>
 				</div>
 			</form>
 		</section>
