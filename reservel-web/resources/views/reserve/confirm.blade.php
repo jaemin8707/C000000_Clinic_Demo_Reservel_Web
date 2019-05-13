@@ -32,7 +32,7 @@
         <div class="type"><span>受付区分</span>：<span>{{$careTypeName['name']}}</span></div>
         <dl class="form_items">
 @if($request->careType==2)
-          <dt><span>診察券番号</span></dt>
+          <dt class="required"><span>診察券番号</span></dt>
           <dd><span>{{$request->patient_no}}</span></dd>
 @endif
           <dt class="required"><span>お名前</span></dt>

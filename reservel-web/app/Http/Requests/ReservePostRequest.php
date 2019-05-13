@@ -34,6 +34,7 @@ class ReservePostRequest extends FormRequest
         ];
         if ($this->input('careType') == 2) {
             $validation['purpose'] = 'required';
+            $validation['patient_no'] = 'required';
         }
         return $validation;
     }
