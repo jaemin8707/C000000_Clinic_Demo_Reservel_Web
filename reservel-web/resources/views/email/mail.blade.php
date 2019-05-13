@@ -29,7 +29,7 @@
  <div style="margin:0 24px;border:solid 1px #dcdcdc;padding:16px;text-align:center;">
  おおたけ動物病院<br>
  <span style="font-size:12px;">〒270-1608 千葉県 印西市 舞姫１丁目3−6<br>
- TEL：02-5569-4637</span>
+ TEL：0476-33-6773</span>
  </div>
  </div>
 </body>
