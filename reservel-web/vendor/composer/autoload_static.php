@@ -4136,7 +4136,7 @@ class ComposerStaticInitb6c718d25aca63a087fa55b86be41e3a
         'Tests\\Feature\\api\\LogUploadTest' => __DIR__ . '/../..' . '/tests/Feature/api/LogUploadTest.php',
         'Tests\\Feature\\api\\PassortGrantTestCase' => __DIR__ . '/../..' . '/tests/Feature/api/PassortGrantTestCase.php',
         'Tests\\Feature\\api\\PassportTest' => __DIR__ . '/../..' . '/tests/Feature/api/PassportTest.php',
-        'Tests\\Feature\\api\\ReserveTest' => __DIR__ . '/../..' . '/tests/Feature/api/ReserveTest.php',
+        'Tests\\Feature\\api\\ReserveTestApi' => __DIR__ . '/../..' . '/tests/Feature/api/ReserveTestApi.php',
         'Tests\\Feature\\batch\\BatchTestCase' => __DIR__ . '/../..' . '/tests/Feature/batch/BatchTestCase.php',
         'Tests\\Feature\\batch\\DisableTabTicketingTest' => __DIR__ . '/../..' . '/tests/Feature/batch/DisableTabTicketingTest.php',
         'Tests\\Feature\\batch\\DisableWebTicketingTest' => __DIR__ . '/../..' . '/tests/Feature/batch/DisableWebTicketingTest.php',

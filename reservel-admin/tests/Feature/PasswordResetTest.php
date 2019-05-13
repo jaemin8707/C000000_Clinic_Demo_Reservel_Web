@@ -22,7 +22,7 @@ class PasswordResetTest extends TestCase
 
         $this->get('/password/reset')
              ->assertStatus(200)
-             ->assertSee('<h1>あかつき動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/email">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
@@ -74,8 +74,8 @@ class PasswordResetTest extends TestCase
 
         $this->get('/password/reset/abc')
              ->assertStatus(200)
-             ->assertSee('<title>パスワードリセット - 管理画面 - あかつき動物病院 - リザベル</title>')
-             ->assertSee('<h1>あかつき動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<title>パスワードリセット - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/reset">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
@@ -98,8 +98,8 @@ class PasswordResetTest extends TestCase
         // トークンが間違っていても正常に表示されることをテスト
         $this->get('/password/reset/ab')
              ->assertStatus(200)
-             ->assertSee('<title>パスワードリセット - 管理画面 - あかつき動物病院 - リザベル</title>')
-             ->assertSee('<h1>あかつき動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<title>パスワードリセット - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/reset">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
@@ -176,8 +176,8 @@ class PasswordResetTest extends TestCase
 
         $this->get('/password/reset/abc')
              ->assertStatus(200)
-             ->assertSee('<title>パスワードリセット - 管理画面 - あかつき動物病院 - リザベル</title>')
-             ->assertSee('<h1>あかつき動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<title>パスワードリセット - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/reset">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')

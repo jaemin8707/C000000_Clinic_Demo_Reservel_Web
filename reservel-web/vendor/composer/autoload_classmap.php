@@ -3698,7 +3698,7 @@ return array(
     'Tests\\Feature\\api\\LogUploadTest' => $baseDir . '/tests/Feature/api/LogUploadTest.php',
     'Tests\\Feature\\api\\PassortGrantTestCase' => $baseDir . '/tests/Feature/api/PassortGrantTestCase.php',
     'Tests\\Feature\\api\\PassportTest' => $baseDir . '/tests/Feature/api/PassportTest.php',
-    'Tests\\Feature\\api\\ReserveTest' => $baseDir . '/tests/Feature/api/ReserveTest.php',
+    'Tests\\Feature\\api\\ReserveTestApi' => $baseDir . '/tests/Feature/api/ReserveTestApi.php',
     'Tests\\Feature\\batch\\BatchTestCase' => $baseDir . '/tests/Feature/batch/BatchTestCase.php',
     'Tests\\Feature\\batch\\DisableTabTicketingTest' => $baseDir . '/tests/Feature/batch/DisableTabTicketingTest.php',
     'Tests\\Feature\\batch\\DisableWebTicketingTest' => $baseDir . '/tests/Feature/batch/DisableWebTicketingTest.php',
