@@ -7,7 +7,7 @@
 </head>
 <body>
  <div style="margin:24px auto;width:90%;">
- <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【サンプル動物病院】</h1>
+ <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【おおたけ動物病院】</h1>
  <p style="padding:8px 24px;">診察の順番が近づいています。</p>
  <p style="padding:8px 24px;">病院へお越し下さい。</p>
  <p style="padding:8px 24px;line-height:2.4em;">
