@@ -28,7 +28,7 @@ class ConfigTest extends PassortGrantTestCase
 
                                'result' => 
                                [
-                                   "name"   =>"サンプル動物病院",
+                                   "name"   =>"おおたけ動物病院",
                                    "tel"   =>"0255694637",
                                    "url"   =>"http://example.com/",
                                    "optimes"=>
