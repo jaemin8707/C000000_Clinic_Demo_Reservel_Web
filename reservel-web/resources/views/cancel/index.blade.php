@@ -1,12 +1,12 @@
 @extends('layouts.common')
-@section('title', '予約キャンセル - ')
+@section('title', '受付キャンセル - ')
 @include('layouts.head')
 @section('content')
-@section('heading', '予約キャンセル')
+@section('heading', '受付キャンセル')
 @include('layouts.header')
 <main>
   <section>
-    <div class="comprete_title">予約キャンセル</div>
+    <div class="comprete_title">受付キャンセル</div>
     <div class="comprete_clinictype">キャンセルする受付番号：{{$reserve->reception_no}}</div>
     <div class="comprete_text">
         
@@ -36,7 +36,7 @@ $(function(){
   $("#btnDelete").click(function(e){
       popup.confirm(
         { 
-          content: '予約番号：{{$reserve->reception_no}}をキャンセルします。よろしいですか？',
+          content: '受付番号：{{$reserve->reception_no}}をキャンセルします。よろしいですか？',
           default_btns : {
             ok : 'はい',
             cancel : 'いいえ'

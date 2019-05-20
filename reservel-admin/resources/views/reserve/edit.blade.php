@@ -1,8 +1,8 @@
 @extends('layouts.common')
-@section('title', '予約受付 - ')
+@section('title', '受付 - ')
 @include('layouts.head')
 @section('content')
-@section('heading', '予約情報編集')
+@section('heading', '受付情報編集')
 @include('layouts.header')
 <main>
 	<div class="wrapper960">

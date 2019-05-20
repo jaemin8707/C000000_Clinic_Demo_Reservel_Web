@@ -1,5 +1,5 @@
 @extends('layouts.common')
-@section('title', '予約状況一覧 - ')
+@section('title', '受付状況一覧 - ')
 @section('refresh')
 <meta http-equiv="refresh" content="120">
 @endsection

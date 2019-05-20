@@ -40,10 +40,10 @@
       @endif
       <div style="display:flex;justify-content:center;margin-top:1rem;">
         <form method="GET" action="{{route('reserve.create',['diagnosisType'=>1])}}">
-          <button class="btn_first"   accesskey="1"@if($webTicketable==='false') disabled @endif>初診予約</button>
+          <button class="btn_first"   accesskey="1"@if($webTicketable==='false') disabled @endif>初診受付</button>
         </form>
         <form method="GET" action="{{route('reserve.create',['diagnosisType'=>2])}}">
-          <button class="btn_regular" accesskey="2"@if($webTicketable==='false') disabled @endif>再診予約</button>
+          <button class="btn_regular" accesskey="2"@if($webTicketable==='false') disabled @endif>再診受付</button>
         </form>
       </div>
     </div>

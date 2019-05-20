@@ -1,14 +1,14 @@
 @extends('layouts.common')
-@section('title', '予約受付 - ')
+@section('title', 'Web受付 - ')
 @include('layouts.head')
 @section('content')
-@section('heading', '予約受付')
+@section('heading', 'Web受付')
 @include('layouts.header')
 <?php $careTypeName = config('const.CARE_TYPE_NAME')[$request->careType]; ?>
 <main>
   <div class="wrapper">
     <section>
-      <div class="clinicType {{$careTypeName['class_name']}}">{{$careTypeName['name']}}予約申し込み</div>
+      <div class="clinicType {{$careTypeName['class_name']}}">{{$careTypeName['name']}}受付申し込み</div>
     </section>
     <section>
       <form action="{{route('reserve.store')}}" method="POST">
