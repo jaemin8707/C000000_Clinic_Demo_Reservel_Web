@@ -27,7 +27,8 @@
 				<dl class="form_items">
 					@if($careType==config('const.CARE_TYPE.REGULAR'))
 					<dt class="required"><label for="patient_no">診察券番号</label></dt>
-					<dd><input type="text" id="patient_no" name="patient_no" maxlength="4" placeholder="例）100" required /></dd>
+					<dd><input type="text" id="patient_no" name="patient_no" maxlength="4" placeholder="例）1000 ※診察券番号がわからない人は「0000」と入力してください" required />
+					</dd>
 					@endif
 					<dt class="required"><label for="name">お名前</label></dt>
 					<dd><input type="text" id="name" name="name" value="{{old('name')}}" placeholder="例）動物　太郎" required /></dd>
