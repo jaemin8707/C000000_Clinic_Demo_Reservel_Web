@@ -54,7 +54,7 @@ class ReserveCancelTest extends TestCase
 
         $this->get('/reserve/cancel/'.$token)
             ->assertStatus(200)
-            ->assertSee('<h1>おおたけ動物病院　予約キャンセル</h1')
+            ->assertSee('<h1>おおたけ動物病院　受付キャンセル</h1')
             ->assertSee('<div class="comprete_clinictype">キャンセルする受付番号：1</div>')
             ->assertSee('<div class="comprete_text">キャンセルしない場合はブラウザを閉じて下さい。</div>')
             ->assertSee('body div.popup_modals .modal_buttons .btn.btn_pmry{width:100px;background-color:#e74c3c;}')

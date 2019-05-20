@@ -50,7 +50,7 @@ class ReserveTest extends TestCase
         $curdate = date('Y/m/d');
         $this->get('/reserve')
              ->assertStatus(200)
-             ->assertSee('<title>予約状況一覧 - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<title>受付状況一覧 - 管理画面 - おおたけ動物病院 - リザベル</title>')
              ->assertSee('<h1>おおたけ動物病院　受付状況</h1>')
              ->assertSee('<span class="time">'.$curdate.' ')
              ->assertSee('<li><div>本日の待ち患者は、まだいません。</div></li>')
@@ -155,7 +155,7 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve')
              ->assertStatus(200)
-             ->assertSee('<title>予約状況一覧 - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<title>受付状況一覧 - 管理画面 - おおたけ動物病院 - リザベル</title>')
              ->assertSee('<h1>おおたけ動物病院　受付状況</h1>')
              ->assertSee('<span class="time">'.$curdate.' ')
              ->assertDontSee('<li><div>本日の待ち患者は、まだいません。</div></li>')
@@ -354,7 +354,7 @@ class ReserveTest extends TestCase
       Log::Info('受付状況画面から名前変更テスト End');
     }
 
-    // 予約情報編集画面表示テスト(未ログイン)
+    // 受付情報編集画面表示テスト(未ログイン)
     public function testCannotView_editPage()
     {
         $reserve1 = factory(Reserve::class)->create(['place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'ABC0123456','name'=>'一番太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
@@ -374,10 +374,10 @@ class ReserveTest extends TestCase
              ->assertRedirect('/login');  // /loginへのリダイレクト
     }
 
-    // 予約情報編集画面表示(ステータス：待ち)テスト
+    // 受付情報編集画面表示(ステータス：待ち)テスト
     public function testCanView_edit_Status_Waiting_Page()
     {
-        Log::Info('予約情報編集画面表示(ステータス：待ち)テスト Start');
+        Log::Info('受付情報編集画面表示(ステータス：待ち)テスト Start');
 
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
@@ -391,8 +391,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -421,13 +421,13 @@ class ReserveTest extends TestCase
              ->assertSee('<button class="btn_execution">更　新</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('予約情報編集画面表示(ステータス：待ち)テスト End');
+        Log::Info('受付情報編集画面表示(ステータス：待ち)テスト End');
     }
 
-    // 予約情報編集画面表示(ステータス：呼出中)テスト
+    // 受付情報編集画面表示(ステータス：呼出中)テスト
     public function testCanView_edit_Status_Called_Page()
     {
-        Log::Info('予約情報編集画面表示(ステータス：呼出中)テスト Start');
+        Log::Info('受付情報編集画面表示(ステータス：呼出中)テスト Start');
 
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
@@ -454,8 +454,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -484,13 +484,13 @@ class ReserveTest extends TestCase
              ->assertSee('<button class="btn_execution">更　新</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('予約情報編集画面表示(ステータス：呼出中)テスト End');
+        Log::Info('受付情報編集画面表示(ステータス：呼出中)テスト End');
     }
 
-    // 予約情報編集画面表示(ステータス：診察中)テスト
+    // 受付情報編集画面表示(ステータス：診察中)テスト
     public function testCanView_edit_Status_Examine_Page()
     {
-        Log::Info('予約情報編集画面表示(ステータス：診察中)テスト Start');
+        Log::Info('受付情報編集画面表示(ステータス：診察中)テスト Start');
 
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
@@ -504,8 +504,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -534,13 +534,13 @@ class ReserveTest extends TestCase
              ->assertSee('<button class="btn_execution">更　新</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('予約情報編集画面表示(ステータス：診察中)テスト End');
+        Log::Info('受付情報編集画面表示(ステータス：診察中)テスト End');
     }
     
-    //予約情報編集保存テスト
+    //受付情報編集保存テスト
     public function testCanSave_editData()
     {
-        Log::Info('予約情報編集保存テスト Start');
+        Log::Info('受付情報編集保存テスト Start');
 
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
@@ -588,14 +588,14 @@ class ReserveTest extends TestCase
         'pet_name'=>'ポチ',
         'conditions'=>'風邪',
         ]);
-        Log::Info('予約情報編集保存テスト End');
+        Log::Info('受付情報編集保存テスト End');
     }
 
 
-     //予約情報編集エラー(名前255文字以上)テスト
+     //受付情報編集エラー(名前255文字以上)テスト
     public function testNameValidationError_editData()
     {
-        Log::Info('予約情報編集エラー(名前255文字以上)テスト Start');
+        Log::Info('受付情報編集エラー(名前255文字以上)テスト Start');
 
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
@@ -633,13 +633,13 @@ class ReserveTest extends TestCase
           ->assertSee('<li>名前を255文字以下入力してください。</li>')
           ->assertDontSee('<li>name.max</li>');
 
-        Log::Info('予約情報編集エラー(名前255文字以上)テスト End');
+        Log::Info('受付情報編集エラー(名前255文字以上)テスト End');
     }
 
-    //予約情報編集エラー(診察券255文字以上)テスト
+    //受付情報編集エラー(診察券255文字以上)テスト
     public function testMedicalValidationError_editData()
     {
-       Log::Info('予約情報編集エラー(診察券番号255文字以上)テスト Start');
+       Log::Info('受付情報編集エラー(診察券番号255文字以上)テスト Start');
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
         $this->actingAs($login);
@@ -674,13 +674,13 @@ class ReserveTest extends TestCase
           ->assertSee('<li>診察券番号を255文字以下入力してください。</li>')
           ->assertDontSee('<li>patient_no.max</li>');
 
-        Log::Info('予約情報編集エラー(診察券番号255文字以上)テスト End');
+        Log::Info('受付情報編集エラー(診察券番号255文字以上)テスト End');
     }
 
-    //予約情報編集エラー(メールアドレス)テスト
+    //受付情報編集エラー(メールアドレス)テスト
     public function testMailValidationError_editData()
     {
-       Log::Info('予約情報編集エラー(メールアドレス)テスト Start');
+       Log::Info('受付情報編集エラー(メールアドレス)テスト Start');
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
         $this->actingAs($login);
@@ -718,13 +718,13 @@ class ReserveTest extends TestCase
           ->assertSee('<li>メールアドレスを正しい形式に入力してください。</li>')
           ->assertDontSee('<li>email.email</li>');
   
-        Log::Info('予約情報編集エラー(メールアドレス)テスト End');
+        Log::Info('受付情報編集エラー(メールアドレス)テスト End');
     }
 
-    //予約情報編集エラー(電話番号)テスト
+    //受付情報編集エラー(電話番号)テスト
     public function testTelValidationError_editData()
     {
-       Log::Info('予約情報編集エラー(電話番号)テスト Start');
+       Log::Info('受付情報編集エラー(電話番号)テスト Start');
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
         $this->actingAs($login);
@@ -763,13 +763,13 @@ class ReserveTest extends TestCase
           ->assertSee('<li>電話番号を半角数字を8桁以上、11桁以下を入力してください。</li>')
           ->assertDontSee('<li>tel.digits_between</li>');
   
-        Log::Info('予約情報編集エラー(電話番号)テスト End');
+        Log::Info('受付情報編集エラー(電話番号)テスト End');
     }
 
-    //予約情報編集エラー(ペット名前255文字以上)テスト
+    //受付情報編集エラー(ペット名前255文字以上)テスト
     public function testPetNameValidationError_editData()
     {
-       Log::Info('予約情報編集エラー(ペット名255文字以上)テスト Start');
+       Log::Info('受付情報編集エラー(ペット名255文字以上)テスト Start');
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
         $this->actingAs($login);
@@ -809,13 +809,13 @@ class ReserveTest extends TestCase
           ->assertSee('<li>ペットの名前を255文字以下入力してください。</li>')
           ->assertDontSee('<li>pet_name.max</li>');
     
-        Log::Info('予約情報編集エラー(ペット名255文字以上)テスト End');
+        Log::Info('受付情報編集エラー(ペット名255文字以上)テスト End');
     }
 
-    //予約情報編集エラー(症状255文字以上)テスト
+    //受付情報編集エラー(症状255文字以上)テスト
     public function testConditionsValidationError_editData()
     {
-       Log::Info('予約情報編集エラー(症状255文字以上)テスト Start');
+       Log::Info('受付情報編集エラー(症状255文字以上)テスト Start');
         // ログインユーザの作成・認証
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
         $this->actingAs($login);
@@ -854,7 +854,7 @@ class ReserveTest extends TestCase
           ->assertSee('<li>症状などを255文字以下入力してください。</li>')
           ->assertDontSee('<li>pet_name.max</li>');
     
-        Log::Info('予約情報編集エラー(症状255文字以上)テスト End');
+        Log::Info('受付情報編集エラー(症状255文字以上)テスト End');
     }
 
 

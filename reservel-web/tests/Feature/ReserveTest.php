@@ -34,9 +34,9 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="label">初診 <span class="count"> 0 </span><span class="bold">人</span></div>')
              ->assertSee('<div class="label">再診 <span class="count"> 0 </span><span class="bold">人</span></div>')
              ->assertSee('<form method="GET" action="http://localhost/reserve/create/1">')
-             ->assertSee('<button class="btn_first"   accesskey="1">初診予約</button>')
+             ->assertSee('<button class="btn_first"   accesskey="1">初診受付</button>')
              ->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
-             ->assertSee('<button class="btn_regular" accesskey="2">再診予約</button>')
+             ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
              ->assertSee('<div class="notice">※ネットでの受付は午前9:00～11:30　午後16:00～18:30とさせていただきます。<br>※営業終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
@@ -70,8 +70,8 @@ class ReserveTest extends TestCase
              ->assertSee('<li ><span>2</span></li>')
              ->assertSee('<div class="label">再診 <span class="count"> 1 </span><span class="bold">人</span></div>')
              ->assertSee('<li ><span>3</span></li>')
-             ->assertSee('<button class="btn_first"   accesskey="1">初診予約</button>')
-             ->assertSee('<button class="btn_regular" accesskey="2">再診予約</button>')
+             ->assertSee('<button class="btn_first"   accesskey="1">初診受付</button>')
+             ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト(初診2人、再診1人) End');
@@ -90,23 +90,23 @@ class ReserveTest extends TestCase
              ->assertSee('<title>受付状況 - おおたけ動物病院 - リザベル</title>')
              ->assertSee('<h1>おおたけ動物病院　受付状況</h1>')
              ->assertSee('<span class="receptionMsg" style="color:red;font-weight:900;">ただいまの時間は受付を行っておりません。</span>')
-             ->assertSee('<button class="btn_first"   accesskey="1" disabled >初診予約</button>')
-             ->assertSee('<button class="btn_regular" accesskey="2" disabled >再診予約</button>')
+             ->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
+             ->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト(受付不可) End');
     }
 
-    // 初診予約申込画面表示テスト
+    // 初診受付申込画面表示テスト
     public function testCanView_createPage_typeFiest()
     {
-        Log::Info('初診予約申込画面表示テスト Start');
+        Log::Info('初診受付申込画面表示テスト Start');
 
         $this->get('/reserve/create/1')
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約受付</h1>')
-             ->assertSee('<div class="clinicType clinicFirst">初診予約申し込み</div>')
+             ->assertSee('<title>Web受付 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　Web受付</h1>')
+             ->assertSee('<div class="clinicType clinicFirst">初診受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>初診</span></div>')
              ->assertSee('飼い主氏名')
@@ -119,13 +119,13 @@ class ReserveTest extends TestCase
              ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('初診予約申込画面表示テスト End');
+        Log::Info('初診受付申込画面表示テスト End');
     }
 
-    // 初診予約申込確認画面表示テスト
+    // 初診受付申込確認画面表示テスト
     public function testCanView_confirmPage_typeFiest()
     {
-        Log::Info('初診予約申込確認画面表示テスト Start');
+        Log::Info('初診受付申込確認画面表示テスト Start');
 
         $this->post('/reserve/confirm',[
                         'careType'        => 1,
@@ -138,9 +138,9 @@ class ReserveTest extends TestCase
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約受付</h1>')
-             ->assertSee('<div class="clinicType clinicFirst">初診予約申し込み</div>')
+             ->assertSee('<title>Web受付 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　Web受付</h1>')
+             ->assertSee('<div class="clinicType clinicFirst">初診受付申し込み</div>')
              ->assertSee('/reserve" method="POST">')
              ->assertSee('<input type="hidden" name="careType"        value="1" />')
              ->assertSee('<input type="hidden" name="patient_no" value="123456" />')
@@ -169,14 +169,14 @@ class ReserveTest extends TestCase
              ->assertSee('<button type="submit" class="btn_execution">予　約</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('初診予約申込確認画面表示テスト End');
+        Log::Info('初診受付申込確認画面表示テスト End');
     }
 
-    // 初診予約申込完了画面表示テスト
+    // 初診受付申込完了画面表示テスト
     public function testCanReserve_typeFiest()
     {
 
-        Log::Info('初診予約申込完了画面表示テスト Start');
+        Log::Info('初診受付申込完了画面表示テスト Start');
         Mail::fake();
         Mail::assertNothingSent();
 
@@ -196,12 +196,12 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/complete?careType=1&receptionNo=1')
              ->assertStatus(200)
-             ->assertSee('<title>予約完了 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約完了</h1>')
-             ->assertSee('<div class="comprete_title">予約が完了しました</div>')
+             ->assertSee('<title>受付完了 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　受付完了</h1>')
+             ->assertSee('<div class="comprete_title">受付が完了しました</div>')
              ->assertSee('<div class="comprete_clinictype">受付区分：初診</div>')
              ->assertSee('<div class="comprete_number">受付番号：1</div>')
-             ->assertSee('ご記入いただいたメールアドレス宛に<br class="br-u600">予約完了メールを送信しました。<br/>')
+             ->assertSee('ご記入いただいたメールアドレス宛に<br class="br-u600">受付完了メールを送信しました。<br/>')
              ->assertSee('受付番号が記載されていますので、<br class="br-u600">ご確認ください。')
              ->assertSee('/index">受付状況トップ画面に戻る</a></div>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
@@ -222,20 +222,20 @@ class ReserveTest extends TestCase
             }
         );
 
-        Log::Info('初診予約申込完了画面表示テスト End');
+        Log::Info('初診受付申込完了画面表示テスト End');
     }
 
-    // 再診予約申込画面表示テスト
+    // 再診受付申込画面表示テスト
     public function testCanView_createPage_typeRepeat()
     {
 
-        Log::Info('再診予約申込画面表示テスト Start');
+        Log::Info('再診受付申込画面表示テスト Start');
 
         $this->get('/reserve/create/2')
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約受付</h1>')
-             ->assertSee('<div class="clinicType clinicRepeat">再診予約申し込み</div>')
+             ->assertSee('<title>Web受付 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　Web受付</h1>')
+             ->assertSee('<div class="clinicType clinicRepeat">再診受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>再診</span></div')
              ->assertSee('飼い主氏名')
@@ -249,13 +249,13 @@ class ReserveTest extends TestCase
              ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('再診予約申込画面表示テスト End');
+        Log::Info('再診受付申込画面表示テスト End');
     }
 
-    // 再診予約申込確認画面表示テスト
+    // 再診受付申込確認画面表示テスト
     public function testCanView_confirmPage_typeRepeat()
     {
-        Log::Info('再診予約申込確認画面表示テスト Start');
+        Log::Info('再診受付申込確認画面表示テスト Start');
 
         $this->post('/reserve/confirm',[
                         'careType'        => 2,
@@ -269,9 +269,9 @@ class ReserveTest extends TestCase
                         'pet_symptom' 		=> 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
-             ->assertSee('<title>予約受付 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約受付</h1>')
-             ->assertSee('<div class="clinicType clinicRepeat">再診予約申し込み</div>')
+             ->assertSee('<title>Web受付 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　Web受付</h1>')
+             ->assertSee('<div class="clinicType clinicRepeat">再診受付申し込み</div>')
              ->assertSee('/reserve" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>再診</span></div>')
              ->assertSee('<dt class="required"><span>飼い主氏名</span></dt>')
@@ -294,14 +294,14 @@ class ReserveTest extends TestCase
              ->assertSee('<button type="submit" class="btn_execution">予　約</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
-        Log::Info('再診予約申込確認画面表示テスト End');
+        Log::Info('再診受付申込確認画面表示テスト End');
     }
 
-    // 再診予約申込完了画面表示テスト
+    // 再診受付申込完了画面表示テスト
     public function testCanReserve_typeRepeat()
     {
 
-        Log::Info('再診予約申込完了画面表示テスト Start');
+        Log::Info('再診受付申込完了画面表示テスト Start');
 
         Mail::fake();
         Mail::assertNothingSent();
@@ -323,12 +323,12 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/complete?careType=2&receptionNo=1')
              ->assertStatus(200)
-             ->assertSee('<title>予約完了 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　予約完了</h1>')
-             ->assertSee('<div class="comprete_title">予約が完了しました</div>')
+             ->assertSee('<title>受付完了 - おおたけ動物病院 - リザベル</title>')
+             ->assertSee('<h1>おおたけ動物病院　受付完了</h1>')
+             ->assertSee('<div class="comprete_title">受付が完了しました</div>')
              ->assertSee('<div class="comprete_clinictype">受付区分：再診</div>')
              ->assertSee('<div class="comprete_number">受付番号：1</div>')
-             ->assertSee('ご記入いただいたメールアドレス宛に<br class="br-u600">予約完了メールを送信しました。<br/>')
+             ->assertSee('ご記入いただいたメールアドレス宛に<br class="br-u600">受付完了メールを送信しました。<br/>')
              ->assertSee('受付番号が記載されていますので、<br class="br-u600">ご確認ください。')
              ->assertSee('/index">受付状況トップ画面に戻る</a></div>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
@@ -352,7 +352,7 @@ class ReserveTest extends TestCase
             }
         );
 
-        Log::Info('再診予約申込完了画面表示テスト End');
+        Log::Info('再診受付申込完了画面表示テスト End');
     }
 
 }
