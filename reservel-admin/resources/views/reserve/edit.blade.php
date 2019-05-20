@@ -40,7 +40,7 @@
 					<dd>{{config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']}}</dd>
 					<dt><label for="patient_no">診察券番号</label></dt>
 					<dd><input type="text" id="patient_no" name="patient_no" value="{{old('medical_card_no', $reserve->medical_card_no)}}" /></dd>
-					<dt><label for="name">飼い主</label></dt>
+					<dt><label for="name">飼い主氏名</label></dt>
 					<dd><input type="text" id="name" name="name" value="{{old('name',$reserve->name)}}" /></dd>
 					<dt><label for="email">メールアドレス</label></dt>
 					<dd><input type="email" id="email" name="email" value="{{old('email', $reserve->email)}}" /></dd>

@@ -30,7 +30,7 @@
 					<dd><input type="text" id="patient_no" name="patient_no" maxlength="4" placeholder="例）1000 " required />
 					</dd>
 					@endif
-					<dt class="required"><label for="name">飼い主</label></dt>
+					<dt class="required"><label for="name">飼い主氏名</label></dt>
 					<dd><input type="text" id="name" name="name" value="{{old('name')}}" placeholder="例）動物　太郎" required /></dd>
 					<dt class="required"><label for="email">メールアドレス</label></dt>
 					<dd><input type="email" id="email" name="email" value="{{old('email')}}" placeholder="例）taro.animal@gmail.com" required /></dd>

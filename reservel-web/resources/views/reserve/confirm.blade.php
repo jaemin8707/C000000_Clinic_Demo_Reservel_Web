@@ -35,7 +35,7 @@
           <dt class="required"><span>診察券番号</span></dt>
           <dd><span>{{$request->patient_no}}</span></dd>
 @endif
-          <dt class="required"><span>飼い主</span></dt>
+          <dt class="required"><span>飼い主氏名</span></dt>
           <dd><span>{{$request->name}}</span></dd>
           <dt class="required"><span>メールアドレス</span></dt>
           <dd><span>{{$request->email}}</span></dd>
