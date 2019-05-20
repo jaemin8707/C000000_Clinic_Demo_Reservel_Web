@@ -59,7 +59,7 @@
 				<span class="a_pet_type">ペット種類</span>
 				<span class="a_c_num">ペット名</span>
 				<span class="a_purpose">来院目的</span>
-				<span class="a_name">氏　名</span>
+				<span class="a_name">飼い主</span>
 				<span class="a_button_area"> </span> 
 			</div>
 			<ul class="list">
