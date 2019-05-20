@@ -61,9 +61,9 @@
 #おおたけ動物病院
 # stg環境バッチ
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(WEB)
-0	9,16	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(TAB)
-0	9,16	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1130]と午後診察終了[1830])(WEB)
 30	11,18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
@@ -74,9 +74,9 @@
 0	0	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:resetNumbering --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_ResetNumbering.log 2>&1
 # lee環境バッチ
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(WEB)
-3	9,16	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(TAB)
-3	9,16	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1130]と午後診察終了[1830])(WEB)
 33	11,18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
@@ -87,9 +87,9 @@
 3	0	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:resetNumbering --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_ResetNumbering.log 2>&1
 # otn環境バッチ
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(WEB)
-5	9,16	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(TAB)
-5	9,16	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1130]と午後診察終了[1830])(WEB)
 35	11,18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
