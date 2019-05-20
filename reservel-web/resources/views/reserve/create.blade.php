@@ -55,9 +55,10 @@
 					<dt><label for="pet_symptom">症状など</label></dt>
 					<dd><textarea id="pet_symptom" name="pet_symptom" placeholder="例）おもちゃを飲み込んだ" rows="5" accesskey="s"></textarea></dd>
 				</dl>
-				<div style="margin-bottom:10px;">
-					<input id="savable" type="checkbox"><label for="savable" style="margin-left:15px;">入力内容をこのブラウザに保存する。次回から入力が簡単になります。</label>
-					<p style="margin-left:30px;color:red;">ネットカフェ等の公共のブラウザでの保存は絶対におやめ下さい。</p>
+				<div style="margin-bottom:10px; text-align:center;">
+					<input id="savable" type="checkbox"><label for="savable" style="margin-left:15px; margin-bottom:0;font-weight:bold;">入力内容をこのブラウザに保存する。</label>
+					<p style="margin-bottom:0.5rem;font-size:0.9rem;">次回から入力が簡単になります。</p>
+					<p style="margin-left:30px;margin-bottom:1.5rem;color:red;font-size:0.9rem;">ネットカフェ等の公共のブラウザでの保存は絶対におやめ下さい。</p>
 				</div>
 				<div class="console">
 					<a href="{{route('index')}}" class="btn_cancel" accesskey="c">キャンセル</a>
