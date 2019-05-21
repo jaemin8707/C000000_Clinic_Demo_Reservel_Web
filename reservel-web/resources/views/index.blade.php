@@ -32,11 +32,7 @@
 		</div>
 		<div class="btns">
       @if($webTicketable==='false')
-          @if($setting->inExamineTime())
-            <span class="receptionMsg" style="color:red;font-weight:900;">検査中につき診察を一時中断しております。<br>少々お待ちください。</span>
-          @else
-            <span class="receptionMsg" style="color:red;font-weight:900;">ただいまの時間は受付を行っておりません。</span>
-          @endif
+          <span class="receptionMsg" style="color:red;font-weight:900;">ただいま、受付を行っておりません。</span>
       @endif
       <div style="display:flex;justify-content:center;margin-top:1rem;">
         <form method="GET" action="{{route('reserve.create',['diagnosisType'=>1])}}">

@@ -53,10 +53,9 @@ class ReserveController extends Controller {
 
         $webTicketable = Setting::where('code','=','webTicketable')
                              ->value("value");
-        $setting = new Setting();
         
 
-        return view('index', compact('reserveFirst', 'reserveRegular', 'webTicketable', 'setting'));
+        return view('index', compact('reserveFirst', 'reserveRegular', 'webTicketable'));
     }
 
     /**

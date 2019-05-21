@@ -37,12 +37,12 @@ class Setting extends Model
      * @return bool
      *
      */
-    public function inExamineTime() 
+    /*public function inExamineTime()
     {
 				$now = Carbon::now();
 				$time = strtotime($now);
         return (
             ($this->opTime1Start < $time && $time < $this->opTime1End)
             || ($this->opTime2Start < $time && $time < $this->opTime2End));
-    }
+    }*/
 }
