@@ -75,9 +75,10 @@
 					<div class="a_status_edit">
 						@if (in_array($reserve->status,[config('const.RESERVE_STATUS.WAITING'),config('const.RESERVE_STATUS.CALLED'),config('const.RESERVE_STATUS.EXAMINE')], true))
 						<div class="console_status">
-							<form method="POST" action="{{route('reserve.update.status',['reserve'=>$reserve->id])}}">
+							<form id="nextStatus{{$reserve->reception_no}}" method="POST" action="{{route('reserve.update.status',['reserve'=>$reserve->id])}}" onsubmit="getScroll({{$reserve->reception_no}})">
 								@csrf
 								<input type="hidden" name="_method" value="PUT">
+								<input type="hidden" name="scroll" value="">
 								<? $nextStatusButton = config('const.NEXTBUTTON_BY_STATUS')[$reserve->status]; ?>
 								<button class="{{$nextStatusButton['CSS']}}" type="submit" name="status" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
 							</form>
@@ -150,5 +151,19 @@ div.console button {margin:5px;background:honeydew;color:black;}
 			}
 		});
 	});
+	
+	function getScroll(recepNum) {
+          document.forms["nextStatus" + recepNum].scroll.value = window.pageYOffset;
+      };
+      
+	
+	window.onload = function() {
+		var scroll = 0;
+		@if (session('scroll') != null)
+			scroll = {{session('scroll')}};
+		@endif
+  	window.scrollTo(0, scroll);
+	};
+	
 </script>
 @endsection

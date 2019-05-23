@@ -173,7 +173,7 @@ class ReserveController extends Controller
 
         Log::Debug('ステータス変更処理 End');
 
-        return redirect(route('reserve.index'));
+        return redirect(route('reserve.index'))->with('scroll', $request->scroll);
     }
 
     /**
