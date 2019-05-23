@@ -193,7 +193,7 @@ class ReserveController extends Controller
 
       Log::Debug('名前変更処理 End');
 
-      return redirect(route('reserve.index'));
+      return redirect(route('reserve.index'))->with('scroll', $request->scroll);
   }
 
 
