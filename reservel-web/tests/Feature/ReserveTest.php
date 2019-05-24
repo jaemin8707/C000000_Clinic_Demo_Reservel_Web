@@ -37,7 +37,7 @@ class ReserveTest extends TestCase
              ->assertSee('<button class="btn_first"   accesskey="1">初診受付</button>')
              ->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
              ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
-             ->assertSee('<div class="notice">※ネットでの受付は午前9:00～11:30　午後16:00～18:30とさせていただきます。<br>※営業終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+             ->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※営業終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト End');
@@ -89,7 +89,7 @@ class ReserveTest extends TestCase
              ->assertStatus(200)
              ->assertSee('<title>受付状況 - おおたけ動物病院 - リザベル</title>')
              ->assertSee('<h1>おおたけ動物病院　受付状況</h1>')
-             ->assertSee('<span class="receptionMsg" style="color:red;font-weight:900;">ただいまの時間は受付を行っておりません。</span>')
+             ->assertSee('<span class="receptionMsg" style="color:red;font-weight:900;">ただいま、受付を行っておりません。</span>')
              ->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
              ->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
