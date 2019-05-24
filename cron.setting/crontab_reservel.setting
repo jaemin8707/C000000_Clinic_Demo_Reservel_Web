@@ -1,8 +1,8 @@
 # 本番環境バッチ
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(WEB)
-0	9,16	*	*	*	cd /home/reservel/laravel_project/Reservel_akatsuki/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=prod >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/reservel/laravel_project/Reservel_akatsuki/reservel-web; /usr/local/bin/php artisan reserve:enableWebTicketing --env=prod >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanWebTicketable.log 2>&1
 # NAME: 発券可能状態へ設定変更(午前診察開始[0900]と午後診察開始[1600]))(TAB)
-0	9,16	*	*	*	cd /home/reservel/laravel_project/Reservel_akatsuki/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=prod >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
+45	8,15	*	*	*	cd /home/reservel/laravel_project/Reservel_akatsuki/reservel-web; /usr/local/bin/php artisan reserve:enableTabTicketing --env=prod >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanTabTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1130]と午後診察終了[1830])(WEB)
 30	11,18	*	*	*	cd /home/reservel/laravel_project/Reservel_akatsuki/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=prod >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
