@@ -322,7 +322,11 @@ footer {
 
 .wrapper960 {
   margin: 72px auto;
-  width: 912px; }
+	width: 912px; }
+
+.wrapper960_closed {
+	margin: 30px auto;
+	width: 912px; }
 
 .tools {
   display: flex;
@@ -398,38 +402,43 @@ ul.list {
  width: 5%;
 }
 .a_reserve_time {
- width: 5%;
+ width: 8%;
 }
 .a_status {
- width: 9%;
+ width: 14%;
  font-size:18px;
 }
 .a_status_edit {
- width: 14%
+ width: 12%
 }
 
+.a_remind {
+	width: 12%;
+ }
 .a_patient_no {
- width: 10%;
-}
-
-.a_pet_type{
- width:8%;
+ width: 11%;
 }
 
 .a_c_num {
  width: 10%;
 }
 
-.a_purpose {
-  width: 8%;
-}
-
 .a_name {
- width: 15%;
+ width: 10%;
 }
 
 .a_button_area {
  width: 9%;
+}
+
+.a_closed_day {
+	width:30%
+}
+.a_closed_type {
+	width:30%
+}
+.a_closed_submit {
+	width:30%
 }
 
 .list div.a_button_area{
@@ -588,9 +597,9 @@ ul.list {
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: solid 2px #acacac;
-    width: 100%; }
-  .form_items input[type="checkbox"]  {
-    width: 10%; }
+		width: 100%; }
+  .form_items input[type="radio"]  {
+		width: 10%; }
   .form_items dt label, .form_items dt span {
     display: inline-block;
     margin-right: 2rem;
@@ -622,6 +631,43 @@ ul.list {
       border-radius: 6px;
       border: solid 2px #acacac; }
 
+	.form_items_closed {
+		display: flex;
+		padding-top: 2rem;
+		border-top: solid 1px #dcdcdc; }
+		.form_items_closed input[type="radio"]  {
+			width: 10%; }
+		.form_items_closed input[type="text"]  {
+			width: 120px; }
+		.form_items_closed dt label, .form_items dt span {
+			display: inline-block;
+			margin-right: 2rem;
+			margin-bottom: 1rem; }
+		.form_items_closed dt {
+			display: flex;
+			align-items: center;
+			padding-bottom: 2rem;
+			margin-bottom: 2rem;
+			border-bottom: solid 1px #dcdcdc;
+			font-size: 18px;
+			font-weight: normal; }
+			.form_items_closed dt label, .form_items_closed dt span {
+				width: 80px;
+				text-align: right;
+				margin-bottom: 0; }
+		.form_items_closed dd {
+			display: flex;
+			align-items: center;
+			width: calc(100% - 330px);
+			padding-bottom: 2rem;
+			margin-bottom: 2rem;
+			border-bottom: solid 1px #dcdcdc;
+			font-size: 18px; }
+			.form_items_closed dd select {
+				padding: 6px;
+				border-radius: 6px;
+				border: solid 2px #acacac; }
+
 .console {
   text-align: center; }
   .console a {
@@ -649,7 +695,8 @@ ul.list {
   .console .btn_cancel {
     background-color: #acacac; }
   .console .btn_execution {
-    background-color: #da1b1b; }
+		background-color: #da1b1b; }
+
     
 .console_logout{
  position:absolute;
@@ -676,26 +723,58 @@ ul.list {
 
 .console_status{
   text-align: center; }
-.console_status button {
- width:120px;
- padding:4px 0;
- color: #fff;
- display: inline-block;
- border-radius: 0.5rem;
- box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
- text-align: center;
-}
-.btn_status {
- background-color: #78c40e;
-}
+	.console_status button {
+	width:120px;
+	padding:4px 0;
+	color: #fff;
+	display: inline-block;
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	}
+	.btn_status {
+		background-color: #78c40e;}
+	 .btn_status_call{
+		 background-color: #e67b2d;}
+	 .btn_status_examination{
+		 background-color: #a79d01;}
+	 
+.console_remind{
+  text-align: center; }
+	.console_remind button {
+	width:80px;
+	padding:4px 0;
+	color: #fff;
+	display: inline-block;
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	}
+	.btn_remind {
+		background-color: #da1b1b;}
 
-.btn_status_call{
-  background-color: #e67b2d;
-}
+.console_closed{
+	margin-top:16px;
+  text-align: right;
+  }
+  .console_closed button {
+    padding:1rem 2rem;
+    display: inline-block;;
+    margin: 0 16px 10px 10px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    cursor:pointer;}
+    .console_closed .btn_closed {
+       width:120px;
+       height:40px;
+       padding:8px 0;
+       background-color: #6fb40e; ;
+       color:#fff; }
 
-.btn_status_examination{
-  background-color: #a79d01;
-}
+
 
 .console_ticketable{
   text-align: center; 
@@ -726,4 +805,21 @@ down {
     font-size: 40px;
     padding: 0 8px; }
 
+
+.console_month {
+	margin:10px;
+	text-align: center;
+	display:flex;
+	justify-content: space-between;
+}
+.console_month button {
+	color: #fff; 
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	text-align: center;}
+	.console_month .btn_month {
+	background-color: #6fb40e; }
 /*# sourceMappingURL=style.css.map */
