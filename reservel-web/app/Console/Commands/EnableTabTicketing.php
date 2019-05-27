@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Setting;
 use App\Libs\Command\LogCommand;
+use App\Libs\Command\ClosedCommand;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -44,12 +45,19 @@ class EnableTabTicketing extends LogCommand
         $this->formattedLogInfo("Tab発券可能状態への設定変更バッチ Start");
 
         try {
-
-            DB::enableQueryLog();
-            $updatedCnt = Setting::where('code','=', 'tabTicketable')
-                             ->update(['value' => 'true']);
-            $queryLog = DB::getQueryLog();
-
+            $updatedCnt = '0';
+            $terminalTime = config('const.RESERVE_START_TIME_TAB');
+            if($closed = ClosedCommand::checkClosedDate($terminalTime)) {
+                    $this->formattedLogInfo("休診日：".$closed->closed_day.", 休診区分：".config('const.CLOSED_TYPE_NAME')[$closed->closed_type]);
+            } else {
+                    $this->formattedLogInfo("営業日");
+                    $this->formattedLogInfo("受付可能に変更 Start");
+                    DB::enableQueryLog();
+                    $updatedCnt = Setting::where('code','=', 'tabTicketable')
+                                                    ->update(['value' => 'true']);
+                    $queryLog = DB::getQueryLog();
+                    $this->formattedLogInfo("受付可能に変更 End");
+            }
         } catch (Exception $ex) {
             $this->error('SQL実行エラー');
             $this->formattedQueryLog($queryLog);
