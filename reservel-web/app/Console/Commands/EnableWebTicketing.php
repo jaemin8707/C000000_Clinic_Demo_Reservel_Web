@@ -57,7 +57,7 @@ class EnableWebTicketing extends LogCommand
                 $queryLog = DB::getQueryLog();
                 $this->formattedLogInfo("受付可能に変更 End");
             }
-        } caon $ex) {
+        } catch (Exception $ex) {
             $this->error('SQL実行エラー');
             $this->formattedQueryLog($queryLog);
             var_dump($ex);
