@@ -94,7 +94,7 @@ class TabClosedTicketingTest extends BatchTestCase
     public function testTabClosedAfternoon_true()
     {
         Log::Debug("Tab発券可能休診日(午後) Start");
-        Carbon::setTestNow(Carbon::parse('15:45'));
+        Carbon::setTestNow(Carbon::parse('15:50'));
 
         $setting1 = factory(Setting::class)->create(['code'=>'tabTicketable','value'=>"false",]); // 発券可能
         $this->assertDatabaseHas('settings', ['id'=>$setting1->id, 'code'=>'tabTicketable', 'value'=>"false",]);

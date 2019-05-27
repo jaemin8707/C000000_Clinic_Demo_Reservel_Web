@@ -94,7 +94,7 @@ class WebClosedTicketingTest extends BatchTestCase
     public function testWebClosedAfternoon_true()
     {
         Log::Debug("Web発券可能休診日(午後) Start");
-        Carbon::setTestNow(Carbon::parse('15:45'));
+        Carbon::setTestNow(Carbon::parse('15:50'));
 
         $setting1 = factory(Setting::class)->create(['code'=>'webTicketable','value'=>"false",]); // 発券可能
         $this->assertDatabaseHas('settings', ['id'=>$setting1->id, 'code'=>'webTicketable', 'value'=>"false",]);
