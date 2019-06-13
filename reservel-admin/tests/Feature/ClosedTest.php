@@ -28,16 +28,16 @@ class ClosedTest extends TestCase
 
       $curdate = date('Y/m/d');
           $closed = factory(Closed::class)->create([
-          'closed_day'=>'2019-05-01',
+          'closed_day'=>'2019-'.date('m').'-01',
           'closed_type'=>1,]);
       $this->assertDatabaseHas('closed', [
           'id'=>$closed->id,
-          'closed_day'=>'2019-05-01',
+          'closed_day'=>'2019-'.date('m').'-01',
           'closed_type'=>1,]);
 
       $this->get('/closed')
         ->assertStatus(200)
-        ->assertSee('<div class="a_closed_day">2019年05月01日(水)</div>')
+        ->assertSee('<div class="a_closed_day">2019年'.date('m').'月01日')
         ->assertSee('<div class="a_closed_type">現在：午前');
       Log::Info('登録されている休診日の表示 End');
   }
@@ -195,22 +195,22 @@ class ClosedTest extends TestCase
     
     
     $closed = factory(Closed::class)->create([
-          'closed_day'=>'2019-05-01',
+          'closed_day'=>date('Y-m-d'),
           'closed_type'=>1,]);
     $this->assertDatabaseHas('closed', [
           'id'=>$closed->id,
-          'closed_day'=>'2019-05-01',
+          'closed_day'=>date('Y-m-d'),
           'closed_type'=>1,]);
 
       $this->PUT("/closed/$closed->id/update", [
             'closed_type' => '2',
       ])
       ->assertStatus(302)
-      ->assertRedirect("/closed?month=2019-05");  // /Indexへのリダイレクト
+      ->assertRedirect("/closed?month=".date('Y-m'));  // /Indexへのリダイレクト
 
-      $this->get('/closed?month=2019-05')
+      $this->get('/closed?month='.date('Y-m'))
       ->assertStatus(200)
-      ->assertSee('<div class="a_closed_day">2019年05月01日(水)</div>')
+      ->assertSee('<div class="a_closed_day">2019年'.date('m').'月'.date('d').'日')
       ->assertSee('<div class="a_closed_type">現在：午後');
       Log::Info('休診日・午前→午後 Start');
   }
@@ -224,22 +224,21 @@ class ClosedTest extends TestCase
     
     
     $closed = factory(Closed::class)->create([
-          'closed_day'=>'2019-05-01',
+          'closed_day'=>date('Y-m-d'),
           'closed_type'=>'2',]);
     $this->assertDatabaseHas('closed', [
           'id'=>$closed->id,
-          'closed_day'=>'2019-05-01',
+          'closed_day'=>date('Y-m-d'),
           'closed_type'=>'2',]);
 
       $this->PUT("/closed/$closed->id/update", [
             'closed_type' => '1',
       ])
       ->assertStatus(302)
-      ->assertRedirect("/closed?month=2019-05");  // /Indexへのリダイレクト
-
-      $this->get('/closed?month=2019-05')
+      ->assertRedirect("/closed?month=".date('Y-m'));  // /Indexへのリダイレクト
+      $this->get('/closed?month='.date('Y-m'))
       ->assertStatus(200)
-      ->assertSee('<div class="a_closed_day">2019年05月01日(水)</div>')
+      ->assertSee('<div class="a_closed_day">2019年'.date('m').'月'.date('d').'日')
       ->assertSee('<div class="a_closed_type">現在：午前');
 
       Log::Info('休診日・午後→午前 End');
