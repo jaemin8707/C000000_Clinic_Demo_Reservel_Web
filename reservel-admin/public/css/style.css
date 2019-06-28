@@ -399,7 +399,7 @@ ul.list {
   width: 8%; }
 
 .a_number {
- width: 5%;
+ width: 4%;
 }
 .a_reserve_time {
  width: 8%;
@@ -415,12 +415,17 @@ ul.list {
 .a_status_edit {
  width: 12%
 }
+
+.a_remind {
+	width: 10%;
+ }
+
 .a_purpose {
   width: 6%
  }
 
 .a_patient_no {
- width: 11%;
+ width: 6%;
 }
 
 .a_c_num {
@@ -428,11 +433,11 @@ ul.list {
 }
 
 .a_name {
- width: 8%;
+ width: 12%;
 }
 
 .a_button_area {
- width: 9%;
+ width: 6%;
 }
 
 .a_closed_day {
@@ -505,23 +510,6 @@ ul.list {
 .list div.a_timer_nocount {
   padding: 0; }
 
-.a_location {
-  width: 7%; }
-
-.a_type {
-  width: 7%; }
-
-.a_name {
-  width: 20%; }
-
-.a_tel {
-  width: 12%; }
-
-.a_kind {
-  width: 8%; }
-
-.a_symptom {
-  width: 14%; }
 
 .see_detail {
   width: 4%; }

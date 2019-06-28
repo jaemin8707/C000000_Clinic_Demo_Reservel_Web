@@ -54,6 +54,7 @@
         <span class="a_number">受付<br/>番号</span>
         <span class="a_status">現在の状態</span>
         <span class="a_status_edit">状態の変更</span>
+        <span class="a_remind">リマインドメール</span>
         <span class="a_reserve_time">呼出時刻</span>
         <span class="a_patient_no">診察券番号</span>
         <span class="a_pet_type">ペット種類</span>
@@ -84,6 +85,21 @@
             </div>
             @endif
           </div>
+
+          <div class="a_remind">
+            <div class="console_remind">
+                <form method="POST" action="{{route('reserve.remind.send',['reserve'=>$reserve->id])}}">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">
+                    @if($reserve->send_remind == 0)
+                    <button class="btn_remind" type="submit" name="send" value="send">送信</button>
+                    @else
+                    送信済
+                    @endif
+                </form>
+            </div>
+          </div>
+
           <div class="a_reserve_time">{{$reserve->formattedCallTime()}}</div>
           <div class="a_patient_no">{{$reserve->medical_card_no}}</div>
           <div class="a_pet_type">

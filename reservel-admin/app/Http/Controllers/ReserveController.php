@@ -226,7 +226,31 @@ class ReserveController extends Controller
       Log::Debug('名前変更処理 End');
 
       return redirect(route('reserve.index'))->with('scroll', $request->scroll);
-  }
+    }
 
+    /**
+     * リマインドメール手動送信
+     *
+     * @param  Reserve $reserve 更新対象の予約情報
+     *
+     * @return \Illuminate\Http\Response 一覧画面
+     */
+    public function remindSend(ReservePostRequest $request, Reserve $reserve) {
+        Log::Debug('リマインドメール送信処理 Start');
 
+        if($reserve->send_remind == false){
+            Mail::to($reserve->email)
+                ->send(new RemindSend($reserve));
+            if (Mail::failures()) {
+                Log::Debug('リマインドメール送信失敗');
+            } else {
+                $reserve->send_remind = true;
+                $reserve->save();
+            }
+        } else {
+            Log::Debug('すでに送信されました。');
+        }
+        Log::Debug('リマインドメール送信処理 End');
+        return redirect(route('reserve.index'))->with('scroll', $request->scroll);
+    }
 }
