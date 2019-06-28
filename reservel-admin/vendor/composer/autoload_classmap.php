@@ -3688,6 +3688,7 @@ return array(
     'Tests\\Feature\\ClosedTest' => $baseDir . '/tests/Feature/ClosedTest.php',
     'Tests\\Feature\\LoginTest' => $baseDir . '/tests/Feature/LoginTest.php',
     'Tests\\Feature\\PasswordResetTest' => $baseDir . '/tests/Feature/PasswordResetTest.php',
+    'Tests\\Feature\\RemindMailManualTest' => $baseDir . '/tests/Feature/RemindMailManualTest.php',
     'Tests\\Feature\\RemindMailTest' => $baseDir . '/tests/Feature/RemindMailTest.php',
     'Tests\\Feature\\ReserveIndexTest' => $baseDir . '/tests/Feature/ReserveIndexTest.php',
     'Tests\\Feature\\ReserveTest' => $baseDir . '/tests/Feature/ReserveTest.php',
