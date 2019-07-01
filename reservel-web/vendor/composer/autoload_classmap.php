@@ -35,6 +35,7 @@ return array(
     'App\\Http\\Requests\\ReservePostRequest' => $baseDir . '/app/Http/Requests/ReservePostRequest.php',
     'App\\Libs\\Command\\ClosedCommand' => $baseDir . '/app/Libs/Command/ClosedCommand.php',
     'App\\Libs\\Command\\LogCommand' => $baseDir . '/app/Libs/Command/LogCommand.php',
+    'App\\Mail\\RemindSend' => $baseDir . '/app/Mail/RemindSend.php',
     'App\\Mail\\ReserveMail' => $baseDir . '/app/Mail/ReserveMail.php',
     'App\\Models\\Closed' => $baseDir . '/app/Models/Closed.php',
     'App\\Models\\OauthClient' => $baseDir . '/app/Models/OauthClient.php',
