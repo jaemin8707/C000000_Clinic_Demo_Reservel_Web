@@ -27,6 +27,9 @@ Route::put ('reserve/{reserve}/name',   'ReserveController@updateName')       ->
 // リマインドメール送信
 Route::put ('reserve/{reserve}/remind',   'ReserveController@remindSend')       ->name('reserve.remind.send');
 
+// 受付
+Route::put ('reserve/create/{diagnosisType}',   'ReserveController@create')       ->name('reserve.create');
+
 // 設定::発券可否更新(tab)
 Route::put ('setting/tabTicketable',         'SettingController@updateTabTicketable')   ->name('setting.update.tabTicketable');
 // 設定::発券可否更新(web)

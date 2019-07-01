@@ -108,6 +108,7 @@ return [
 
     'USER_ID' => [
       'api.reserve.numbering' => '-101',
+      'reserve.create' => '-102',
       'reserve.store' => '-102',
       'reserve.cancel_complete' => '-102',
     ],

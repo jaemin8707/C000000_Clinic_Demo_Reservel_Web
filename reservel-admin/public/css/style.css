@@ -592,6 +592,25 @@ ul.list {
   color: #fff; 
   background-color:red}
 
+div.reserve_modal {
+  display: none;
+  border-radius: 0.5rem;
+  padding:6px 0;
+  width: 300px;
+  height: 38px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  background-color: #27a49f; }
+  div.reserve_modal input[type="text"]  {
+    width: 30%; }
+  div.reserve_modal label {
+    color : #fff;}
+  div.reserve_modal .close_button {
+    display: inline-block;
+    color: rgb(20, 19, 19); }
+  div.reserve_modal .submit_button {
+    display: inline-block;
+    background-color:#dcdcdc}
+
 .form_items {
   display: flex;
   flex-wrap: wrap;
@@ -783,11 +802,11 @@ ul.list {
 
 
 .console_ticketable{
-  text-align: center; 
+  text-align: center;
   display:flex;}
   .console_ticketable button {
-    color: #fff; 
-    display: inline-block;;
+    color: #fff;
+    display: inline-block;
     border-radius: 0.5rem;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
     text-align: center;}
@@ -801,6 +820,27 @@ ul.list {
       padding:8px 0;
       margin:0 10px;
       background-color: #6fb40e; }
+
+.console_reserve_button{
+  margin-top:16px;
+  text-align: center;
+  display:flex;}
+  .console_reserve_button button {
+    color: #fff;
+    display: inline-block;;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;}
+    .console_reserve_button .btn_first_reserve {
+      width:200px;
+      padding:8px 0;
+      margin:0 10px;
+      background-color: #66a91e; }
+    .console_reserve_button .btn_repeat_reserve {
+      width:200px;
+      padding:8px 0;
+      margin:0 10px;
+      background-color: #27a49f; }
 down {
   display: none;
   padding-left: 24px; }
@@ -827,3 +867,8 @@ down {
   .console_month .btn_month {
   background-color: #6fb40e; }
 /*# sourceMappingURL=style.css.map */
+
+.footer_tools {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px; }

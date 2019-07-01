@@ -106,24 +106,46 @@
               <input type="hidden" name="_method" value="PUT">
               <input type="text" name="name" value="{{old('name', $reserve->name)}}">
               <input class="close_button" type="button" value="閉じる" name="close">
-                            <input class="submit_button"type="submit" value="更新">
-                            </form>
-                        </div>
-                    </div>
-                    <div class="a_button_area"><a href="{{route('reserve.edit',['reserve'=>$reserve->id])}}">詳細</a></div>
-                </li>
-                @endforeach
-            @else
-                <li><div>本日の待ち患者は、まだいません。</div></li>
-            @endif
-            </ul>
-             <div class="console_closed">
+                  <input class="submit_button"type="submit" value="更新">
+              </form>
+            </div>
+          </div>
+          <div class="a_button_area"><a href="{{route('reserve.edit',['reserve'=>$reserve->id])}}">詳細</a></div>
+            </li>
+        @endforeach
+      @else
+        <li><div>本日の待ち患者は、まだいません。</div></li>
+      @endif
+      </ul>
+      <div class="footer_tools">
+        <div class="console_reserve_button">
+          <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
+          @csrf
+            <input type="hidden" name="_method" value="PUT">
+            <button class="btn_first_reserve"   accesskey="1">初診受付</button>
+          </form>
+
+          <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
+          @csrf
+            <input type="hidden" name="_method" value="PUT">
+            <button type="button" class="btn_repeat_reserve btn_reserve_repeat"   accesskey="2"><span>再診受付</span></button>
+
+            <div class="reserve_modal">
+              <label>診察券番号</label>
+              <input type="text" name="patient_no" value="">
+              <input class="submit_button"type="submit" value="受付">
+              <input class="close_button" type="button" value="閉じる" name="close">
+            </div>
+          </form>
+        </div> 
+        <div class="console_closed">
           <a href="{{route('closed.index')}}">
-          <button class="btn_closed" type="submit" value="true">休診日</button>
+            <button class="btn_closed" type="submit" value="true">休診日</button>
           </a>
-      </div> 
-        </section>
-    </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </main>
 @include('layouts.footer')
 <style>
@@ -132,15 +154,30 @@ div.console button {margin:5px;background:honeydew;color:black;}
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
     $(function(){
-        $('.a_name span').on('click',function(){
-            $(this).next('.modal').fadeIn(200);
-        });
-        $('input[type="submit"]').on('click',function(){
-            $(this).parent('.modal').fadeOut(200);
-    });
+      $('.a_name span').on('click',function(e){
+          $('.modal').fadeOut();
+          $(this).next('.modal').fadeIn(200);
+      });
+      $('input[type="submit"]').on('click',function(){
+          $(this).parent('.modal').fadeOut(200);
+      });
     $('.close_button').on('click',function(){
       $('.modal').fadeOut(200);
     });
+
+    $('.btn_reserve_repeat').on('click',function(){
+      $('.btn_reserve_repeat').hide();
+      $(this).next('.reserve_modal').fadeIn(200);
+
+    });
+    $('.reserve_modal input[type="submit"]').on('click',function(){
+      $(this).parent('.reserve_modal').fadeOut(200);
+    });
+    $('.reserve_modal .close_button').on('click',function(){
+      $('.reserve_modal').hide();
+      $('.btn_reserve_repeat').fadeIn(200);
+    });
+
     $('.status').change(function() {
       var val = $(this).val();
       var target01 = $(this).parent().next().children('.a_timer_nocount');

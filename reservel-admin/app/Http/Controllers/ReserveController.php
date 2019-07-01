@@ -73,7 +73,39 @@ class ReserveController extends Controller
 
         return view('reserve.index', compact('reserves', 'waitCnt', 'tabTicketable', 'webTicketable'));
     }
+    /**
+     * 予約新規登録
+     *
+     * @param int $careType  受付区分（1：初診、2：再診）
+     * @param  App\Http\Requests\ReservePostRequest  $request 画面からの登録値(バリデーション済み)
+     * @
+     * @return Response
+     */
+    public function create(int $careType, ReservePostRequest $request)
+    {
+        Log::Debug('登録処理 Start');
+        DB::beginTransaction();
+        try{
+            //受付番号採番
+            $reception_no = DB::table('reserve_seq')->insertGetId([]);
 
+            $reserve = new Reserve;
+            $reserve->medical_card_no = $request->patient_no;
+            $reserve->reception_no    = $reception_no;
+            $reserve->care_type = $careType;
+            $reserve->place           = config('const.PLACE.IN_HOSPITAL');
+            $reserve->status          = config('const.RESERVE_STATUS.WAITING');
+
+            $reserve->save();
+        }catch(Exception $e){
+            DB::rollback();
+            Log::Debug('登録失敗 End');
+            return redirect(route('reserve.index'));
+        }
+        DB::commit();
+        Log::Debug('登録成功 End');
+        return redirect(route('reserve.index'))->with('scroll', $request->scroll);
+    }
     /**
      * 予約編集画面表示
      *
