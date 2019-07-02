@@ -30,7 +30,7 @@ class RemindSend extends Mailable
     public function build()
     {
          return $this
-          ->subject(config('const.REMIND_MAIL_TITLE')."受付番号：".$this->reserve->reception_no) // メールタイトル
+          ->subject(config('const.REMIND_MAIL_TITLE')." 受付番号：".$this->reserve->reception_no) // メールタイトル
           ->view('email.mail') // どのテンプレートを呼び出すか
           ->with(['reserve' => $this->reserve]); // withオプションでセットしたデータをテンプレートへ受け渡す
     }
