@@ -15,6 +15,26 @@
                     <span class="time">{{date('Y/m/d H:i')}}</span>
                     <span>現在の待ち人数</span><span id="totalCnt">{{$waitCnt}}</span><span>人</span>
                 </div>
+                <div class="console_reserve_button">
+                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
+                    @csrf
+                      <input type="hidden" name="_method" value="PUT">
+                      <button class="btn_first_reserve"   accesskey="1">初診受付</button>
+                    </form>
+          
+                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
+                    @csrf
+                      <input type="hidden" name="_method" value="PUT">
+                      <button type="button" class="btn_repeat_reserve btn_reserve_repeat"   accesskey="2"><span>再診受付</span></button>
+          
+                      <div class="reserve_modal">
+                        <label>診察券番号</label>
+                        <input type="text" name="patient_no" value="">
+                        <input class="submit_button"type="submit" value="受付">
+                        <input class="close_button" type="button" value="閉じる" name="close">
+                      </div>
+                    </form>
+                  </div> 
                 <div class="console_ticketable">
                     <form method="POST" action="{{route('setting.update.tabTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">
@@ -91,10 +111,12 @@
                 <form method="POST" action="{{route('reserve.remind.send',['reserve'=>$reserve->id])}}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
-                    @if($reserve->send_remind == 0)
-                    <button class="btn_remind" type="submit" name="send" value="send">送信</button>
-                    @else
-                    送信済
+                    @if($reserve->email)
+                      @if($reserve->send_remind == 0)
+                      <button class="btn_remind" type="submit" name="send" value="send">送信</button>
+                      @else
+                      送信済
+                      @endif
                     @endif
                 </form>
             </div>
@@ -133,32 +155,10 @@
         <li><div>本日の待ち患者は、まだいません。</div></li>
       @endif
       </ul>
-      <div class="footer_tools">
-        <div class="console_reserve_button">
-          <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
-          @csrf
-            <input type="hidden" name="_method" value="PUT">
-            <button class="btn_first_reserve"   accesskey="1">初診受付</button>
-          </form>
-
-          <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
-          @csrf
-            <input type="hidden" name="_method" value="PUT">
-            <button type="button" class="btn_repeat_reserve btn_reserve_repeat"   accesskey="2"><span>再診受付</span></button>
-
-            <div class="reserve_modal">
-              <label>診察券番号</label>
-              <input type="text" name="patient_no" value="">
-              <input class="submit_button"type="submit" value="受付">
-              <input class="close_button" type="button" value="閉じる" name="close">
-            </div>
-          </form>
-        </div> 
-        <div class="console_closed">
-          <a href="{{route('closed.index')}}">
-            <button class="btn_closed" type="submit" value="true">休診日</button>
-          </a>
-        </div>
+      <div class="console_closed">
+        <a href="{{route('closed.index')}}">
+          <button class="btn_closed" type="submit" value="true">休診日</button>
+        </a>
       </div>
     </section>
   </div>
