@@ -111,7 +111,7 @@
                 <form method="POST" action="{{route('reserve.remind.send',['reserve'=>$reserve->id])}}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
-                    @if($reserve->email)
+                    @if($reserve->email && $reserve->status != -1)
                       @if($reserve->send_remind == 0)
                       <button class="btn_remind" type="submit" name="send" value="send">送信</button>
                       @else
