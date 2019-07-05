@@ -27,3 +27,5 @@ Route::get('/reserve/complete',                       'ReserveController@complet
 Route::get('/reserve/cancel/{cancelToken}',           'ReserveController@cancel')    ->name('reserve.cancel');
 // 受付キャンセル画面表示
 Route::post('/reserve/cancel_complete',               'ReserveController@cancel_complete')    ->name('reserve.cancel_complete');
+
+Route::get('/information/mail',                       'InformationController@mail')    ->name('information.mail');

@@ -13,6 +13,7 @@
 			ご記入いただいたメールアドレス宛に<br class="br-u600">受付完了メールを送信しました。<br/>
 			受付番号が記載されていますので、<br class="br-u600">ご確認ください。
 		</div>
+		<div class="comprete_text"> <a href="{{route('information.mail')}}">※メールが届かないお客様へ</a>
 		<div class="comprete_back"><a href="{{route('index')}}">受付状況トップ画面に戻る</a></div>
 	</section>
 </main>

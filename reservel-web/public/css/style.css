@@ -717,3 +717,43 @@ footer {
 	margin:-30px 30px 30px 30px;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+
+
+/* ドメイン案内 */
+
+
+
+@media only screen and (min-width: 1140px)  {
+  .title {
+      width: 960px;
+      margin: 3rem auto 3rem auto;
+      font-size: 40px;
+  }
+  .data_main {
+      width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 50px;
+  }
+  .data_main_comment {
+      line-height: 25px;
+      font-size: 16px;
+  }
+  .data_inner{
+      font-size: 16px;
+      margin-top: 50px;
+  }
+  .data_inner_title {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: bold;
+  }    
+      
+  .data_inner_comment{
+      line-height: 30px;
+  }
+  
+      
+  }
