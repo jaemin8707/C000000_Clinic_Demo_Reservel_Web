@@ -19,7 +19,7 @@ class TimeupCalledTest extends BatchTestCase
     protected function getTargetClass() {
         return new TimeupCalled;
     }
-
+/*
     public function testCanUpdateCancelStatus()
     {
         Log::Debug(" 呼び出し済み自動キャンセルバッチテスト Start");
@@ -167,4 +167,5 @@ class TimeupCalledTest extends BatchTestCase
 
         Log::Debug(" 呼び出し済み自動キャンセルバッチテスト End");
     }
+    */
 }

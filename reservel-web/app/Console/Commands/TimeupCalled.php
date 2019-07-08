@@ -41,6 +41,8 @@ class TimeupCalled extends LogCommand
      */
     public function handle()
     {
+
+/*      //運用しないためにコメントアウト
         $this->formattedLogInfo("呼び出し済み自動キャンセルバッチ Start");
 
         $updateCnt = 0;
@@ -65,6 +67,6 @@ class TimeupCalled extends LogCommand
 
         $this->formattedLogInfo("キャンセルにした件数：$updatedCnt");
         $this->formattedLogInfo("呼び出し済み自動キャンセルバッチ End");
-
+*/
     }
 }

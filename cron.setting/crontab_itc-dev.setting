@@ -68,8 +68,8 @@
 30	11,18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
 0	12,19	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:disableTabTicketing --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotTabTicketable.log 2>&1
-# NAME: 呼び出し済み自動キャンセルバッチ(分次起動[0900-1200,1600-1900])
-*/2	9-18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:timeupCalled --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_AutoCancelByTimeupCalles.log 2>&1
+
+
 # NAME: 受付番号初期化バッチ(日次起動)
 0	0	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_stg/reservel-web; /usr/local/bin/php artisan reserve:resetNumbering --env=stg >> ./storage/logs/batch/`date +\%Y\%m\%d`_ResetNumbering.log 2>&1
 # lee環境バッチ
@@ -81,8 +81,7 @@
 33	11,18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
 3	12,19	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:disableTabTicketing --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotTabTicketable.log 2>&1
-# NAME: 呼び出し済み自動キャンセルバッチ(分次起動[0900-1200,1600-1900])
-*/2	9-18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:timeupCalled --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_AutoCancelByTimeupCalles.log 2>&1
+
 # NAME: 受付番号初期化バッチ(日次起動)
 3	0	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_lee/reservel-web; /usr/local/bin/php artisan reserve:resetNumbering --env=lee >> ./storage/logs/batch/`date +\%Y\%m\%d`_ResetNumbering.log 2>&1
 # otn環境バッチ
@@ -94,8 +93,7 @@
 30	11,18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:disableWebTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotWebTicketable.log 2>&1
 # NAME: 発券不可状態への設定変更(午前診察終了[1200]と午後診察終了[1900])(TAB)
 5	12,19	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:disableTabTicketing --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_CanNotTabTicketable.log 2>&1
-# NAME: 呼び出し済み自動キャンセルバッチ(分次起動[0900-1200,1600-1900])
-*/2	9-18	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:timeupCalled --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_AutoCancelByTimeupCalles.log 2>&1
+
 # NAME: 受付番号初期化バッチ(日次起動)
 5	0	*	*	*	cd /home/itc-dev/laravel_project/Reservel_otake_otn/reservel-web; /usr/local/bin/php artisan reserve:resetNumbering --env=otn >> ./storage/logs/batch/`date +\%Y\%m\%d`_ResetNumbering.log 2>&1
 
