@@ -4148,7 +4148,6 @@ class ComposerStaticInitb6c718d25aca63a087fa55b86be41e3a
         'Tests\\Feature\\batch\\EnableWebTicketingTest' => __DIR__ . '/../..' . '/tests/Feature/batch/EnableWebTicketingTest.php',
         'Tests\\Feature\\batch\\ResetNumberingTest' => __DIR__ . '/../..' . '/tests/Feature/batch/ResetNumberingTest.php',
         'Tests\\Feature\\batch\\TabClosedTicketingTest' => __DIR__ . '/../..' . '/tests/Feature/batch/TabClosedTicketingTest.php',
-        'Tests\\Feature\\batch\\TimeupCalledTest' => __DIR__ . '/../..' . '/tests/Feature/batch/TimeupCalledTest.php',
         'Tests\\Feature\\batch\\WebClosedTicketingTest' => __DIR__ . '/../..' . '/tests/Feature/batch/WebClosedTicketingTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',

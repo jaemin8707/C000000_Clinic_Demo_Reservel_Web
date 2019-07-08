@@ -3710,7 +3710,6 @@ return array(
     'Tests\\Feature\\batch\\EnableWebTicketingTest' => $baseDir . '/tests/Feature/batch/EnableWebTicketingTest.php',
     'Tests\\Feature\\batch\\ResetNumberingTest' => $baseDir . '/tests/Feature/batch/ResetNumberingTest.php',
     'Tests\\Feature\\batch\\TabClosedTicketingTest' => $baseDir . '/tests/Feature/batch/TabClosedTicketingTest.php',
-    'Tests\\Feature\\batch\\TimeupCalledTest' => $baseDir . '/tests/Feature/batch/TimeupCalledTest.php',
     'Tests\\Feature\\batch\\WebClosedTicketingTest' => $baseDir . '/tests/Feature/batch/WebClosedTicketingTest.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
     'Tests\\Unit\\ExampleTest' => $baseDir . '/tests/Unit/ExampleTest.php',
