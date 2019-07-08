@@ -202,6 +202,7 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="comprete_clinictype">受付区分：初診</div>')
              ->assertSee('<div class="comprete_number">受付番号：1</div>')
              ->assertSee('ご記入いただいたメールアドレス宛に<br class="br-u600">受付完了メールを送信しました。<br/>')
+             ->assertSee('※メールが届かないお客様へ')
              ->assertSee('受付番号が記載されていますので、<br class="br-u600">ご確認ください。')
              ->assertSee('/index">受付状況トップ画面に戻る</a></div>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
@@ -329,6 +330,7 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="comprete_clinictype">受付区分：再診</div>')
              ->assertSee('<div class="comprete_number">受付番号：1</div>')
              ->assertSee('ご記入いただいたメールアドレス宛に<br class="br-u600">受付完了メールを送信しました。<br/>')
+             ->assertSee('※メールが届かないお客様へ')
              ->assertSee('受付番号が記載されていますので、<br class="br-u600">ご確認ください。')
              ->assertSee('/index">受付状況トップ画面に戻る</a></div>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
