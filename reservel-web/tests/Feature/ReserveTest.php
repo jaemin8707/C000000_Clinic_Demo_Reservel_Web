@@ -166,7 +166,7 @@ class ReserveTest extends TestCase
              ->assertSee('<dt><span>症状など</span></dt>')
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
-             ->assertSee('<button type="submit" class="btn_execution">予　約</button>')
+             ->assertSee('<button type="submit" class="btn_execution">受　付</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
         Log::Info('初診受付申込確認画面表示テスト End');
@@ -292,7 +292,7 @@ class ReserveTest extends TestCase
              ->assertSee('<dt><span>症状など</span></dt>')
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
-             ->assertSee('<button type="submit" class="btn_execution">予　約</button>')
+             ->assertSee('<button type="submit" class="btn_execution">受　付</button>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
 
         Log::Info('再診受付申込確認画面表示テスト End');
