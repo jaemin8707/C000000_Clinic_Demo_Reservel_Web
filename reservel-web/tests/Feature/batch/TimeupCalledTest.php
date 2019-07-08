@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
-
+/*
 class TimeupCalledTest extends BatchTestCase
 {
     protected $name = 'reserve:timeupCalled';
@@ -19,7 +19,7 @@ class TimeupCalledTest extends BatchTestCase
     protected function getTargetClass() {
         return new TimeupCalled;
     }
-/*
+
     public function testCanUpdateCancelStatus()
     {
         Log::Debug(" 呼び出し済み自動キャンセルバッチテスト Start");
@@ -167,5 +167,5 @@ class TimeupCalledTest extends BatchTestCase
 
         Log::Debug(" 呼び出し済み自動キャンセルバッチテスト End");
     }
-    */
 }
+*/
