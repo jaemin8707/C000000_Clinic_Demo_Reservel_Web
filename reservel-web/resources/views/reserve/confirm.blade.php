@@ -65,7 +65,7 @@
         </dl>
         <div class="console">
           <a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>
-          <button type="submit" class="btn_execution">予　約</button>
+          <button type="submit" class="btn_execution">受　付</button>
         </div>
       </form>
     </section>
