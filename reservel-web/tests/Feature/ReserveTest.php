@@ -38,7 +38,7 @@ class ReserveTest extends TestCase
              ->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
              ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
              ->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※営業終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト End');
     }
@@ -72,7 +72,7 @@ class ReserveTest extends TestCase
              ->assertSee('<li ><span>3</span></li>')
              ->assertSee('<button class="btn_first"   accesskey="1">初診受付</button>')
              ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト(初診2人、再診1人) End');
     }
@@ -92,7 +92,7 @@ class ReserveTest extends TestCase
              ->assertSee('<span class="receptionMsg" style="color:red;font-weight:900;">ただいま、受付を行っておりません。</span>')
              ->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
              ->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト(受付不可) End');
     }
@@ -117,7 +117,7 @@ class ReserveTest extends TestCase
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
              ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('初診受付申込画面表示テスト End');
     }
@@ -167,7 +167,7 @@ class ReserveTest extends TestCase
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
              ->assertSee('<button type="submit" class="btn_execution">受　付</button>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('初診受付申込確認画面表示テスト End');
     }
@@ -205,7 +205,7 @@ class ReserveTest extends TestCase
              ->assertSee('※メールが届かないお客様へ')
              ->assertSee('受付番号が記載されていますので、<br class="br-u600">ご確認ください。')
              ->assertSee('/index">受付状況トップ画面に戻る</a></div>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         // 登録されたことを確認
         $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567' ,'pet_name'=>'ポチ、ミケ、ぴょん、ピー、ごまぞー','conditions'=>'おもちゃを飲み込んだ',]);
@@ -248,7 +248,7 @@ class ReserveTest extends TestCase
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
              ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('再診受付申込画面表示テスト End');
     }
@@ -293,7 +293,7 @@ class ReserveTest extends TestCase
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
              ->assertSee('<button type="submit" class="btn_execution">受　付</button>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('再診受付申込確認画面表示テスト End');
     }
@@ -333,7 +333,7 @@ class ReserveTest extends TestCase
              ->assertSee('※メールが届かないお客様へ')
              ->assertSee('受付番号が記載されていますので、<br class="br-u600">ご確認ください。')
              ->assertSee('/index">受付状況トップ画面に戻る</a></div>')
-             ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
+             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         // 登録されたことを確認
         $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>2,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567', 'pet_name'=>'ポチ、ミケ、ぴょん、ピー、ごまぞー','conditions'=>'おもちゃを飲み込んだ',]);
