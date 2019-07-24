@@ -37,7 +37,7 @@ class ReserveTest extends TestCase
              ->assertSee('<button class="btn_first"   accesskey="1">初診受付</button>')
              ->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
              ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
-             ->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※営業終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+             ->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
              ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト End');
