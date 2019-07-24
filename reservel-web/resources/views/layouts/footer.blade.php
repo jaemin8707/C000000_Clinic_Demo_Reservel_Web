@@ -1,5 +1,5 @@
 @section('footer')
 <footer>
- <p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>
+ <p>Copyright &copy; reservel All Rights Reserved.</p>
 </footer>
 @endsection
