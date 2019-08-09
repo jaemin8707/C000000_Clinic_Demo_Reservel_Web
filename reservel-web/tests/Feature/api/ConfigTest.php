@@ -28,13 +28,13 @@ class ConfigTest extends PassortGrantTestCase
 
                                'result' => 
                                [
-                                   "name"   =>"おおたけ動物病院",
-                                   "tel"   =>"0255694637",
-                                   "url"   =>"http://example.com/",
+                                   "name"   =>"聖母坂動物病院",
+                                   "tel"   =>"03-5906-5866",
+                                   "url"   =>"https://seibozakaah.com/",
                                    "optimes"=>
                                    [
-                                       ["stime"=>"09:00","etime"=>"11:00"],
-                                       ["stime"=>"16:00","etime"=>"18:30"]
+                                       ["stime"=>"09:00","etime"=>"12:00"],
+                                       ["stime"=>"16:00","etime"=>"19:00"]
                                    ],
                                ],
                                'status' => ['code' => 0, 'message' => '',  ],
