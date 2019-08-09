@@ -50,8 +50,8 @@ class ReserveTest extends TestCase
         $curdate = date('Y/m/d');
         $this->get('/reserve')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況一覧 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　受付状況</h1>')
+             ->assertSee('<title>受付状況一覧 - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　受付状況</h1>')
              ->assertSee('<span class="time">'.$curdate.' ')
              ->assertSee('<li><div>本日の待ち患者は、まだいません。</div></li>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
@@ -155,8 +155,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況一覧 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　受付状況</h1>')
+             ->assertSee('<title>受付状況一覧 - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　受付状況</h1>')
              ->assertSee('<span class="time">'.$curdate.' ')
              ->assertDontSee('<li><div>本日の待ち患者は、まだいません。</div></li>')
 
@@ -391,8 +391,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　受付情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -454,8 +454,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　受付情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -504,8 +504,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>受付 - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　受付情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')

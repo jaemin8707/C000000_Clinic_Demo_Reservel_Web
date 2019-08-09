@@ -22,7 +22,7 @@ class PasswordResetTest extends TestCase
 
         $this->get('/password/reset')
              ->assertStatus(200)
-             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<h1>聖母坂動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/email">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
@@ -74,8 +74,8 @@ class PasswordResetTest extends TestCase
 
         $this->get('/password/reset/abc')
              ->assertStatus(200)
-             ->assertSee('<title>パスワードリセット - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<title>パスワードリセット - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/reset">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
@@ -98,8 +98,8 @@ class PasswordResetTest extends TestCase
         // トークンが間違っていても正常に表示されることをテスト
         $this->get('/password/reset/ab')
              ->assertStatus(200)
-             ->assertSee('<title>パスワードリセット - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<title>パスワードリセット - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/reset">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
@@ -152,8 +152,8 @@ class PasswordResetTest extends TestCase
                 'Content-Length' => '142',
                 'Content-Type' => 'application/x-www-form-urlencoded',
                 'Cookie' => 'XSRF-TOKEN=eyJpdiI6IjFNRmhcL21SUHhwbXJ1amV3amZaNlwvQT09IiwidmFsdWUiOiIzQU5PRnlUSThxdWQwTWc1WjlWWkFDNFZmZWhiTmNwM25GY3AxcU1VaTlMRXdyejVPNmRcL25GR1QxMm8zdzBhZSIsIm1hYyI6Ijc3NTU3NGVlMDI2NjA0NjQwOTZmYzFmOWE0YmE4NzJlZTJlNjhkNjU3YWIwZjJiNWVjMWMzMzJjZmI4MDQ2NTcifQ%3D%3D; reservelakatsuki_session=eyJpdiI6InE2NmpiXC8rbm5PakFnR0dRejBDTnpnPT0iLCJ2YWx1ZSI6IldVNVgrSkNFd0E1Z1czXC9cL3JvSDlhaXA4TndDRnZwYWRHM3UxNlhpTFJvaEEzYndDWTFZXC8zSzcySk5jNGxWT3UiLCJtYWMiOiI3Yjk3ZWQyZTZmMjFiMjg5YzU5NjMwNzQ0YzViM2MzZWUyZTZlZjI1M2YxZmUzMGYxNGQ3NmJmZDJlY2ZjZGU2In0%3D',
-                'Host' => 'fuji.akatsuki-reservel.jp',
-                'Origin' => 'http://fuji.akatsuki-reservel.jp',
+                'Host' => 'lee.seibozaka-reservel.jp',
+                'Origin' => 'http://lee.seibozaka-reservel.jp',
                 'Pragma' => 'no-cache',
                 'Upgrade-Insecure-Requests' => '1',
                 'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
@@ -176,8 +176,8 @@ class PasswordResetTest extends TestCase
 
         $this->get('/password/reset/abc')
              ->assertStatus(200)
-             ->assertSee('<title>パスワードリセット - 管理画面 - おおたけ動物病院 - リザベル</title>')
-             ->assertSee('<h1>おおたけ動物病院　管理画面　パスワードリセット</h1>')
+             ->assertSee('<title>パスワードリセット - 管理画面 - 聖母坂動物病院 - リザベル</title>')
+             ->assertSee('<h1>聖母坂動物病院　管理画面　パスワードリセット</h1>')
              ->assertSee('<div class="card-header">パスワードのリセット</div>')
              ->assertSee('<form method="POST" action="http://localhost/password/reset">')
              ->assertSee('<label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>')
