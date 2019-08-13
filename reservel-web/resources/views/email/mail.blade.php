@@ -29,7 +29,7 @@
  <div style="margin:0 24px;border:solid 1px #dcdcdc;padding:16px;text-align:center;">
  聖母坂動物病院<br>
  <span style="font-size:12px;">〒161－0033 東京都 新宿区 下落合4－6－10 守屋ビル101<br>
- TEL：0476-33-6773</span>
+ TEL：03-5906-5866</span>
  </div>
  </div>
 </body>
