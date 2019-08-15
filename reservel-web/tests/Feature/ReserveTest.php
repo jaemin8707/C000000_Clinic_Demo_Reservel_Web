@@ -116,8 +116,9 @@ class ReserveTest extends TestCase
              ->assertSee('ペットの名前')
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
-             ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
-             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
+             ->assertSee('<p class="privacy_attention_prompt">上記事項をご確認の上、ご同意いただける方は下の「同意して次へ」をクリックしてください。</p>')
+            ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">同意して次へ</button')
+            ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('初診受付申込画面表示テスト End');
     }
@@ -247,8 +248,9 @@ class ReserveTest extends TestCase
              ->assertSee('来院目的')
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
-             ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button')
-             ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
+             ->assertSee('<p class="privacy_attention_prompt">上記事項をご確認の上、ご同意いただける方は下の「同意して次へ」をクリックしてください。</p>')
+            ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">同意して次へ</button')
+            ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('再診受付申込画面表示テスト End');
     }

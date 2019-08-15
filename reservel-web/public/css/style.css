@@ -757,3 +757,111 @@ footer {
   
       
   }
+
+  .privacy_attention{
+    margin-top:2.5rem;
+    padding:1.5rem 2rem;
+    font-size:1rem;
+    background-color: #efefef;
+    }
+  
+    .privacy_attention h2{
+    margin-bottom:1rem;
+    font-size:1.16rem;
+    color:#696969;
+    }
+  
+    .privacy_attention_prompt{
+    padding:1.5rem 0 1rem;
+    text-align:center;
+    font-weight:bold;
+    }
+  
+    .privacy_detail{
+    padding:1rem 0;
+    }
+  
+    .privacy_detail_btn{
+    display:inline-block;
+    color:#027edd;
+    text-decoration:underline;
+    cursor:pointer;
+    }
+  
+    .privacy_attention_prompt{
+    text-align:center;
+    font-size:1rem;
+    }
+  
+    .modalWin{
+    position:fixed;
+    z-index: 100000;
+    top:0;
+    left:0;
+    display: none;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(230,230,230,0.9);
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    }
+  
+  
+    .modalContents{
+    display:block;
+    padding:1rem 0;
+    flex-basis:100%;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    color:#333;
+    }
+  
+    .modalContents h2{
+    display:inline-block;
+    margin-bottom:1rem;
+    font-size:1.16rem;
+    text-align:center;
+    line-height:100%;
+    }
+  
+    .modalContents h3{
+    font-size:1.1rem;
+    }
+  
+    .modalContents p{
+    margin-bottom:1rem;
+    font-size:1rem;
+    line-height:1.6em;
+    }
+  
+    .modalContents li{
+    margin-bottom:0.5rem;
+    font-size:1rem;
+    }
+  
+    .privacy_policy{
+    padding:2rem;
+    background-color:#fff;
+    }
+  
+    .privacy_section{
+    margin-bottom:2.5rem;
+    }
+  
+    .close_btn_box{
+    padding:2rem 0;
+    text-align:center;
+    }
+  
+    .closeBtn{
+    display:inline-block;
+    padding:1rem 0;
+    width:8rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    background-color: #acacac;
+    font-size:1rem;
+    color:#fff;
+    }

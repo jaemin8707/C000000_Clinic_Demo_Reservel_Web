@@ -60,12 +60,77 @@
 					<p style="margin-bottom:0.5rem;font-size:0.9rem;">次回から入力が簡単になります。</p>
 					<p style="margin-left:30px;margin-bottom:1.5rem;color:red;font-size:0.9rem;">ネットカフェ等の公共のブラウザでの保存は絶対におやめ下さい。</p>
 				</div>
-				<div class="console">
-					<a href="{{route('index')}}" class="btn_cancel" accesskey="c">キャンセル</a>
-					<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">確　認</button>
-				</div>
+				<div class="privacy_attention">
+					<h2>個人情報の取扱いについて</h2>
+					<p class="privacy_attention_lead">お客様の個人情報をお預かりするにあたり、個人情報の取り扱いに最大限の注意を払っております。<br>
+					 来院時、または当ウェブサイトをご利用の方からご提供いただきました個人情報につきましては、管理体制を整え、その保護・管理に努めます。</p>
+					<p class="privacy_detail"><span class="privacy_detail_btn">「個人情報の取り扱いについて」詳細はこちら</span></p>
+				 </div>
+					<p class="privacy_attention_prompt">上記事項をご確認の上、ご同意いただける方は下の「同意して次へ」をクリックしてください。</p>
+						 <div class="console">
+							 <a href="http://demo.reservel.jp/index" class="btn_cancel" accesskey="c">キャンセル</a>
+							 <button type="submit" id="btn_execution" class="btn_execution" accesskey="e">同意して次へ</button>
+						 </div>
 			</form>
 		</section>
+	</div>
+	<!-- 個人情報の取り扱いについて -->
+	<div class="modalWin">
+		<div class="modalContents">
+		 <div class="privacy_policy wrapper">
+			<section class="privacy_section">
+			 <h2>個人情報の利用目的</h2>
+			 <p>ご来院された方に対し、安心できる医療サービスを継続して提供することを目的としています。</p>
+			 <ul>
+				<li>・より良い医療サービスの提供をおこなうため。</li>
+				<li>・当院からのご連絡やお知らせなどの情報提供</li>
+			 </ul>
+			</section>
+			<section class="privacy_section">
+			 <h2>個人情報の管理</h2>
+			 <p>お客様の個人情報の漏洩、流失および紛失などの危険発生の防止に努めます。</p>
+			</section>
+			<section class="privacy_section">
+			 <h2>個人情報の第三者への開示・提供の禁止</h2>
+			 <p>当院は、お客さまよりお預かりした個人情報を適切に管理し、次のいずれかに該当する場合を除き、個人情報を第三者に開示いたしません。</p>
+			 <ul>
+				<li>お客さまの同意がある場合</li>
+				<li>お客さまが希望されるサービスを行なうために当院が業務を委託する業者に対して開示する場合</li>
+				<li>法令に基づき開示することが必要である場合</li>
+			 </ul>
+			</section>
+			<section class="privacy_section">
+			 <h2>個人情報の安全管理</h2>
+			 <p>当院は、個人情報の漏えい・紛失防止のため、また正確性及び安全性確保のために、セキュリティに万全の対策を講じています。</p>
+			</section>
+			<section class="privacy_section">
+			 <h2>クッキー(Cookie)の利用について</h2>
+			 <p>当受付システムをお客さまがより便利に利用して頂くにあたりクッキー(Cookie)<sup>※</sup>を使用しています。<br>
+				<span style="font-weight:bold;color:#666;">※Cookieとは、お客様の入力内容を端末に記録する仕組みのことです。</span></p>
+			</section>
+			<section class="privacy_section">
+			 <h2>ご本人の照会</h2>
+			 <p>お客さまがご本人の個人情報の照会・修正・削除などをご希望される場合には、ご本人であることを確認の上、対応させていただきます。</p>
+			</section>
+			<section class="privacy_section">
+			 <h2>法令、規範の遵守と見直し</h2>
+			 <p>当院は、保有する個人情報に関して適用される日本の法令を遵守するとともに、本ポリシーの内容を適宜見直し、その改善に努めます。</p>
+			</section>
+			<section class="privacy_section">
+			 <h2>お問い合せ</h2>
+			 <p>当院の個人情報の取扱に関するお問い合せは下記までご連絡ください。</p>
+			</section>
+			<div class="privacy_address">
+		 <h3>聖母坂どうぶつ病院</h3>
+		 <p>〒161-0033<br>
+		 東京都新宿区下落合４丁目６−１０<br>
+		 TEL:03-5906-5866</p>
+			</div>
+			<div class="close_btn_box">
+			 <span class="closeBtn">閉じる</span>
+			</div>
+		 </div>
+	 </div>
 	</div>
 </main>
 @include('layouts.footer')
@@ -143,5 +208,43 @@ $(function(){
 	@endif
 
 });
+
+$(function(){
+ 
+	//-- モーダル表示 --
+	function viewWin(target){
+		$('body').css('overflow','hidden');
+  $(target).show();
+  $('.modalWin').fadeIn(200);
+  $('.modalWin').css('display','block');
+	}
+ 
+
+	//-- モーダル閉じる --
+	function close(){
+		$('body').css('overflow','auto');
+		$('.modalWin').fadeOut(200);
+  $('.profile').hide();
+	}
+ 
+
+	$(function(){
+
+	//-- ボタンクリック時の処理実行 --
+		$('.privacy_detail_btn').on('click',function(){
+			var target = $(this).attr('data-target');
+			viewWin(target);
+		});
+
+
+
+	//-- 閉じるボタンクリック時の処理実行 --
+		$('.closeBtn').on('click',function(){
+			close();
+		});
+
+	});
+ 
+ });
 </script>
 @endsection
