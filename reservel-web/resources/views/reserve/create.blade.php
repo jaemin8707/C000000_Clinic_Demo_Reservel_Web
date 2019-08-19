@@ -68,7 +68,7 @@
 				 </div>
 					<p class="privacy_attention_prompt">上記事項をご確認の上、ご同意いただける方は下の「同意して次へ」をクリックしてください。</p>
 						 <div class="console">
-							 <a href="http://demo.reservel.jp/index" class="btn_cancel" accesskey="c">キャンセル</a>
+							 <a href="{{route('index')}}" class="btn_cancel" accesskey="c">キャンセル</a>
 							 <button type="submit" id="btn_execution" class="btn_execution" accesskey="e">同意して次へ</button>
 						 </div>
 			</form>
