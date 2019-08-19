@@ -48,7 +48,7 @@ class ReserveTimeTest extends TestCase
 							->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
 							->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
 							->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
-							->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+							->assertSee('<div class="notice">※ネットでの受付は午前8:45～11:30　午後15:45～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
 							->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('受付状況画面(診察時間の一時停止)表示テスト(10:30) End');
@@ -75,7 +75,7 @@ class ReserveTimeTest extends TestCase
 							 ->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
 							 ->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
 							 ->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
-							 ->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+							 ->assertSee('<div class="notice">※ネットでの受付は午前8:45～11:30　午後15:45～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
 							 ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
 				Log::Info('受付状況画面(診察時間の一時停止)表示テスト(17:30) End');
@@ -102,7 +102,7 @@ class ReserveTimeTest extends TestCase
 							->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
 							->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
 							->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
-							->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+							->assertSee('<div class="notice">※ネットでの受付は午前8:45～11:30　午後15:45～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
 							->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
 				Log::Info('受付状況画面(診察時間の一時停止)表示テスト(07:30) End');
@@ -129,7 +129,7 @@ class ReserveTimeTest extends TestCase
 							->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
 							->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
 							->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
-							->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+							->assertSee('<div class="notice">※ネットでの受付は午前8:45～11:30　午後15:45～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
 							->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
 				Log::Info('受付状況画面(診察時間の一時停止)表示テスト(11:30) End');
@@ -156,7 +156,7 @@ class ReserveTimeTest extends TestCase
 							->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
 							->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
 							->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
-							->assertSee('<div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+							->assertSee('<div class="notice">※ネットでの受付は午前8:45～11:30　午後15:45～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
 							->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
 				Log::Info('受付状況画面(診察時間の一時停止)表示テスト(20:30) End');
