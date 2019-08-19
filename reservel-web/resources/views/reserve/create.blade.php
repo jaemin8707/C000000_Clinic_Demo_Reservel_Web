@@ -26,7 +26,7 @@
         <input type="hidden" name="careType" value="{{$careType}}" />
         <dl class="form_items">
           @if($careType==config('const.CARE_TYPE.REGULAR'))
-          <dt class="required"><label for="patient_no">診察券番号<p style="font-size:13px; color:red;">※診察券番号がわからない方は「00000」と入力してください<br>※ハイフン無しで入力してください</p></label></dt>
+          <dt class="required"><label for="patient_no">診察券番号<p style="font-size:13px; color:red;">※診察券番号がわからない方は「00000」と入力してください</p></label></dt>
           <dd><input type="text" id="patient_no" name="patient_no" maxlength="5" placeholder="例）10001 " required />
           </dd>
           @endif
