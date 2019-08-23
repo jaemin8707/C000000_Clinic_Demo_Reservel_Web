@@ -6,7 +6,12 @@ function zeroPad(i){return (i<10)?("0"+i):i;}
 
     var root = document.createElement('div');
     //root.innerHTML ='<div id="reservel_date" style="margin-bottom:8px;font-size:16px;"></div><div>現在の待ち人数</div><div id="totalCnt" style="margin:4px 0 8px;font-weight:bold;"><span>0</span>人</div><div><a href="' + domain[0] + 'index" target="_blank">受付状況</a></div><link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"><style type="text/css">#reservel{box-sizing: border-box; width:234px;background:#FFF;border-radius:6px;margin-bottom:20px;padding:24px;font-size:16px;}#reservel div{text-align:center;}#totalCnt span{ font-size:3.5rem;font-family: "Roboto Condensed", sans-serif;letter-spacing:-0.05rem;font-feature-settings:"palt";font-weight:normal;line-height:100%;}#reservel div a{display: inline-block;box-shadow:0px 2px 3px rgba(0,0,0,0.3);padding:15px 15px;color:#fff;background:red;border-radius:8px;font-size:0.9rem;text-decoration:none;}</style>';
-    root.innerHTML ='<section class="top_reservel"><div class="top_reservel_inner"><h2 class="top_reservel_title"><div>受付状況<span>Reception</span></div></h2><div class="top_reservel_status"><div class="top_reservel_date"></div><div class="top_reservel_count"><span class="top_reservel_count_title">現在の<br>待ち人数</span><span class="top_reservel_num">0</span><span class="top_reservel_unit">人</span></div></div> <div class="top_resevel_btn"><a href="https://otake-reservel.jp" target="_blank"><span>診療受付</span></a></div></div></section>';
+    
+    
+    //root.innerHTML ='<section class="top_reservel"><div class="top_reservel_inner"><h2 class="top_reservel_title"><div>受付状況<span>Reception</span></div></h2><div class="top_reservel_status"><div class="top_reservel_date"></div><div class="top_reservel_count"><span class="top_reservel_count_title">現在の<br>待ち人数</span><span class="top_reservel_num">0</span><span class="top_reservel_unit">人</span></div></div> <div class="top_resevel_btn"><a href="https://otake-reservel.jp" target="_blank"><span>診療受付</span></a></div></div></section>';
+    
+    
+    root.innerHTML = '<div class="reservel_box"><div class="reservel_inner"><div class="reservel_wrapper"><h2><span>受付状況</span></h2><div class="reservel_status"><div class="reservel_status_header"><span class="reservel_status_date"></span><span class="reservel_status_title">現在の待ち人数</span></div><div class="reservel_status_data"><span class="reservel_status_num">0</span><span class="reservel_status_unit">人</span></div><div class="reservel_reception_btn"><a href="https://seibozaka-reservel.jp/" target="_blank">診療受付</a></div></div></div></div></div>';
     reservel.parentNode.insertBefore(root, reservel);
     reservel.parentNode.removeChild(reservel);
     reservel.removeAttribute("id");
@@ -16,12 +21,12 @@ function zeroPad(i){return (i<10)?("0"+i):i;}
            }).done(function( json ) {
              var obj = JSON.parse(json);
              if (obj.status.code==0){
-               $(".top_reservel_num").text(obj.result.total);
-               $(".top_reservel_date").text(obj.result.time);
+               $(".reservel_status_num").text(obj.result.total);
+               $(".reservel_status_date").text(obj.result.time);
              }else{
-               $(".top_reservel_num").text("-");
+               $(".reservel_status_num").text("-");
                var d = new Date();
-               $(".top_reservel_date").text(d.getFullYear()+"/"+d.getMonth()+1+"/"+d.getDate()+" "+zeroPad(d.getHours())+":"+zeroPad(d.getMinutes()));
+               $(".reservel_status_date").text(d.getFullYear()+"/"+d.getMonth()+1+"/"+d.getDate()+" "+zeroPad(d.getHours())+":"+zeroPad(d.getMinutes()));
              }
            }).fail(function(data) {
                  console.log(data);
