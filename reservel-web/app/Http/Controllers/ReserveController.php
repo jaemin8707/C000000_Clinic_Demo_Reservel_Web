@@ -131,6 +131,9 @@ class ReserveController extends Controller {
         Mail::to($reserve->email)
             ->send(new ReserveMail($reserve)); // 引数にリクエストデータを渡す
 
+        // 二重送信対策
+        $request->session()->regenerateToken();
+
         return redirect(route('reserve.complete')."?careType=".$reserve->care_type."&receptionNo=".$reception_no);
     }
 

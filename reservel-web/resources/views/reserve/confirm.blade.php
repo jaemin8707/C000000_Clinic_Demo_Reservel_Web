@@ -4,6 +4,13 @@
 @section('content')
 @section('heading', 'Web受付')
 @include('layouts.header')
+<script>
+    var set=0;
+    function double() {
+    if(set==0){ set=1; } else {
+      alert("只今処理中です。\nそのままお待ちください。");
+    return false; }}
+</script>
 <?php $careTypeName = config('const.CARE_TYPE_NAME')[$request->careType]; ?>
 <main>
   <div class="wrapper">
@@ -11,7 +18,7 @@
       <div class="clinicType {{$careTypeName['class_name']}}">{{$careTypeName['name']}}受付申し込み</div>
     </section>
     <section>
-      <form action="{{route('reserve.store')}}" method="POST">
+      <form action="{{route('reserve.store')}}" method="POST" onSubmit="return double()">
         {{csrf_field()}}
         <input type="hidden" name="careType"        value="{{$request->careType}}" />
         <input type="hidden" name="patient_no" value="{{$request->patient_no}}" />
