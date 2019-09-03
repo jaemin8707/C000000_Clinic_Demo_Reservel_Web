@@ -377,7 +377,7 @@ footer {
 .number {
   flex-basis: calc(100% - 13.5rem);
   height: 4.5rem;
-  overflow: hidden;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch; }
   .number li {
