@@ -222,6 +222,7 @@ button::-moz-focus-inner,
 
 input[type="radio"],
 input[type="checkbox"] {
+
   box-sizing: border-box;
   padding: 0; }
 
@@ -376,19 +377,24 @@ footer {
 
 .number {
   flex-basis: calc(100% - 13.5rem);
-  height: 4.5rem;
+  height: 5rem;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch; }
-  .number li {
+
+.number_items {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%; }
+  .number_items li {
     position: relative;
     display: inline-block;
     width: 3rem;
     height: 4.5rem;
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
     margin-bottom: 0.5rem;
     padding-bottom: 1.5rem; }
-    .number li span {
+    .number_items li span {
       display: inline-block;
       width: 3rem;
       height: 3rem;
@@ -397,7 +403,7 @@ footer {
       line-height: 3rem;
       color: #fff;
       text-align: center; }
-  .number li.called::after {
+  .number_items li.called::after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -406,7 +412,7 @@ footer {
     text-align: center;
     font-size: 11px;
     content: "呼出中"; }
-  .number li.examine::after {
+  .number_items li.examine::after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -415,6 +421,15 @@ footer {
     text-align: center;
     font-size: 11px;
     content: "診察中"; }
+  .number_items li.accounts::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    content: "会計"; }
 
 .firstCustomer .number li span {
   background-color: #83bf43; }
@@ -641,8 +656,11 @@ footer {
     max-width: calc(100% - 14.5rem);
     height: auto;
     padding-top: 1.25rem; }
-    .number li {
-      margin-right: 11px;
+
+  .number_items {
+    flex-wrap: wrap; }
+    .number_items li {
+      margin-right: 16px;
       margin-bottom: 8px;
       height: 4.25rem;
       padding: 0 0 1.25rem; }

@@ -8,29 +8,33 @@
 @section('heading', '受付状況')
 @include('layouts.header')
 <main>
-	<div class="wrapper">
-		<div class="time">{{date('Y/m/d H:i')}} <span>時点の情報です</span></div>
-		<? $reserveFirstCnt = count($reserveFirst);$reserveRegularCnt = count($reserveRegular);?>
-		<div class="total"> <span>現在の待ち人数　</span><span id="totalCnt">{{$reserveFirstCnt + $reserveRegularCnt}}</span><span class="bold">人</span> </div>
-		<div class="detail">
-			<div class="firstCustomer">
-				<div class="label">初診 <span class="count"> {{$reserveFirstCnt}} </span><span class="bold">人</span></div>
-				<ul class="number">
-				@foreach ($reserveFirst as $reserve)
-					<li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
-				@endforeach
-				</ul>
-			</div>
-			<div class="regularCustomer">
-				<div class="label">再診 <span class="count"> {{$reserveRegularCnt}} </span><span class="bold">人</span></div>
-				<ul class="number">
-				@foreach ($reserveRegular as $reserve)
-					<li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
-				@endforeach
-				</ul>
-			</div>
-		</div>
-		<div class="btns">
+  <div class="wrapper">
+    <div class="time">{{date('Y/m/d H:i')}} <span>時点の情報です</span></div>
+    <? $reserveFirstCnt = count($reserveFirst);$reserveRegularCnt = count($reserveRegular);?>
+    <div class="total"> <span>現在の待ち人数　</span><span id="totalCnt">{{$reserveFirstCnt + $reserveRegularCnt}}</span><span class="bold">人</span> </div>
+    <div class="detail">
+      <div class="firstCustomer">
+        <div class="label">初診 <span class="count"> {{$reserveFirstCnt}} </span><span class="bold">人</span></div>
+        <div class="number">
+          <ul class="number_items">
+          @foreach ($reserveFirst as $reserve)
+          <li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
+          @endforeach
+          </ul>
+        </div>
+      </div>
+      <div class="regularCustomer">
+        <div class="label">再診 <span class="count"> {{$reserveRegularCnt}} </span><span class="bold">人</span></div>
+        <div class="number">
+          <ul class="number_items">
+        @foreach ($reserveRegular as $reserve)
+            <li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
+        @endforeach
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="btns">
       @if($webTicketable==='false')
           <span class="receptionMsg" style="color:red;font-weight:900;">ただいま、受付を行っておりません。</span>
       @endif
