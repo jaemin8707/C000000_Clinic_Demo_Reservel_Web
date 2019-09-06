@@ -197,7 +197,7 @@ class ReserveController extends Controller
 
         return response(json_encode($return_data))
                    ->withHeaders([
-                        'Access-Control-Allow-Origin' => env('CORS', 'akatsuki-reservel.jp'),
+                        'Access-Control-Allow-Origin' => env('CORS', 'seibozaka-reservel.jp'),
                     ]);
 
     }
