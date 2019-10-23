@@ -55,7 +55,7 @@ class Reserve extends Model
             Log::Debug('Reserve::updatedイベント Start');
             if(Route::currentRouteName() == "reserve.update.status") {
                 Log::Debug('元のステータス：'.$reserve->getOriginal('status'));
-
+/*
                 if ($reserve->getOriginal('status') === config('const.RESERVE_STATUS.WAITING')){
                     Log::Debug('元の待ち受け番号：'.$reserve->getOriginal('reception_no'));
 
@@ -79,7 +79,7 @@ class Reserve extends Model
                             Log::Debug('リマインドメール送信成功');
                         }
                     }
-                }
+                }*/
                 Log::Debug('元の値：'.json_encode($reserve->getOriginal()));
                 Log::Debug('更新値：'.$reserve);
             }

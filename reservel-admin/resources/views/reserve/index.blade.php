@@ -105,13 +105,12 @@
             </div>
             @endif
           </div>
-
           <div class="a_remind">
             <div class="console_remind">
                 <form method="POST" action="{{route('reserve.remind.send',['reserve'=>$reserve->id])}}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
-                    @if($reserve->email && $reserve->status != -1)
+                    @if($reserve->email && !in_array($reserve->status, [config('const.RESERVE_STATUS.CANCEL_BY_PATIANT'), config('const.RESERVE_STATUS.CANCEL_BY_HOSPITAL'), config('const.RESERVE_STATUS.CALLED_TIMEUP_CANCEL'), config('const.RESERVE_STATUS.EXAMINE_TIMEUP_CANCEL'), config('const.RESERVE_STATUS.DONE')]))
                       @if($reserve->send_remind == 0)
                       <button class="btn_remind" type="submit" name="send" value="send">送信</button>
                       @else
