@@ -3689,7 +3689,7 @@ return array(
     'Tests\\Feature\\LoginTest' => $baseDir . '/tests/Feature/LoginTest.php',
     'Tests\\Feature\\PasswordResetTest' => $baseDir . '/tests/Feature/PasswordResetTest.php',
     'Tests\\Feature\\RemindMailManualTest' => $baseDir . '/tests/Feature/RemindMailManualTest.php',
-    'Tests\\Feature\\RemindMailTest' => $baseDir . '/tests/Feature/RemindMailTest.php',
+    'Tests\\Feature\\RemindMailTest' => $baseDir . '/tests/Feature/RemindMailTest_old.php',
     'Tests\\Feature\\ReserveCreateTest' => $baseDir . '/tests/Feature/ReserveCreateTest.php',
     'Tests\\Feature\\ReserveIndexTest' => $baseDir . '/tests/Feature/ReserveIndexTest.php',
     'Tests\\Feature\\ReserveTest' => $baseDir . '/tests/Feature/ReserveTest.php',

@@ -19,13 +19,13 @@
                     <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
                     @csrf
                       <input type="hidden" name="_method" value="PUT">
-                      <button class="btn_first_reserve"   accesskey="1">初診受付</button>
+                      <button class="btn_first_reserve" onclick="return doubleClick()"  accesskey="1">初診受付</button>
                     </form>
           
                     <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
                     @csrf
                       <input type="hidden" name="_method" value="PUT">
-                      <button type="button" class="btn_repeat_reserve btn_reserve_repeat"   accesskey="2"><span>再診受付</span></button>
+                      <button type="button" class="btn_repeat_reserve btn_reserve_repeat" onclick="return doubleClick()"  accesskey="2"><span>再診受付</span></button>
           
                       <div class="reserve_modal">
                         <label>診察券番号</label>
@@ -40,13 +40,13 @@
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <? $tabTicketButton = config('const.SETTINGBUTTON_BY_TABTICKETABLE')[$tabTicketable]; ?>
-                        <button class="{{$tabTicketButton['CSS']}}" type="submit" name="tabTicketable" value='{{$tabTicketButton['VALUE']}}'>{{$tabTicketButton['TEXT']}}</button>
+                        <button class="{{$tabTicketButton['CSS']}}" type="submit" onclick="return doubleClick()" name="tabTicketable" value='{{$tabTicketButton['VALUE']}}'>{{$tabTicketButton['TEXT']}}</button>
                     </form>
                     <form method="POST" action="{{route('setting.update.webTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <? $webTicketButton = config('const.SETTINGBUTTON_BY_WEBTICKETABLE')[$webTicketable]; ?>
-                        <button class="{{$webTicketButton['CSS']}}" type="submit" name="webTicketable" value='{{$webTicketButton['VALUE']}}'>{{$webTicketButton['TEXT']}}</button>
+                        <button class="{{$webTicketButton['CSS']}}" type="submit" onclick="return doubleClick()" name="webTicketable" value='{{$webTicketButton['VALUE']}}'>{{$webTicketButton['TEXT']}}</button>
                     </form>
                 </div>
                 <!-- <div class="csv_dl">
@@ -101,7 +101,7 @@
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 <? $nextStatusButton = config('const.NEXTBUTTON_BY_STATUS')[$reserve->status]; ?>
-                <button class="{{$nextStatusButton['CSS']}}" type="submit" name="status" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
+                <button class="{{$nextStatusButton['CSS']}}" type="submit" name="status" onclick="return doubleClick()" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
               </form>
             </div>
             @endif
@@ -113,7 +113,7 @@
                     <input type="hidden" name="_method" value="PUT">
                     @if($reserve->email && !in_array($reserve->status, [config('const.RESERVE_STATUS.CANCEL_BY_PATIANT'), config('const.RESERVE_STATUS.CANCEL_BY_HOSPITAL'), config('const.RESERVE_STATUS.CALLED_TIMEUP_CANCEL'), config('const.RESERVE_STATUS.EXAMINE_TIMEUP_CANCEL'), config('const.RESERVE_STATUS.DONE')]))
                       @if($reserve->send_remind == 0)
-                      <button class="btn_remind" type="submit" name="send" value="send">送信</button>
+                      <button class="btn_remind" type="submit" name="send" onclick="return doubleClick()" value="send">送信</button>
                       @else
                       送信済
                       @endif
@@ -223,6 +223,11 @@ div.console button {margin:5px;background:honeydew;color:black;}
     @endif
     window.scrollTo(0, scroll);
   };
-  
+  function doubleClick() {
+    if(typeof pressed != "undefined"){
+      return false;
+    }
+    pressed=1;
+  }
 </script>
 @endsection

@@ -164,7 +164,7 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="a_status"><span>待ち</span></div>')
              
              ->assertSee('<div class="a_reserve_time">--:--</div>')
-             ->assertSee('<button class="btn_status_call" type="submit" name="status" value="20">呼出済みに変更</button>')
+             ->assertSee('<button class="btn_status_call" type="submit" name="status" onclick="return doubleClick()" value="20">呼出済みに変更</button>')
              ->assertSee('<div class="a_c_num">ジロー</div>')
              ->assertSee('<div class="a_patient_no"></div>')
              ->assertSee('<div class="a_name"><span>一番太郎</span>')
@@ -173,7 +173,7 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="a_status"><span>呼出済み</span></div>')
              //ITC-19ステータス変更追記
              ->assertSee('<div class="a_reserve_time">'.date('H:i', strtotime($call_date_called)).'</div>')
-             ->assertSee('<button class="btn_status_examination" type="submit" name="status" value="30">診察中に変更</button>')
+             ->assertSee('<button class="btn_status_examination" type="submit" name="status" onclick="return doubleClick()" value="30">診察中に変更</button>')
              ->assertSee('<div class="a_c_num">サブロー</div>')
              ->assertSee('<div class="a_patient_no">123</div>')
              ->assertSee('<div class="a_name"><span>二番次郎</span>')
@@ -183,7 +183,7 @@ class ReserveTest extends TestCase
              //ITC-19ステータス変更追記
              ->assertSee('<div class="a_reserve_time">--:--</div>')
              ->assertDontSee('<div class="a_reserve_time">'.date('H:i', strtotime($call_date_done)).'</div>')
-             ->assertSee('<button class="btn_status" type="submit" name="status" value="40">完了に変更</button>')
+             ->assertSee('<button class="btn_status" type="submit" name="status" onclick="return doubleClick()" value="40">完了に変更</button>')
              ->assertSee('<div class="a_c_num">シロー</div>')
              ->assertSee('<div class="a_patient_no"></div>')
              ->assertSee('<div class="a_name"><span>三番三郎</span>')

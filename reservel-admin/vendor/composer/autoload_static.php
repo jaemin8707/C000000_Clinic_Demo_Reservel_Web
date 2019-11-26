@@ -4127,7 +4127,7 @@ class ComposerStaticInit0833122e9fd6e8e601ab7761e7f07df4
         'Tests\\Feature\\LoginTest' => __DIR__ . '/../..' . '/tests/Feature/LoginTest.php',
         'Tests\\Feature\\PasswordResetTest' => __DIR__ . '/../..' . '/tests/Feature/PasswordResetTest.php',
         'Tests\\Feature\\RemindMailManualTest' => __DIR__ . '/../..' . '/tests/Feature/RemindMailManualTest.php',
-        'Tests\\Feature\\RemindMailTest' => __DIR__ . '/../..' . '/tests/Feature/RemindMailTest.php',
+        'Tests\\Feature\\RemindMailTest' => __DIR__ . '/../..' . '/tests/Feature/RemindMailTest_old.php',
         'Tests\\Feature\\ReserveCreateTest' => __DIR__ . '/../..' . '/tests/Feature/ReserveCreateTest.php',
         'Tests\\Feature\\ReserveIndexTest' => __DIR__ . '/../..' . '/tests/Feature/ReserveIndexTest.php',
         'Tests\\Feature\\ReserveTest' => __DIR__ . '/../..' . '/tests/Feature/ReserveTest.php',
