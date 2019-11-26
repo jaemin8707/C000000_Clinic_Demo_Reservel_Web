@@ -86,6 +86,7 @@
       <ul class="list">
       @if (isset($reserves) && count($reserves)>0)
         @foreach ($reserves as $reserve)
+        <span id="reserve_id_{{$reserve->id}}"></span>
         <li>
           <div class="a_number">{{$reserve->reception_no}}</div>
           @if ($reserve->status >= config('const.RESERVE_STATUS.WAITING'))
@@ -147,8 +148,8 @@
               </form>
             </div>
           </div>
-          <div class="a_button_area"><a href="{{route('reserve.edit',['reserve'=>$reserve->id])}}">詳細</a></div>
-            </li>
+          <div class="a_button_area"><a href="{{route('reserve.edit',['reserve'=>$reserve->id])}}" onClick="aTagGetScroll()">詳細</a></div>
+        </li>
         @endforeach
       @else
         <li><div>本日の待ち患者は、まだいません。</div></li>
@@ -207,6 +208,9 @@ div.console button {margin:5px;background:honeydew;color:black;}
       }
     });
   });
+  function aTagGetScroll() {
+    event.target.href += "?scroll=" + window.pageYOffset;
+  }
   function getScroll() {
           event.target.action += "?scroll=" + window.pageYOffset;
       };
@@ -214,6 +218,8 @@ div.console button {margin:5px;background:honeydew;color:black;}
     var scroll = 0;
     @if (session('scroll') != null)
       scroll = {{session('scroll')}};
+    @elseif ($scroll != 0)
+      scroll = {{$scroll}};
     @endif
     window.scrollTo(0, scroll);
   };

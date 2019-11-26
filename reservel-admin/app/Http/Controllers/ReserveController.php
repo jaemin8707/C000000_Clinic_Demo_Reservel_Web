@@ -32,10 +32,10 @@ class ReserveController extends Controller
         $this->middleware('auth');
     }
 
-    public function redirect2index()
+    public function redirect2index(Request $request)
     {
         //
-        return  redirect(route('reserve.index'), 301);
+        return  redirect(route('reserve.index', ['scroll' => $request->scroll]), 301);
     }
 
     /**
@@ -43,7 +43,7 @@ class ReserveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         Log::Debug('予約一覧画面表示 Start');
 
@@ -70,8 +70,7 @@ class ReserveController extends Controller
 
         Log::Debug('予約一覧画面表示 End');
 
-
-        return view('reserve.index', compact('reserves', 'waitCnt', 'tabTicketable', 'webTicketable'));
+        return view('reserve.index', compact('reserves', 'waitCnt', 'tabTicketable', 'webTicketable'))->with('scroll', $request->scroll);
     }
     /**
      * 予約新規登録
@@ -113,7 +112,7 @@ class ReserveController extends Controller
      * @
      * @return \Illuminate\Http\Response 予約編集画面
      */
-    public function edit(Reserve $reserve)
+    public function edit(Reserve $reserve, ReservePostRequest $request)
     {
         Log::Debug('予約編集画面表示 Start');
         //ペット種類取得
@@ -129,9 +128,10 @@ class ReserveController extends Controller
         foreach($purposes as $purposeType){
             $purpose[] = $purposeType->purpose;
         }
+        $scroll = $request->scroll;
         Log::Debug('予約編集画面表示 End');
 
-        return view('reserve.edit', compact('reserve', 'petType', 'purpose'));
+        return view('reserve.edit', compact('reserve', 'petType', 'purpose', 'scroll'));
     }
 
     /**
@@ -182,7 +182,7 @@ class ReserveController extends Controller
 
         Log::Debug('更新処理 End');
 
-        return redirect(route('reserve.index'));
+        return redirect(route('reserve.index'))->with('scroll', $request->scroll);
     }
 
     /**

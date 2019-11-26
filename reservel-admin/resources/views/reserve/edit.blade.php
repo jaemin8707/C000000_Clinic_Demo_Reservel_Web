@@ -64,8 +64,9 @@
 					<dd><textarea id="pet_symptom" name="pet_symptom" rows="5">{{old('conditions', $reserve->conditions)}}</textarea></dd>
 				</dl>
 				<div class="console">
-          <input type="hidden" name="id" value="{{$reserve->id}}">
-					<a href="{{route('index')}}" class="btn_cancel">戻　る</a>
+					<input type="hidden" name="scroll" value="{{$scroll}}">
+					<input type="hidden" name="id" value="{{$reserve->id}}">
+					<a href="{{route('index',['scroll'=>$scroll])}}" class="btn_cancel">戻　る</a>
 					<button class="btn_execution">更　新</button>
 				</div>
 			</form>
@@ -103,5 +104,8 @@ $(function(){
 	 }
 		}); 
 });
+function aTagGetScroll(scroll) {
+    event.target.href += "?scroll=" +scroll;
+}
 </script>
 @endsection

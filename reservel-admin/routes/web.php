@@ -17,6 +17,7 @@ Auth::routes();
 // トップページ::受付一覧画面へのリダイレクト
 Route::get ('/',                          'ReserveController@redirect2index')     ->name('index');
 Route::get ('/index',                     'ReserveController@redirect2index')     ->name('index');
+Route::get ('/index/{scroll}',            'ReserveController@redirect2index')     ->name('index');
 
 // 予約受付情報 (一覧画面(index)、編集(edit)、更新(update))
 Route::resource('reserve',                'ReserveController',        ['only' => ['index', 'edit', 'update']]);
