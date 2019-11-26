@@ -67,7 +67,11 @@ class ReserveController extends Controller {
       * 
       **/
     public function create(int $careType) {
-
+        $webTicketable = Setting::where('code','=','webTicketable')
+        ->value("value");
+            if($webTicketable=='false') {
+                return redirect(route('index'));
+            }
         return view('reserve.create', compact("careType"));
 
     }
