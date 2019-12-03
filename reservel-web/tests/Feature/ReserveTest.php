@@ -266,9 +266,9 @@ class ReserveTest extends TestCase
                         'name'        		=> '動物　太郎',
                         'email'       		=> 'm-fujisawa@it-craft.co.jp',
                         'tel'         		=> '0331234567',
-                        'pet_type'    		=> [0 => '1', 1 => '2'],
+                        'pet_type'    		=> [0 => '1'],
                         'pet_name'    		=> 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'    		=> [0 => '1', 1 => '2'],
+                        'purpose'    		=> [0 => '1'],
                         'pet_symptom' 		=> 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
@@ -285,12 +285,10 @@ class ReserveTest extends TestCase
              ->assertSee('<dd><span>0331234567</span></dd>')
              ->assertSee('<dt class="required"><span>ペットの種類</span></dt>')
              ->assertSee('犬')
-             ->assertSee('猫')
              ->assertSee('<dt class="required"><span>ペットの名前</span></dt>')
              ->assertSee('<dd><span>ポチ、ミケ、ぴょん、ピー、ごまぞー</span></dd>')
              ->assertSee('<dt class="required"><span>来院目的</span></dt>')
              ->assertSee('診察')
-             ->assertSee('予防薬')
              ->assertSee('<dt><span>症状など</span></dt>')
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
