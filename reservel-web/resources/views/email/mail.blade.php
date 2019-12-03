@@ -8,7 +8,7 @@
 
 <body>
  <div style="margin:24px auto;width:90%;">
- <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【聖母坂どうぶつ病院】</h1>
+ <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【しんか動物病院】</h1>
  <p style="padding:8px 24px;">診察の受付を受け付けました。</p>
  <p style="padding:8px 24px;line-height:2.4em;">
   受付番号：<span style="font-size:36px;">{{$reserve->reception_no}}</span><br>
@@ -27,9 +27,9 @@
   </div>
  </div>
  <div style="margin:0 24px;border:solid 1px #dcdcdc;padding:16px;text-align:center;">
- 聖母坂どうぶつ病院<br>
- <span style="font-size:12px;">〒161－0033 東京都 新宿区 下落合4－6－10 守屋ビル101<br>
- TEL：03-5906-5866</span>
+ しんか動物病院<br>
+ <span style="font-size:12px;">〒144-0034 東京都大田区西糀谷4-26-3 メゾン林1階<br>
+ TEL：03-6423-6734</span>
  </div>
  </div>
 </body>

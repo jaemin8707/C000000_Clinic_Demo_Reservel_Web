@@ -28,9 +28,9 @@ class ConfigTest extends PassortGrantTestCase
 
                                'result' => 
                                [
-                                   "name"   =>"聖母坂どうぶつ病院",
-                                   "tel"   =>"03-5906-5866",
-                                   "url"   =>"https://seibozakaah.com/",
+                                   "name"   =>"しんか動物病院",
+                                   "tel"   =>"03-6423-6734",
+                                   "url"   =>"https://shinkavet.com/",
                                    "optimes"=>
                                    [
                                        ["stime"=>"09:00","etime"=>"12:00"],

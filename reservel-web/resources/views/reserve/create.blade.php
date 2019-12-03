@@ -26,7 +26,7 @@
         <input type="hidden" name="careType" value="{{$careType}}" />
         <dl class="form_items">
           @if($careType==config('const.CARE_TYPE.REGULAR'))
-          <dt class="required"><label for="patient_no">診察券番号<p style="font-size:13px; color:red;">※診察券番号がわからない方は「00000」と入力してください</p></label></dt>
+          <dt class="required"><label for="patient_no">診察券番号<p style="font-size:13px; color:red;">※診察券番号がわからない方は「0000」と入力してください</p></label></dt>
           <dd><input type="text" id="patient_no" name="patient_no" maxlength="5" placeholder="例）10001 " required />
           </dd>
           @endif
@@ -37,18 +37,28 @@
           <dt class="required"><label for="tel">電話番号</label></dt>
           <dd><input type="tel" id="tel" name="tel" value="{{old('tel')}}" placeholder="例）0331234567" required /></dd>
           <dt class="required"><label for="pet_type">ペットの種類</label></dt>
-          <dd>
-          @foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
-            <input type="checkbox" value="{{$petKey}}" id="pet_type_{{$petKey}}" name="pet_type[]"  {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
+          <dd id="new_line">
+          @foreach (config('const.PET_TYPE_NAME_1') as $petKey => $petName)
+          <label class="form_item_group">
+            <input type="radio" value="{{$petKey}}" id="pet_type_{{$petKey}}" name="pet_type[]"  {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
+          </label>
+          @endforeach
+          <br>
+          @foreach (config('const.PET_TYPE_NAME_2') as $petKey => $petName)
+          <label class="form_item_group">
+            <input type="radio" value="{{$petKey}}" id="pet_type_{{$petKey}}" name="pet_type[]"  {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
+          </label>
           @endforeach
           </dd>
           <dt class="required"><label for="pet_name">ペットの名前</label></dt>
           <dd><input type="text" id="pet_name" name="pet_name" value="{{old('pet_name')}}" placeholder="例）ポチ、ミケなど" required /></dd>
 @if($careType==config('const.CARE_TYPE.REGULAR'))
           <dt class="required"><label for="purpose">来院目的</label></dt>
-          <dd>
+          <dd id="new_line">
           @foreach (config('const.PURPOSE') as $purposeKey => $purpose)
-            <input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
+          <label class="form_item_group">
+            <input type="radio" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
+          </label>
           @endforeach
           </dd>
 @endif
@@ -121,10 +131,10 @@
        <p>当院の個人情報の取扱に関するお問い合せは下記までご連絡ください。</p>
       </section>
       <div class="privacy_address">
-     <h3>聖母坂どうぶつ病院</h3>
-     <p>〒161-0033<br>
-     東京都新宿区下落合４丁目６−１０ 守屋ビル101<br>
-     TEL:03-5906-5866</p>
+     <h3>しんか動物病院</h3>
+     <p>〒144-0034<br>
+      東京都大田区西糀谷4-26-3 メゾン林1階<br>
+     TEL:03-6423-6734</p>
       </div>
       <div class="close_btn_box">
        <span class="closeBtn">閉じる</span>

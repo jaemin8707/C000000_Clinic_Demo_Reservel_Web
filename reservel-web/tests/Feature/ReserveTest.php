@@ -27,8 +27,8 @@ class ReserveTest extends TestCase
         $curdate = date('Y/m/d');
         $this->get('/')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　受付状況</h1>')
+             ->assertSee('<title>受付状況 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　受付状況</h1>')
              ->assertSee('<div class="time">'.$curdate.' ')
              ->assertSee('<div class="total"> <span>現在の待ち人数　</span><span id="totalCnt">0</span><span class="bold">人</span> </div>')
              ->assertSee('<div class="label">初診 <span class="count"> 0 </span><span class="bold">人</span></div>')
@@ -37,7 +37,7 @@ class ReserveTest extends TestCase
              ->assertSee('<button class="btn_first"   accesskey="1">初診受付</button>')
              ->assertSee('<form method="GET" action="http://localhost/reserve/create/2">')
              ->assertSee('<button class="btn_regular" accesskey="2">再診受付</button>')
-             ->assertSee('<div class="notice">※ネットでの受付は午前8:45～11:30　午後15:45～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
+             ->assertSee('<div class="notice">※ネットでの受付は午前9:30～11:30　午後15:30～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>')
              ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         Log::Info('受付状況画面表示テスト End');
@@ -61,8 +61,8 @@ class ReserveTest extends TestCase
 
         $this->get('/')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　受付状況</h1>')
+             ->assertSee('<title>受付状況 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　受付状況</h1>')
              ->assertSee('<div class="time">'.$curdate.' ')
              ->assertSee('<div class="total"> <span>現在の待ち人数　</span><span id="totalCnt">3</span><span class="bold">人</span> </div>')
              ->assertSee('<div class="label">初診 <span class="count"> 2 </span><span class="bold">人</span></div>')
@@ -87,8 +87,8 @@ class ReserveTest extends TestCase
 
         $this->get('/')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　受付状況</h1>')
+             ->assertSee('<title>受付状況 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　受付状況</h1>')
              ->assertSee('<span class="receptionMsg" style="color:red;font-weight:900;">ただいま、受付を行っておりません。</span>')
              ->assertSee('<button class="btn_first"   accesskey="1" disabled >初診受付</button>')
              ->assertSee('<button class="btn_regular" accesskey="2" disabled >再診受付</button>')
@@ -104,8 +104,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/create/1')
              ->assertStatus(200)
-             ->assertSee('<title>Web受付 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　Web受付</h1>')
+             ->assertSee('<title>Web受付 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　Web受付</h1>')
              ->assertSee('<div class="clinicType clinicFirst">初診受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>初診</span></div>')
@@ -139,8 +139,8 @@ class ReserveTest extends TestCase
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
-             ->assertSee('<title>Web受付 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　Web受付</h1>')
+             ->assertSee('<title>Web受付 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　Web受付</h1>')
              ->assertSee('<div class="clinicType clinicFirst">初診受付申し込み</div>')
              ->assertSee('/reserve" method="POST" onSubmit="return double()">')
              ->assertSee('<input type="hidden" name="careType"        value="1" />')
@@ -197,8 +197,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/complete?careType=1&receptionNo=1')
              ->assertStatus(200)
-             ->assertSee('<title>受付完了 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　受付完了</h1>')
+             ->assertSee('<title>受付完了 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　受付完了</h1>')
              ->assertSee('<div class="comprete_title">受付が完了しました</div>')
              ->assertSee('<div class="comprete_clinictype">受付区分：初診</div>')
              ->assertSee('<div class="comprete_number">受付番号：1</div>')
@@ -235,8 +235,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/create/2')
              ->assertStatus(200)
-             ->assertSee('<title>Web受付 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　Web受付</h1>')
+             ->assertSee('<title>Web受付 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　Web受付</h1>')
              ->assertSee('<div class="clinicType clinicRepeat">再診受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>再診</span></div')
@@ -272,8 +272,8 @@ class ReserveTest extends TestCase
                         'pet_symptom' 		=> 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
-             ->assertSee('<title>Web受付 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　Web受付</h1>')
+             ->assertSee('<title>Web受付 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　Web受付</h1>')
              ->assertSee('<div class="clinicType clinicRepeat">再診受付申し込み</div>')
              ->assertSee('/reserve" method="POST" onSubmit="return double()"')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>再診</span></div>')
@@ -326,8 +326,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/complete?careType=2&receptionNo=1')
              ->assertStatus(200)
-             ->assertSee('<title>受付完了 - 聖母坂どうぶつ病院 - リザベル</title>')
-             ->assertSee('<h1>聖母坂どうぶつ病院　受付完了</h1>')
+             ->assertSee('<title>受付完了 - しんか動物病院 - リザベル</title>')
+             ->assertSee('<h1>しんか動物病院　受付完了</h1>')
              ->assertSee('<div class="comprete_title">受付が完了しました</div>')
              ->assertSee('<div class="comprete_clinictype">受付区分：再診</div>')
              ->assertSee('<div class="comprete_number">受付番号：1</div>')

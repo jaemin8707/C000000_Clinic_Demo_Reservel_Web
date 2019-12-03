@@ -22,17 +22,18 @@ $app = new Illuminate\Foundation\Application(
 */
 
 switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
-    case 'lee.seibozaka-reservel.jp':
+    case 'lee.shinka-reservel.jp':
+    case 'demo-reservel.sakuraweb.com':
         $app->loadEnvironmentFrom('.env.lee');
         break;
-    case 'otn.seibozaka-reservel.jp':
+    case 'otn.shinka-reservel.jp':
         $app->loadEnvironmentFrom('.env.otn');
         break;
-    case 'stg.seibozaka-reservel.jp':
+    case 'stg.shinka-reservel.jp':
         $app->loadEnvironmentFrom('.env.stg');
         break;
-    case 'seibozaka-reservel.jp':
-    case 'next.seibozaka-reservel.jp':
+    case 'shinka-reservel.jp':
+    case 'next.shinka-reservel.jp':
         $app->loadEnvironmentFrom('.env.prod');
         break;
 }

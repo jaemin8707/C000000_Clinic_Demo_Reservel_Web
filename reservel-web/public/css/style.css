@@ -506,8 +506,21 @@ footer {
     border: solid 2px #acacac;
     width: 100%; }
 
-  .form_items input[type="checkbox"]  {
-    width: 10%; }
+  .form_items input[type="checkbox"],
+  .form_items input[type="radio"]  {
+    width: auto; /* 2019 10 07 修正　*/
+    margin-right:0.5rem; /* 2019 10 07 追記　*/
+  }
+
+  .form_item_group{
+    display:inline-block;
+    margin-right:2rem;
+   }
+
+   .br960{
+    display:none;
+   }
+  
 
   .form_items dt label, .form_items dt span {
     display: inline-block;
@@ -525,6 +538,13 @@ footer {
       font-weight: bold;
       line-height: 100%;
       color: #767676; }
+    .form_items #new_line {
+      display: block;
+      align-items: center;
+      width: calc(100% - 330px);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: solid 1px #dcdcdc; }
 
 .required::after {
   display: inline-block;
