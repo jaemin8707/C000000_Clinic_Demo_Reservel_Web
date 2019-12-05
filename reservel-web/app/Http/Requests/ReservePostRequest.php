@@ -31,9 +31,10 @@ class ReservePostRequest extends FormRequest
             'pet_type' => 'required',
             'pet_name' => 'required|max:255',
             'pet_symptom' => 'max:255',
+            'purpose' => 'required',
         ];
-        if ($this->input('careType') == 2) {
-            $validation['purpose'] = 'required';
+        if ($this->input('careType') == 2 || $this->input('careType') == 9) {
+            
             $validation['patient_no'] = 'required';
         }
         return $validation;
@@ -57,7 +58,8 @@ class ReservePostRequest extends FormRequest
             'pet_type' => 'ペットの種類',
             'pet_name' => 'ペットの名前',
             'pet_symptom' => '症状など',
-            'purpose' => '来院目的'
+            'purpose' => '来院目的',
+            'patient_no' => '診察券番号'
         ];
     }
    /**

@@ -49,29 +49,41 @@ class ReserveController extends Controller {
                                  ->orderBy('status','desc')
                                  ->orderBy('reception_no')
                                  ->get();
+
+        // そのた予約待ち行列
+        $reserveEtc = Reserve::where(function($query) {
+                                    $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
+                                        ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
+                                        ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                })
+                                ->where("care_type", "=",  config('const.CARE_TYPE.ETC'))
+                                ->whereBetween("created_at", [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])
+                                ->orderBy('status','desc')
+                                ->orderBy('reception_no')
+                                ->get();
         Log::Debug(DB::getQueryLog());
 
         $webTicketable = Setting::where('code','=','webTicketable')
                              ->value("value");
         
 
-        return view('index', compact('reserveFirst', 'reserveRegular', 'webTicketable'));
+        return view('index', compact('reserveFirst', 'reserveRegular', 'reserveEtc', 'webTicketable'));
     }
 
     /**
       * 受付フォーム画面表示処理
       * 
-      * @param int $careType  受付区分（1：初診、2：再診）
+      * @param int $careType  受付区分（1：初診、2：再診, 9:その他）
       * 
       * @return Response
       * 
       **/
     public function create(int $careType) {
         $webTicketable = Setting::where('code','=','webTicketable')
-        ->value("value");
-            if($webTicketable=='false') {
+                        ->value("value");
+        if($webTicketable=='false') {
                 return redirect(route('index'));
-            }
+        }
         return view('reserve.create', compact("careType"));
 
     }

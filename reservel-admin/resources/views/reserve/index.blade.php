@@ -16,35 +16,47 @@
                     <span>現在の待ち人数</span><span id="totalCnt">{{$waitCnt}}</span><span>人</span>
                 </div>
                 <div class="console_reserve_button">
-                  <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
-                  @csrf
-                    <input type="hidden" name="_method" value="PUT">
-                    <button class="btn_first_reserve" onclick="return doubleClick()" accesskey="1">初診受付</button>
-                  </form>
-                  <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
-                  @csrf
-                    <input type="hidden" name="_method" value="PUT">
-                    <button type="button" class="btn_repeat_reserve btn_reserve_repeat" accesskey="2"><span>再診受付</span></button>
-                    <div class="reserve_modal">
-                      <label>診察券番号</label>
-                      <input type="text" name="patient_no" value="">
-                      <input class="submit_button"type="submit" onclick="return doubleClick()" value="受付">
-                      <input class="close_button" type="button" value="閉じる" onClick="window.location.reload();" name="close">
-                    </div>
-                  </form>
-                </div>
+                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
+                    @csrf
+                      <input type="hidden" name="_method" value="PUT">
+                      <button class="btn_first_reserve"   accesskey="1">初診受付</button>
+                    </form>
+          
+                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
+                      @csrf
+                        <input type="hidden" name="_method" value="PUT">
+                        <button type="button" class="btn_repeat_reserve btn_reserve_repeat"   accesskey="2"><span>再診受付</span></button>
+                        <div class="reserve_repeat_modal">
+                          <label>診察券番号</label>
+                          <input type="text" name="patient_no" value="">
+                          <input class="submit_button"type="submit" value="受付">
+                          <input class="close_button" type="button" value="閉じる" name="close">
+                        </div>
+                      </form>
+                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>9])}}" onsubmit="getScroll()">
+                      @csrf
+                      <input type="hidden" name="_method" value="PUT">
+                      <button type="button" class="btn_reserve_etc btn_etc_reserve"   accesskey="9"><span>その他</span></button>
+                      <div class="reserve_etc_modal">
+                        <label>診察券番号</label>
+                        <input type="text" name="patient_no" value="">
+                        <input class="submit_button"type="submit" value="受付">
+                        <input class="close_button" type="button" value="閉じる" name="close">
+                      </div>
+                    </form>
+                  </div> 
                 <div class="console_ticketable">
                     <form method="POST" action="{{route('setting.update.tabTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <? $tabTicketButton = config('const.SETTINGBUTTON_BY_TABTICKETABLE')[$tabTicketable]; ?>
-                        <button class="{{$tabTicketButton['CSS']}}" type="submit" onclick="return doubleClick()" name="tabTicketable" value='{{$tabTicketButton['VALUE']}}'>{{$tabTicketButton['TEXT']}}</button>
+                        <button class="{{$tabTicketButton['CSS']}}" type="submit" name="tabTicketable" value='{{$tabTicketButton['VALUE']}}'>{{$tabTicketButton['TEXT']}}</button>
                     </form>
                     <form method="POST" action="{{route('setting.update.webTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <? $webTicketButton = config('const.SETTINGBUTTON_BY_WEBTICKETABLE')[$webTicketable]; ?>
-                        <button class="{{$webTicketButton['CSS']}}" type="submit" onclick="return doubleClick()" name="webTicketable" value='{{$webTicketButton['VALUE']}}'>{{$webTicketButton['TEXT']}}</button>
+                        <button class="{{$webTicketButton['CSS']}}" type="submit" name="webTicketable" value='{{$webTicketButton['VALUE']}}'>{{$webTicketButton['TEXT']}}</button>
                     </form>
                 </div>
                 <!-- <div class="csv_dl">
@@ -70,6 +82,7 @@
  -->
       <div class="list_header">
         <span class="a_number">受付<br/>番号</span>
+        <span class="a_type">受付区分</span><!-- 6% -->
         <span class="a_status">現在の状態</span>
         <span class="a_status_edit">状態の変更</span>
         <span class="a_remind">リマインドメール</span>
@@ -87,6 +100,7 @@
         <span id="reserve_id_{{$reserve->id}}"></span>
         <li>
           <div class="a_number">{{$reserve->reception_no}}</div>
+          <div class="a_type">{{config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']}}</div>
           @if ($reserve->status >= config('const.RESERVE_STATUS.WAITING'))
           <div class="a_status"><span>{{config('const.CURRENTSTATUS_STRING')[$reserve->status]}}</span></div>
           @else
@@ -99,19 +113,20 @@
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 <? $nextStatusButton = config('const.NEXTBUTTON_BY_STATUS')[$reserve->status]; ?>
-                <button class="{{$nextStatusButton['CSS']}}" type="submit" name="status" onclick="return doubleClick()" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
+                <button class="{{$nextStatusButton['CSS']}}" type="submit" name="status" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
               </form>
             </div>
             @endif
           </div>
+
           <div class="a_remind">
             <div class="console_remind">
                 <form method="POST" action="{{route('reserve.remind.send',['reserve'=>$reserve->id])}}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
-                    @if($reserve->email && !in_array($reserve->status, [config('const.RESERVE_STATUS.CANCEL_BY_PATIANT'), config('const.RESERVE_STATUS.CANCEL_BY_HOSPITAL'), config('const.RESERVE_STATUS.CALLED_TIMEUP_CANCEL'), config('const.RESERVE_STATUS.EXAMINE_TIMEUP_CANCEL'), config('const.RESERVE_STATUS.DONE')]))
+                    @if($reserve->email && $reserve->status != -1)
                       @if($reserve->send_remind == 0)
-                      <button class="btn_remind" type="submit" name="send" onclick="return doubleClick()" value="send">送信</button>
+                      <button class="btn_remind" type="submit" name="send" value="send">送信</button>
                       @else
                       送信済
                       @endif
@@ -147,7 +162,7 @@
             </div>
           </div>
           <div class="a_button_area"><a href="{{route('reserve.edit',['reserve'=>$reserve->id])}}" onClick="aTagGetScroll()">詳細</a></div>
-        </li>
+            </li>
         @endforeach
       @else
         <li><div>本日の待ち患者は、まだいません。</div></li>
@@ -181,15 +196,28 @@ div.console button {margin:5px;background:honeydew;color:black;}
 
     $('.btn_reserve_repeat').on('click',function(){
       $('.btn_reserve_repeat').hide();
-      $(this).next('.reserve_modal').fadeIn(200);
+      $(this).next('.reserve_repeat_modal').fadeIn(200);
 
     });
-    $('.reserve_modal input[type="submit"]').on('click',function(){
-      $(this).parent('.reserve_modal').fadeOut(200);
+    $('.reserve_repeat_modal input[type="submit"]').on('click',function(){
+      $(this).parent('.reserve_repeat_modal').fadeOut(200);
     });
-    $('.reserve_modal .close_button').on('click',function(){
-      $('.reserve_modal').hide();
+    $('.reserve_repeat_modal .close_button').on('click',function(){
+      $('.reserve_repeat_modal').hide();
       $('.btn_reserve_repeat').fadeIn(200);
+    });
+
+    $('.btn_reserve_etc').on('click',function(){
+      $('.btn_reserve_etc').hide();
+      $(this).next('.reserve_etc_modal').fadeIn(200);
+
+    });
+    $('.reserve_etc_modal input[type="submit"]').on('click',function(){
+      $(this).parent('.reserve_etc_modal').fadeOut(200);
+    });
+    $('.reserve_etc_modal .close_button').on('click',function(){
+      $('.reserve_etc_modal').hide();
+      $('.btn_reserve_etc').fadeIn(200);
     });
 
     $('.status').change(function() {
@@ -221,11 +249,6 @@ div.console button {margin:5px;background:honeydew;color:black;}
     @endif
     window.scrollTo(0, scroll);
   };
-  function doubleClick() {
-    if(typeof pressed != "undefined"){
-      return false;
-    }
-    pressed=1;
-  }
+  
 </script>
 @endsection

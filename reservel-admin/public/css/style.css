@@ -399,41 +399,43 @@ ul.list {
   width: 8%; }
 
 .a_number {
- width: 4%;
+ width: 6%;
+}
+.a_type {
+  width: 6%;
 }
 .a_reserve_time {
- width: 8%;
+ width: 7%;
 }
 .a_status {
  width: 10%;
  font-size:18px;
-}
-
-.a_pet_type {
-  width: 8%;
 }
 .a_status_edit {
  width: 12%
 }
 
 .a_remind {
-	width: 10%;
- }
-
-.a_purpose {
-  width: 6%
+	width: 8%;
  }
 
 .a_patient_no {
- width: 6%;
+ width: 8%;
 }
 
+.a_pet_type {
+  width: 9%;
+}
 .a_c_num {
- width: 10%;
+  width: 8%;
+}
+
+.a_purpose {
+  width: 8%;
 }
 
 .a_name {
- width: 12%;
+ width: 8%;
 }
 
 .a_button_area {
@@ -580,24 +582,43 @@ ul.list {
   color: #fff; 
   background-color:red}
 
-div.reserve_modal {
-  display: none;
-  border-radius: 0.5rem;
-  padding:10px 0;
-  width: 300px;
-  height: 45px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  background-color: #27a49f; }
-  div.reserve_modal input[type="text"]  {
-    width: 30%; }
-  div.reserve_modal label {
-    color : #fff;}
-  div.reserve_modal .close_button {
-    display: inline-block;
-    color: rgb(20, 19, 19); }
-  div.reserve_modal .submit_button {
-    display: inline-block;
-    background-color:#dcdcdc}
+  div.reserve_repeat_modal {
+    display: none;
+    border-radius: 0.5rem;
+    padding:10px 0;
+    width: 300px;
+    height: 45px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    background-color: #27a49f; }
+    div.reserve_repeat_modal input[type="text"]  {
+      width: 30%; }
+    div.reserve_repeat_modal label {
+      color : #fff;}
+    div.reserve_repeat_modal .close_button {
+      display: inline-block;
+      color: rgb(20, 19, 19); }
+    div.reserve_repeat_modal .submit_button {
+      display: inline-block;
+      background-color:#dcdcdc}
+  
+  div.reserve_etc_modal {
+    display: none;
+    border-radius: 0.5rem;
+    padding:10px 0;
+    width: 300px;
+    height: 45px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    background-color: #494a8a; }
+    div.reserve_etc_modal input[type="text"]  {
+      width: 30%; }
+    div.reserve_etc_modal label {
+      color : #fff;}
+    div.reserve_etc_modal .close_button {
+      display: inline-block;
+      color: rgb(20, 19, 19); }
+    div.reserve_etc_modal .submit_button {
+      display: inline-block;
+      background-color:#dcdcdc}
 
 .form_items {
   display: flex;
@@ -609,15 +630,10 @@ div.reserve_modal {
     border-radius: 0.25rem;
     border: solid 2px #acacac;
     width: 100%; }
-  .form_items input[type="checkbox"],
   .form_items input[type="radio"]  {
-    width: auto; /* 2019 10 07 修正　*/
-    margin-right:0.5rem; /* 2019 10 07 追記　*/
-  }
-  .form_item_group{
-    display:inline-block;
-    margin-right:2rem;
-   }
+    width: 10%; }
+  .form_items input[type="checkbox"]  {
+    width: 10%; }
   .form_items dt label, .form_items dt span {
     display: inline-block;
     margin-right: 2rem;
@@ -648,13 +664,13 @@ div.reserve_modal {
       padding: 6px;
       border-radius: 6px;
       border: solid 2px #acacac; }
-    .form_items #new_line {
-      display: block;
-      align-items: center;
-      width: calc(100% - 330px);
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: solid 1px #dcdcdc; }
+      .form_items #new_line {
+        display: block;
+        align-items: center;
+        width: calc(100% - 330px);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: solid 1px #dcdcdc; }
 
   .form_items_closed {
     display: flex;
@@ -843,6 +859,13 @@ div.reserve_modal {
       padding:8px 0;
       margin:0 10px;
       background-color: #27a49f; }
+    .console_reserve_button .btn_etc_reserve {
+      width:100px;
+      font-size:20px;
+      padding:8px 0;
+      margin:0 10px;
+      background-color: #494a8a; }
+  
 down {
   display: none;
   padding-left: 24px; }

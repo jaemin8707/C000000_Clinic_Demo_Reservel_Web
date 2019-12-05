@@ -29,16 +29,14 @@
         <input type="hidden" name="pet_type[{{$petKey}}][pet_type]" value="{{$pet}}" />
 @endforeach
         <input type="hidden" name="pet_name"        value="{{$request->pet_name}}" />
-@if($request->careType==2)
-    @foreach($request->purpose as $purposeKey => $purpose)
-        <input type="hidden" name="purpose[{{$purposeKey}}][purpose]" value="{{$purpose}}" />
-    @endforeach
-@endif
+@foreach($request->purpose as $purposeKey => $purpose)
+    <input type="hidden" name="purpose[{{$purposeKey}}][purpose]" value="{{$purpose}}" />
+@endforeach
 
         <input type="hidden" name="pet_symptom"     value="{{$request->pet_symptom}}" />
         <div class="type"><span>受付区分</span>：<span>{{$careTypeName['name']}}</span></div>
         <dl class="form_items">
-@if($request->careType==2)
+@if($request->careType==2 || $request->careType==9)
           <dt class="required"><span>診察券番号</span></dt>
           <dd><span>{{$request->patient_no}}</span></dd>
 @endif
@@ -56,7 +54,6 @@
           </dd>
           <dt class="required"><span>ペットの名前</span></dt>
           <dd><span>{{$request->pet_name}}</span></dd>
-@if($request->careType==2)
           <dt class="required"><span>来院目的</span></dt>
           <dd>
               @foreach($request->purpose as $purpose)
@@ -66,7 +63,6 @@
               </span>
             @endforeach
           </dd>
-@endif
           <dt><span>症状など</span></dt>
           <dd><span class="symptom">{!! nl2br(htmlspecialchars($request->pet_symptom)) !!}</span></dd>
         </dl>

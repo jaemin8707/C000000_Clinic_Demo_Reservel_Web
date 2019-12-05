@@ -222,7 +222,6 @@ button::-moz-focus-inner,
 
 input[type="radio"],
 input[type="checkbox"] {
-
   box-sizing: border-box;
   padding: 0; }
 
@@ -362,7 +361,8 @@ footer {
   font-feature-settings: "palt"; }
 
 .firstCustomer,
-.regularCustomer {
+.regularCustomer,
+.etcCustomer{
   display: flex;
   align-items: center;
   padding: 1.5rem 0;
@@ -461,6 +461,21 @@ footer {
 .regularCustomer .number li.examine::after {
   color: #0756cd; }
 
+.etcCustomer .number li span {
+  background-color: #494a8a; }
+
+.etcCustomer .number li.called span {
+  background-color: #211ecf; }
+
+.etcCustomer .number li.called::after {
+  color: #211ecf; }
+
+.etcCustomer .number li.examine span {
+  background-color: #4207ca; }
+
+.etcCustomer .number li.examine::after {
+  color: #4207ca; }
+
 .btns {
   padding: 2.5rem 0;
   text-align: center; }
@@ -497,6 +512,10 @@ footer {
   margin-left: 0.5rem;
   background-color: #27a49f; }
 
+.btn_etc {
+  margin-left: 0.5rem;
+  background-color: #494a8a; }
+
 .form_items {
   padding-top: 2rem;
   border-top: solid 1px #dcdcdc; }
@@ -506,21 +525,16 @@ footer {
     border: solid 2px #acacac;
     width: 100%; }
 
-  .form_items input[type="checkbox"],
-  .form_items input[type="radio"]  {
-    width: auto; /* 2019 10 07 修正　*/
-    margin-right:0.5rem; /* 2019 10 07 追記　*/
-  }
+    .form_items input[type="checkbox"],
+    .form_items input[type="radio"]  {
+      width: auto; /* 2019 10 07 修正　*/
+      margin-right:0.5rem; /* 2019 10 07 追記　*/
+    }
 
   .form_item_group{
     display:inline-block;
     margin-right:2rem;
    }
-
-   .br960{
-    display:none;
-   }
-  
 
   .form_items dt label, .form_items dt span {
     display: inline-block;
@@ -538,13 +552,13 @@ footer {
       font-weight: bold;
       line-height: 100%;
       color: #767676; }
-    .form_items #new_line {
-      display: block;
-      align-items: center;
-      width: calc(100% - 330px);
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: solid 1px #dcdcdc; }
+      .form_items #new_line {
+        display: block;
+        align-items: center;
+        width: calc(100% - 330px);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: solid 1px #dcdcdc; }
 
 .required::after {
   display: inline-block;
@@ -560,7 +574,8 @@ footer {
   margin-top: 3rem; }
 
 .clinicFirst,
-.clinicRepeat {
+.clinicRepeat,
+.clinicEtc {
   height: 3rem;
   margin-bottom: 2rem;
   border-radius: 0.25rem;
@@ -573,6 +588,9 @@ footer {
 
 .clinicRepeat {
   background-color: #27a49f; }
+
+.clinicEtc {
+  background-color: #494a8a; }
 
 .type {
   padding: 2rem 0; }
@@ -660,7 +678,8 @@ footer {
     font-size: 48px; }
 
   .firstCustomer,
-  .regularCustomer {
+  .regularCustomer,
+  .etcCustomer {
     padding: 1.25rem 0; }
 
   .label {
@@ -700,7 +719,12 @@ footer {
     margin-right: 1rem; }
 
   .btn_regular {
-    margin-left: 1rem; }
+    margin-left: 1rem; 
+    margin-right: 1rem;}
+
+  .btn_etc {
+    margin-left: 1rem; 
+  }
 
   .form_items {
     display: flex;
