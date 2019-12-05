@@ -16,25 +16,23 @@
                     <span>現在の待ち人数</span><span id="totalCnt">{{$waitCnt}}</span><span>人</span>
                 </div>
                 <div class="console_reserve_button">
-                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
-                    @csrf
-                      <input type="hidden" name="_method" value="PUT">
-                      <button class="btn_first_reserve" onclick="return doubleClick()"  accesskey="1">初診受付</button>
-                    </form>
-          
-                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
-                    @csrf
-                      <input type="hidden" name="_method" value="PUT">
-                      <button type="button" class="btn_repeat_reserve btn_reserve_repeat" onclick="return doubleClick()"  accesskey="2"><span>再診受付</span></button>
-          
-                      <div class="reserve_modal">
-                        <label>診察券番号</label>
-                        <input type="text" name="patient_no" value="">
-                        <input class="submit_button"type="submit" value="受付">
-                        <input class="close_button" type="button" value="閉じる" name="close">
-                      </div>
-                    </form>
-                  </div> 
+                  <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
+                  @csrf
+                    <input type="hidden" name="_method" value="PUT">
+                    <button class="btn_first_reserve" onclick="return doubleClick()" accesskey="1">初診受付</button>
+                  </form>
+                  <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
+                  @csrf
+                    <input type="hidden" name="_method" value="PUT">
+                    <button type="button" class="btn_repeat_reserve btn_reserve_repeat" accesskey="2"><span>再診受付</span></button>
+                    <div class="reserve_modal">
+                      <label>診察券番号</label>
+                      <input type="text" name="patient_no" value="">
+                      <input class="submit_button"type="submit" onclick="return doubleClick()" value="受付">
+                      <input class="close_button" type="button" value="閉じる" onClick="window.location.reload();" name="close">
+                    </div>
+                  </form>
+                </div>
                 <div class="console_ticketable">
                     <form method="POST" action="{{route('setting.update.tabTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">
