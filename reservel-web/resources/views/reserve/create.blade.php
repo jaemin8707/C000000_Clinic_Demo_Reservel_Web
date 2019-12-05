@@ -181,7 +181,7 @@ $(function(){
 	});
 	$('#btn_execution').click(function(ev){
 			if ($('#savable').prop('checked')){
-					@if($careType==config('const.CARE_TYPE.REGULAR'))
+					@if($careType==config('const.CARE_TYPE.REGULAR') || $careType==config('const.CARE_TYPE.ETC') )
 							localStorage.setItem('reserve.patient_no', document.getElementById('patient_no').value);
 					@endif
 					localStorage.setItem('reserve.name', document.getElementById('name').value);
@@ -208,7 +208,7 @@ $(function(){
 					@endforeach
 			}
 	});
-	@if ($careType==config('const.CARE_TYPE.REGULAR'))
+	@if ($careType==config('const.CARE_TYPE.REGULAR') || $careType==config('const.CARE_TYPE.ETC'))
 	if (isset(localStorage.getItem('reserve.name'))){
 			$('#savable').prop('checked',true);
 	}

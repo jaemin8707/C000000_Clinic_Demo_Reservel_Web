@@ -19,7 +19,7 @@
                     <form method="POST" action="{{route('reserve.create',['diagnosisType'=>1])}}" onsubmit="getScroll()">
                     @csrf
                       <input type="hidden" name="_method" value="PUT">
-                      <button class="btn_first_reserve"   accesskey="1">初診受付</button>
+                      <button class="btn_first_reserve" onclick="return doubleClick()" accesskey="1">初診受付</button>
                     </form>
           
                     <form method="POST" action="{{route('reserve.create',['diagnosisType'=>2])}}" onsubmit="getScroll()">
@@ -29,7 +29,7 @@
                         <div class="reserve_repeat_modal">
                           <label>診察券番号</label>
                           <input type="text" name="patient_no" value="">
-                          <input class="submit_button"type="submit" value="受付">
+                          <input class="submit_button"type="submit" onclick="return doubleClick()" value="受付">
                           <input class="close_button" type="button" value="閉じる" name="close">
                         </div>
                       </form>
@@ -40,7 +40,7 @@
                       <div class="reserve_etc_modal">
                         <label>診察券番号</label>
                         <input type="text" name="patient_no" value="">
-                        <input class="submit_button"type="submit" value="受付">
+                        <input class="submit_button"type="submit" onclick="return doubleClick()" value="受付">
                         <input class="close_button" type="button" value="閉じる" name="close">
                       </div>
                     </form>
@@ -50,13 +50,13 @@
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <? $tabTicketButton = config('const.SETTINGBUTTON_BY_TABTICKETABLE')[$tabTicketable]; ?>
-                        <button class="{{$tabTicketButton['CSS']}}" type="submit" name="tabTicketable" value='{{$tabTicketButton['VALUE']}}'>{{$tabTicketButton['TEXT']}}</button>
+                        <button class="{{$tabTicketButton['CSS']}}" onclick="return doubleClick()" type="submit" name="tabTicketable" value='{{$tabTicketButton['VALUE']}}'>{{$tabTicketButton['TEXT']}}</button>
                     </form>
                     <form method="POST" action="{{route('setting.update.webTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <? $webTicketButton = config('const.SETTINGBUTTON_BY_WEBTICKETABLE')[$webTicketable]; ?>
-                        <button class="{{$webTicketButton['CSS']}}" type="submit" name="webTicketable" value='{{$webTicketButton['VALUE']}}'>{{$webTicketButton['TEXT']}}</button>
+                        <button class="{{$webTicketButton['CSS']}}" onclick="return doubleClick()" type="submit" name="webTicketable" value='{{$webTicketButton['VALUE']}}'>{{$webTicketButton['TEXT']}}</button>
                     </form>
                 </div>
                 <!-- <div class="csv_dl">
@@ -107,13 +107,13 @@
           <div class="a_status">{{config('const.CURRENTSTATUS_STRING')[$reserve->status]}}</div>
           @endif
           <div class="a_status_edit">
-            @if (in_array($reserve->status,[config('const.RESERVE_STATUS.WAITING'),config('const.RESERVE_STATUS.CALLED'),config('const.RESERVE_STATUS.EXAMINE')], true))
+            @if (in_array($reserve->status,[config('const.RESERVE_STATUS.WAITING'),config('const.RESERVE_STATUS.CALLED'),config('const.RESERVE_STATUS.EXAMINE'),config('const.RESERVE_STATUS.PAYMENT')], true))
             <div class="console_status">
               <form method="POST" action="{{route('reserve.update.status',['reserve'=>$reserve->id])}}" onsubmit="getScroll()">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 <? $nextStatusButton = config('const.NEXTBUTTON_BY_STATUS')[$reserve->status]; ?>
-                <button class="{{$nextStatusButton['CSS']}}" type="submit" name="status" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
+                <button class="{{$nextStatusButton['CSS']}}" type="submit" onclick="return doubleClick()" name="status" value="{{$nextStatusButton['VALUE']}}">{{$nextStatusButton['TEXT']}}</button>
               </form>
             </div>
             @endif
@@ -126,7 +126,7 @@
                     <input type="hidden" name="_method" value="PUT">
                     @if($reserve->email && $reserve->status != -1)
                       @if($reserve->send_remind == 0)
-                      <button class="btn_remind" type="submit" name="send" value="send">送信</button>
+                      <button class="btn_remind" type="submit" name="send" onclick="return doubleClick()" value="send">送信</button>
                       @else
                       送信済
                       @endif
@@ -157,7 +157,7 @@
               <input type="hidden" name="_method" value="PUT">
               <input type="text" name="name" value="{{old('name', $reserve->name)}}">
               <input class="close_button" type="button" value="閉じる" name="close">
-                  <input class="submit_button"type="submit" value="更新">
+                  <input class="submit_button"type="submit" onclick="return doubleClick()" value="更新">
               </form>
             </div>
           </div>
@@ -249,6 +249,11 @@ div.console button {margin:5px;background:honeydew;color:black;}
     @endif
     window.scrollTo(0, scroll);
   };
-  
+  function doubleClick() {
+    if(typeof pressed != "undefined"){
+      return false;
+    }
+    pressed=1;
+  }
 </script>
 @endsection

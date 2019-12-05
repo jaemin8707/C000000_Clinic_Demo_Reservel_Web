@@ -11,14 +11,14 @@
 	<div class="wrapper">
 		<div class="time">{{date('Y/m/d H:i')}} <span>時点の情報です</span></div>
 		<? $reserveFirstCnt = count($reserveFirst);$reserveRegularCnt = count($reserveRegular); $reserveEtcCnt = count($reserveEtc)?>
-		<div class="total"> <span>現在の待ち人数　</span><span id="totalCnt">{{$reserveFirstCnt + $reserveRegularCnt}}</span><span class="bold">人</span> </div>
+		<div class="total"> <span>現在の待ち人数　</span><span id="totalCnt">{{$reserveFirstCnt + $reserveRegularCnt + $reserveEtcCnt}}</span><span class="bold">人</span> </div>
 		<div class="detail">
 			<div class="firstCustomer">
 				<div class="label">初診 <span class="count"> {{$reserveFirstCnt}} </span><span class="bold">人</span></div>
 				<div class="number">
 				  <ul class="number_items">
 				    @foreach ($reserveFirst as $reserve)
-					   <li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
+					   <li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @elseif($reserve->status==config('const.RESERVE_STATUS.PAYMENT'))class="payment" @endif><span>{{$reserve->reception_no}}</span></li>
 				    @endforeach
 					</ul>
 				</div>
@@ -28,7 +28,7 @@
 				<div class="number">
 					<ul class="number_items">
 					@foreach ($reserveRegular as $reserve)
-						<li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
+						<li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @elseif($reserve->status==config('const.RESERVE_STATUS.PAYMENT'))class="payment" @endif><span>{{$reserve->reception_no}}</span></li>
 					@endforeach
 					</ul>
 				</div>
@@ -39,7 +39,7 @@
 			<div class="number">
 				<ul class="number_items">
 					@foreach ($reserveEtc as $reserve)
-					<li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @endif><span>{{$reserve->reception_no}}</span></li>
+					<li @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))class="called" @elseif($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))class="examine" @elseif($reserve->status==config('const.RESERVE_STATUS.PAYMENT'))class="payment" @endif><span>{{$reserve->reception_no}}</span></li>
 					@endforeach
 				</ul>
 			</div>

@@ -30,7 +30,8 @@ class ReserveController extends Controller {
         $reserveFirst   = Reserve::where(function($query) {
                                       $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
                                             ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
-                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'))
+                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.PAYMENT'));
                                    })
                                  ->where("care_type", "=",  config('const.CARE_TYPE.FIRST'))
                                  ->whereBetween("created_at", [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])
@@ -42,7 +43,8 @@ class ReserveController extends Controller {
         $reserveRegular = Reserve::where(function($query) {
                                       $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
                                             ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
-                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'))
+                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.PAYMENT'));
                                    })
                                  ->where("care_type", "=",  config('const.CARE_TYPE.REGULAR'))
                                  ->whereBetween("created_at", [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])
@@ -54,7 +56,8 @@ class ReserveController extends Controller {
         $reserveEtc = Reserve::where(function($query) {
                                     $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
                                         ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
-                                        ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                        ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'))
+                                        ->orWhere('status', '=', config('const.RESERVE_STATUS.PAYMENT'));
                                 })
                                 ->where("care_type", "=",  config('const.CARE_TYPE.ETC'))
                                 ->whereBetween("created_at", [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])

@@ -421,7 +421,7 @@ footer {
     text-align: center;
     font-size: 11px;
     content: "診察中"; }
-  .number_items li.accounts::after {
+  .number_items li.payment::after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -429,7 +429,7 @@ footer {
     width: 100%;
     text-align: center;
     font-size: 11px;
-    content: "会計"; }
+    content: "会計待"; }
 
 .firstCustomer .number li span {
   background-color: #83bf43; }
@@ -446,6 +446,12 @@ footer {
 .firstCustomer .number li.examine::after {
   color: #16591a; }
 
+.firstCustomer .number li.payment span {
+    background: #9c9c9c; }
+  
+.firstCustomer .number li.payment::after {
+    color: #9c9c9c }
+
 .regularCustomer .number li span {
   background-color: #61cac6; }
 
@@ -461,20 +467,32 @@ footer {
 .regularCustomer .number li.examine::after {
   color: #0756cd; }
 
+.regularCustomer .number li.payment span {
+  background-color: #9c9c9c; }
+  
+.regularCustomer .number li.payment::after {
+  color: #9c9c9c; }
+
 .etcCustomer .number li span {
-  background-color: #494a8a; }
+  background-color: #828ffe; }
 
 .etcCustomer .number li.called span {
-  background-color: #211ecf; }
+  background-color: #5c53d2; }
 
 .etcCustomer .number li.called::after {
-  color: #211ecf; }
+  color: #5c53d2; }
 
 .etcCustomer .number li.examine span {
-  background-color: #4207ca; }
+  background-color: #2a1c94; }
 
 .etcCustomer .number li.examine::after {
-  color: #4207ca; }
+  color: #2a1c94; }
+
+.etcCustomer .number li.payment span {
+  background-color: #9c9c9c; }
+  
+.etcCustomer .number li.payment::after {
+  color: #9c9c9c; }
 
 .btns {
   padding: 2.5rem 0;
@@ -514,7 +532,7 @@ footer {
 
 .btn_etc {
   margin-left: 0.5rem;
-  background-color: #494a8a; }
+  background-color: #6f7ae3; }
 
 .form_items {
   padding-top: 2rem;

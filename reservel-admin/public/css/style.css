@@ -774,11 +774,13 @@ ul.list {
   text-align: center;
   }
   .btn_status {
-    background-color: #78c40e;}
+    background-color: #03aba7;}
    .btn_status_call{
      background-color: #e67b2d;}
    .btn_status_examination{
      background-color: #a79d01;}
+   .btn_status_payment{
+    background-color: #78c40e;}
    
 .console_remind{
   text-align: center; }

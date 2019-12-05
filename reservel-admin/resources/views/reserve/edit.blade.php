@@ -29,6 +29,7 @@
 							<option value="{{config('const.RESERVE_STATUS.WAITING')}}" @if($reserve->status==config('const.RESERVE_STATUS.WAITING'))selected @endif>待ち</option>
 							<option value="{{config('const.RESERVE_STATUS.CALLED')}}"  @if($reserve->status==config('const.RESERVE_STATUS.CALLED'))selected @endif>呼び出し済み</option>
 							<option value="{{config('const.RESERVE_STATUS.EXAMINE')}}" @if($reserve->status==config('const.RESERVE_STATUS.EXAMINE'))selected @endif>診察中</option>
+							<option value="{{config('const.RESERVE_STATUS.PAYMENT')}}" @if($reserve->status==config('const.RESERVE_STATUS.PAYMENT'))selected @endif>会計</option>
 							<option value="{{config('const.RESERVE_STATUS.DONE')}}"    @if($reserve->status==config('const.RESERVE_STATUS.DONE'))selected @endif>完了</option>
 							<option value="{{config('const.RESERVE_STATUS.CANCEL_BY_HOSPITAL')}}"  @if($reserve->status==config('const.RESERVE_STATUS.CANCEL_BY_HOSPITAL'))selected @endif>キャンセル</option>
 						</select>

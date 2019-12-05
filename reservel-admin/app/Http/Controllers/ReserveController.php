@@ -56,7 +56,8 @@ class ReserveController extends Controller
         $waitCnt = Reserve::where(function($query) {
                                       $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
                                             ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
-                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'))
+                                            ->orWhere('status', '=', config('const.RESERVE_STATUS.PAYMENT'));
                                    })
                           ->where('created_at','>=',DB::RAW('CURDATE()'))
                           ->orderBy('reception_no')
@@ -69,6 +70,7 @@ class ReserveController extends Controller
                              ->value('value');
 
         Log::Debug('予約一覧画面表示 End');
+
 
         return view('reserve.index', compact('reserves', 'waitCnt', 'tabTicketable', 'webTicketable'))->with('scroll', $request->scroll);
     }

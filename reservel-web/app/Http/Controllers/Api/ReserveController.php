@@ -27,7 +27,8 @@ class ReserveController extends Controller
         $reserves   = Reserve::where(function($query) {
                                  $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
                                        ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
-                                       ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                       ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'))
+                                       ->orWhere('status', '=', config('const.RESERVE_STATUS.PAYMENT'));
                               })
                             ->where(DB::Raw("DATE(created_at)"), "=", DB::Raw("CURDATE()"))
                             ->orderBy('status','desc')
@@ -175,7 +176,8 @@ class ReserveController extends Controller
         $cnt = Reserve::where(function($query) {
                             $query->orWhere('status', '=', config('const.RESERVE_STATUS.WAITING'))
                                   ->orWhere('status', '=', config('const.RESERVE_STATUS.CALLED'))
-                                  ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'));
+                                  ->orWhere('status', '=', config('const.RESERVE_STATUS.EXAMINE'))
+                                  ->orWhere('status', '=', config('const.RESERVE_STATUS.PAYMENT'));
                         })
                       ->where(DB::Raw("DATE(created_at)"), "=", DB::Raw("CURDATE()"))
                       ->value(DB::Raw('count(*)'));
@@ -197,7 +199,7 @@ class ReserveController extends Controller
 
         return response(json_encode($return_data))
                    ->withHeaders([
-                        'Access-Control-Allow-Origin' => env('CORS', 'seibozaka-reservel.jp'),
+                        'Access-Control-Allow-Origin' => env('CORS', 'akatsuki-reservel.jp'),
                     ]);
 
     }
