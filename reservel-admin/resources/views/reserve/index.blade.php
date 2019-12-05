@@ -10,6 +10,11 @@
 <main>
     <div class="wrapper">
         <section>
+            <div class="console_closed">
+              <a href="{{route('notice.index')}}">
+                <button class="btn_closed" type="submit" value="true">お知らせ管理</button>
+              </a>
+            </div>
             <div class="tools">
                 <div class="counter">
                     <span class="time">{{date('Y/m/d H:i')}}</span>

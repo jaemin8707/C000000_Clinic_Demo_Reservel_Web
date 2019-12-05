@@ -7,5 +7,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="robots" content="noindex" />
 <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+</script>
+<script src="{{asset('/js/Sortable.min.js')}}" charset="UTF-8"></script>
 @yield('refresh')
 @endsection

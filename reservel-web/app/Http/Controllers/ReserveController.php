@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Reserve;
 use App\Models\Setting;
+use App\Models\Notice;
 use App\Http\Requests\ReservePostRequest;
 
 use App\Mail\ReserveMail;
@@ -68,9 +69,8 @@ class ReserveController extends Controller {
 
         $webTicketable = Setting::where('code','=','webTicketable')
                              ->value("value");
-        
-
-        return view('index', compact('reserveFirst', 'reserveRegular', 'reserveEtc', 'webTicketable'));
+        $notices = Notice::where('post_flg', 1)->orderBy('sort', 'ASC')->limit(4)->get();
+        return view('index', compact('reserveFirst', 'reserveRegular', 'reserveEtc', 'webTicketable', 'notices'));
     }
 
     /**

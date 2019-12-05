@@ -39,6 +39,7 @@ return array(
     'App\\Mail\\RemindSend' => $baseDir . '/app/Mail/RemindSend.php',
     'App\\Mail\\ReserveMail' => $baseDir . '/app/Mail/ReserveMail.php',
     'App\\Models\\Closed' => $baseDir . '/app/Models/Closed.php',
+    'App\\Models\\Notice' => $baseDir . '/app/Models/Notice.php',
     'App\\Models\\OauthClient' => $baseDir . '/app/Models/OauthClient.php',
     'App\\Models\\PasswordReset' => $baseDir . '/app/Models/PasswordReset.php',
     'App\\Models\\PetType' => $baseDir . '/app/Models/PetType.php',

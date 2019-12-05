@@ -146,10 +146,10 @@
 			 <p>当院の個人情報の取扱に関するお問い合せは下記までご連絡ください。</p>
 			</section>
 			<div class="privacy_address">
-		 <h3>おおたけ動物病院</h3>
-		 <p>〒270-1608<br>
-			千葉県印西市舞姫１丁目3−6<br>
-		 TEL:0476-33-6773</p>
+		 <h3>サンプル動物病院</h3>
+		 <p>〒100-0001<br>
+			東京都中央区１丁目3−6<br>
+		 TEL:03-1234-5678</p>
 			</div>
 			<div class="close_btn_box">
 			 <span class="closeBtn">閉じる</span>

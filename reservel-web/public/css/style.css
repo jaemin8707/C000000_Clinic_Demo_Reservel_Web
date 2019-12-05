@@ -945,3 +945,64 @@ footer {
     font-size:1rem;
     color:#fff;
     }
+
+    /* ---- 守山しっぽ動物病院　お知らせ追記 -----*/
+
+.information_box{
+  margin:12px 3.3vw 0;
+  padding:12px;
+  border-radius:4px;
+  border:solid 1px #dcdcdc;
+ }
+ 
+ 
+ .information_tilte{
+  width:6rem;
+  margin-bottom:0.5rem;
+  padding:4px 0;
+  border-radius:4px;
+  background-color:#448f63;
+  font-weight:bold;
+  text-align:center;
+  color:#fff;
+ }
+ 
+ .information_slide{
+ }
+ 
+ .information_slide li{
+  padding:8px;
+  border-bottom:dotted 1px #dcdcdc;
+ }
+ 
+ .information_slide li:last-child{
+  border-bottom:none;
+ }
+ 
+ .information_slide li span{
+  display:flex;
+  align-items:center;
+ }
+ 
+ 
+ @media only screen and (min-width: 960px)  {
+ .information_box{
+  width:928px;
+  margin:16px auto; 
+  padding:16px 0;
+ }
+  .infomartion_inner{
+  padding:0 16px;
+  }
+ 
+  .information_slide li{
+   padding:16px 0;
+  }
+  
+ .information_slide li span{
+  display:flex;
+  align-items:center;
+  height:1.5rem;
+ }
+ 
+ }

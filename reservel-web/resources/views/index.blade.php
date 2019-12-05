@@ -8,6 +8,20 @@
 @section('heading', '受付状況')
 @include('layouts.header')
 <main>
+	@if(count($notices) > 0)
+	<div class="information_box">
+		<div class="infomartion_inner">
+		 <div class="information_tilte">お知らせ</div>
+		 <div class="information_slide">
+		 <ul class="slider_news">
+			@foreach($notices as $notice)
+		 	  <li><span>{{$notice->notice_text}}</span></li>
+			@endforeach
+		</ul>
+		</div>
+		</div>
+	</div>
+	@endif
 	<div class="wrapper">
 		<div class="time">{{date('Y/m/d H:i')}} <span>時点の情報です</span></div>
 		<? $reserveFirstCnt = count($reserveFirst);$reserveRegularCnt = count($reserveRegular); $reserveEtcCnt = count($reserveEtc)?>
@@ -61,7 +75,7 @@
       </div>
     </div>
   </div>
-  <div class="notice">※ネットでの受付は午前8:50～11:30　午後15:50～18:30とさせていただきます。<br>※診療終了時刻(午前の部 12:00、午後の部 19:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>
+  <div class="notice">※ネットでの受付は午前00:00～00:00　午後00:00～00:00とさせていただきます。<br>※診療終了時刻(午前の部 00:00、午後の部 00:00)までにご来院いただけなかった方はキャンセルとさせていただきます。</div>
 </main>
 @include('layouts.footer')
 @endsection

@@ -116,6 +116,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'notice_text' => 'お知らせ内容'
+    ],
 
 ];

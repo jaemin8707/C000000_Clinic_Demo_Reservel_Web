@@ -51,3 +51,9 @@ Route::put ('closed/{closed}/delete',           'ClosedController@delete')      
 // 休診日区分更新
 Route::put ('closed/create_day',           'ClosedController@create_day')       ->name('closed.create_day');
 
+// お知らせ
+Route::get ('notice',                       'NoticeController@index')             ->name('notice.index');
+Route::post ('notice/store',                'NoticeController@store')             ->name('notice.store');
+Route::post ('notice/store_new_notice',     'NoticeController@store_new_notice')  ->name('notice.store_new_notice');
+Route::get ('notice/delete/{id}',           'NoticeController@delete')            ->name('notice.delete');
+

@@ -477,6 +477,7 @@ class ComposerStaticInitb6c718d25aca63a087fa55b86be41e3a
         'App\\Mail\\RemindSend' => __DIR__ . '/../..' . '/app/Mail/RemindSend.php',
         'App\\Mail\\ReserveMail' => __DIR__ . '/../..' . '/app/Mail/ReserveMail.php',
         'App\\Models\\Closed' => __DIR__ . '/../..' . '/app/Models/Closed.php',
+        'App\\Models\\Notice' => __DIR__ . '/../..' . '/app/Models/Notice.php',
         'App\\Models\\OauthClient' => __DIR__ . '/../..' . '/app/Models/OauthClient.php',
         'App\\Models\\PasswordReset' => __DIR__ . '/../..' . '/app/Models/PasswordReset.php',
         'App\\Models\\PetType' => __DIR__ . '/../..' . '/app/Models/PetType.php',

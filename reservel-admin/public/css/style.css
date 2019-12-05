@@ -328,6 +328,10 @@ footer {
   margin: 30px auto;
   width: 912px; }
 
+.wrapper960_notice {
+  margin: 30px auto;
+  width: 912px; }
+
 .tools {
   display: flex;
   justify-content: space-between;
@@ -450,6 +454,14 @@ ul.list {
 }
 .a_closed_submit {
   width:30%
+}
+
+.a_post_flg {
+  width:10%
+}
+
+.a_notice_text {
+  width:80%
 }
 
 .list div.a_button_area{
@@ -709,6 +721,41 @@ ul.list {
         border-radius: 6px;
         border: solid 2px #acacac; }
 
+.form_items_notice {
+  display: flex;
+  padding-top: 2rem;
+  border-top: solid 1px #dcdcdc; }
+  .form_items_notice input[type="radio"]  {
+    width: 10%; }
+  .form_items_notice input[type="text"]  {
+    width: 500px; 
+    padding: 6px;
+    border-radius: 6px;
+    border: solid 2px #acacac;}
+  .form_items_notice dt label, .form_items dt span {
+    display: inline-block;
+    margin-right: 2rem;
+    margin-bottom: 1rem; }
+  .form_items_notice dt {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: solid 1px #dcdcdc;
+    font-size: 18px;
+    font-weight: normal; }
+    .form_items_notice dt label, .form_items_notice dt span {
+      width: 120px;
+      text-align: right;
+      margin-bottom: 0; }
+  .form_items_notice dd {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 330px);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: solid 1px #dcdcdc;
+    font-size: 18px; }
 .console {
   text-align: center; }
   .console a {
@@ -817,7 +864,26 @@ ul.list {
        background-color: #6fb40e; ;
        color:#fff; }
 
-
+.console_notice{
+ margin-top:16px;
+ text-align: right;
+ }
+ .console_notice button {
+   padding:1rem 2rem;
+   display: inline-block;;
+   margin: 0 16px 10px 10px;
+   border-radius: 0.5rem;
+   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+   text-align: center;
+   color: #fff;
+   font-size: 14px;
+   cursor:pointer;}
+   .console_notice .btn_notice {
+      width:120px;
+      height:40px;
+      padding:8px 0;
+      background-color: #6fb40e; ;
+      color:#fff; }
 
 .console_ticketable{
   text-align: center;
