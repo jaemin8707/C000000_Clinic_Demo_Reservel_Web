@@ -22,6 +22,7 @@ $app = new Illuminate\Foundation\Application(
 */
 switch ($_SERVER['SERVER_NAME'] ?? 'localhost') {
     case 'demo-reservel.sakuraweb.com':
+    case 'demo-all.reservel.jp':
         $app->loadEnvironmentFrom('.env.demo');
         break;
 }
