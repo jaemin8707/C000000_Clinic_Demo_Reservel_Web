@@ -28,10 +28,9 @@ class ReservePostRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email',
             'tel' => 'required|digits_between:8,11',
-            'pet_type' => 'required',
-            'pet_name' => 'required|max:255',
+            'age' => 'required|max:255',
+            'gender' => 'required',
             'pet_symptom' => 'max:255',
-            'purpose' => 'required',
         ];
         if ($this->input('careType') == 2 || $this->input('careType') == 9) {
             
@@ -44,6 +43,7 @@ class ReservePostRequest extends FormRequest
             'required' => ':attributeを必ず入力してください。',
             'pet_type.required'  => ':attributeを必ず選択してください。',
             'purpose.required'  => ':attributeを必ず選択してください。',
+            'gender.required'  => ':attributeを必ず選択してください。',
             'max' => ':attributeを:max文字以下入力してください。',
             'email' => 'メールアドレスを正しい形式に入力してください。',
             'tel.digits_between' => ':attributeを半角数字を:min桁以上、:max桁以下を入力してください。',
@@ -59,7 +59,10 @@ class ReservePostRequest extends FormRequest
             'pet_name' => 'ペットの名前',
             'pet_symptom' => '症状など',
             'purpose' => '来院目的',
-            'patient_no' => '診察券番号'
+            'patient_no' => '診察券番号',
+            'age' => '年齢',
+            'gender' => '性別'
+
         ];
     }
    /**

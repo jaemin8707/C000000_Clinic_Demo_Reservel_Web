@@ -11,6 +11,7 @@ use Illuminate\Http\UploadedFile;
 
 class LogUploadTest extends PassortGrantTestCase
 {
+  /*
     //ログアップロード成功
     public function testlogUpload_success()
     {
@@ -66,5 +67,5 @@ class LogUploadTest extends PassortGrantTestCase
                         ]);  // マイページへのリダイレクト
         Log::Debug('ログアップロードAPI失敗テスト End');
     }
-
+*/
 }

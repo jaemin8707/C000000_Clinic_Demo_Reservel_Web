@@ -50,8 +50,8 @@ class ReserveTest extends TestCase
         $curdate = date('Y/m/d');
         $this->get('/reserve')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況一覧 - 管理画面 - サンプル動物病院 - リザベル</title>')
-             ->assertSee('<h1>サンプル動物病院　受付状況</h1>')
+             ->assertSee('<title>受付状況一覧 - 管理画面 - サンプルクリニック - リザベル</title>')
+             ->assertSee('<h1>サンプルクリニック　受付状況</h1>')
              ->assertSee('<span class="time">'.$curdate.' ')
              ->assertSee('<li><div>本日の待ち患者は、まだいません。</div></li>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
@@ -206,8 +206,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve')
              ->assertStatus(200)
-             ->assertSee('<title>受付状況一覧 - 管理画面 - サンプル動物病院 - リザベル</title>')
-             ->assertSee('<h1>サンプル動物病院　受付状況</h1>')
+             ->assertSee('<title>受付状況一覧 - 管理画面 - サンプルクリニック - リザベル</title>')
+             ->assertSee('<h1>サンプルクリニック　受付状況</h1>')
              ->assertSee('<span class="time">'.$curdate.' ')
              ->assertDontSee('<li><div>本日の待ち患者は、まだいません。</div></li>')
 
@@ -216,7 +216,6 @@ class ReserveTest extends TestCase
              
              ->assertSee('<div class="a_reserve_time">--:--</div>')
              ->assertSee('<button class="btn_status_call" type="submit" onclick="return doubleClick()" name="status" value="20">呼出済みに変更</button>')
-             ->assertSee('<div class="a_c_num">ジロー</div>')
              ->assertSee('<div class="a_patient_no"></div>')
              ->assertSee('<div class="a_name"><span>一番太郎</span>')
 
@@ -225,7 +224,6 @@ class ReserveTest extends TestCase
              //ITC-19ステータス変更追記
              ->assertSee('<div class="a_reserve_time">'.date('H:i', strtotime($call_date_called)).'</div>')
              ->assertSee('<button class="btn_status_examination" type="submit" onclick="return doubleClick()" name="status" value="30">診察中に変更</button>')
-             ->assertSee('<div class="a_c_num">サブロー</div>')
              ->assertSee('<div class="a_patient_no">123</div>')
              ->assertSee('<div class="a_name"><span>二番次郎</span>')
 
@@ -235,14 +233,12 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="a_reserve_time">--:--</div>')
              ->assertDontSee('<div class="a_reserve_time">'.date('H:i', strtotime($call_date_done)).'</div>')
              ->assertSee('<button class="btn_status" type="submit" onclick="return doubleClick()" name="status" value="50">完了に変更</button>')
-             ->assertSee('<div class="a_c_num">シロー</div>')
              ->assertSee('<div class="a_patient_no"></div>')
              ->assertSee('<div class="a_name"><span>三番三郎</span>')
 
              ->assertSee('<div class="a_reserve_time">--:--</div>')
              ->assertDontSee('<div class="a_reserve_time">'.date('H:i', strtotime($call_date_done)).'</div>')
              ->assertSee('<button class="btn_status_payment" type="submit" onclick="return doubleClick()" name="status" value="40">会計待ちに変更</button>')
-             ->assertSee('<div class="a_c_num">シロー</div>')
              ->assertSee('<div class="a_patient_no"></div>')
              ->assertSee('<div class="a_name"><span>四番四郎</span>')
 
@@ -251,7 +247,6 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="a_status"><span>待ち</span></div>')
              ->assertSee('<div class="a_reserve_time">'.date('H:i', strtotime($call_date)).'</div>')
              ->assertSee('<button class="btn_status_examination" type="submit" onclick="return doubleClick()" name="status" value="30">診察中に変更</button>')
-             ->assertSee('<div class="a_c_num">きゅうろ</div>')
              ->assertSee('<div class="a_patient_no">123</div>')
              ->assertSee('<div class="a_name"><span>九番九郎</span>')
              ->assertSee('<p>Copyright &copy; 2019 IT Craft All Rights Reserved.</p>');
@@ -273,7 +268,8 @@ class ReserveTest extends TestCase
       $reserve1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
         'name'=>'一番太郎','tel'=>'0123456789',
-        'pet_name'=>'ジロー','conditions'=>'腕の骨折','medical_card_no'=>null,
+                  'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折','medical_card_no'=>null,
         'created_at'=>date('Y-m-d'),]);
       factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
       $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
@@ -281,7 +277,8 @@ class ReserveTest extends TestCase
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
         'name'=>'一番太郎','tel'=>'0123456789',
-        'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                  'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
         'created_at'=>date('Y-m-d'),]);
 
       $this->put("/reserve/$reserve1->id/status",['status' => '20'])
@@ -292,7 +289,8 @@ class ReserveTest extends TestCase
               'id'=>$reserve1->id,
               'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>20,
               'name'=>'一番太郎','tel'=>'0123456789',
-              'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                        'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
               'call_time'=>$call_date,
               'created_at'=>date('Y-m-d'),]);
       Log::Info('受付状況画面からステータス(待ち→呼出)変更テスト End');
@@ -313,7 +311,8 @@ class ReserveTest extends TestCase
       $reserve1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>20,
         'name'=>'一番太郎','tel'=>'0123456789',
-        'pet_name'=>'ジロー','conditions'=>'腕の骨折','medical_card_no'=>null,
+                  'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折','medical_card_no'=>null,
         'call_time' => $call_time,
         'created_at'=>date('Y-m-d'),]);
       factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
@@ -322,7 +321,8 @@ class ReserveTest extends TestCase
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>20,
         'name'=>'一番太郎','tel'=>'0123456789',
-        'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                  'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
         'call_time' => $call_time,
         'created_at'=>date('Y-m-d'),]);
 
@@ -335,7 +335,8 @@ class ReserveTest extends TestCase
             'id'=>$reserve1->id,
             'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>30,
             'name'=>'一番太郎','tel'=>'0123456789',
-            'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                      'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
             'call_time' => $call_time,
             'created_at'=>date('Y-m-d'),]);
       Log::Info('受付状況画面からステータス(呼出→診察中)変更テスト End');
@@ -356,7 +357,8 @@ class ReserveTest extends TestCase
       $reserve1 = factory(Reserve::class)->create([
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>30,
         'name'=>'一番太郎','tel'=>'0123456789',
-        'pet_name'=>'ジロー','conditions'=>'腕の骨折','medical_card_no'=>null,
+        'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折','medical_card_no'=>null,
         'call_time' => $call_time,
         'created_at'=>date('Y-m-d'),]);
       factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
@@ -365,7 +367,8 @@ class ReserveTest extends TestCase
         'id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>30,
         'name'=>'一番太郎','tel'=>'0123456789',
-        'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                  'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
         'call_time' => $call_time,
         'created_at'=>date('Y-m-d'),]);
 
@@ -376,7 +379,8 @@ class ReserveTest extends TestCase
        'id'=>$reserve1->id,
        'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>40,
        'name'=>'一番太郎','tel'=>'0123456789',
-       'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                 'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
        'call_time' => $call_time,
        'created_at'=>date('Y-m-d'),]);
       Log::Info('受付状況画面からステータス(診察中→完了)変更テスト End');
@@ -395,16 +399,17 @@ class ReserveTest extends TestCase
       $reserve1 = factory(Reserve::class)->create([
           'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
           'name'=>'一番太郎','tel'=>'0123456789',
-          'pet_name'=>'ジロー','conditions'=>'腕の骨折','medical_card_no'=>null,
+          'age'    => '23',
+          'gender'    => '1',
+          'conditions'=>'腕の骨折','medical_card_no'=>null,
           'created_at'=>date('Y-m-d'),]);
-          factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
-          $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
 
       $this->assertDatabaseHas('reserves', [
           'id'=>$reserve1->id,
           'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
           'name'=>'一番太郎','tel'=>'0123456789',
-          'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+          'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
           'created_at'=>date('Y-m-d'),]);
   
       $this->put("/reserve/$reserve1->id/name",['name' => '(変更)一番太郎'])
@@ -416,7 +421,8 @@ class ReserveTest extends TestCase
               'id'=>$reserve1->id,
               'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,
               'name'=>'(変更)一番太郎','tel'=>'0123456789',
-              'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                        'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
               'created_at'=>date('Y-m-d'),]);
       Log::Info('受付状況画面から名前変更テスト End');
     }
@@ -450,16 +456,14 @@ class ReserveTest extends TestCase
         $login = factory(User::class)->create(['email'=>'m-fujisawa@inforce.ne.jp',]);
         $this->actingAs($login);
 
-        $reserve1 = factory(Reserve::class)->create(['place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'ABC0123456','name'=>'一番太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
-        factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
-        $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
+        $reserve1 = factory(Reserve::class)->create(['place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'ABC0123456','name'=>'一番太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
 
-        $this->assertDatabaseHas('reserves', ['id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'ABC0123456','name'=>'一番太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789','pet_name'=>'ジロー','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
+        $this->assertDatabaseHas('reserves', ['id'=>$reserve1->id,'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'ABC0123456','name'=>'一番太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789','conditions'=>'腕の骨折','created_at'=>date('Y-m-d'),]);
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>受付 - 管理画面 - サンプル動物病院 - リザベル</title>')
-             ->assertSee('<h1>サンプル動物病院　受付情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - サンプルクリニック - リザベル</title>')
+             ->assertSee('<h1>サンプルクリニック　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -473,15 +477,12 @@ class ReserveTest extends TestCase
              ->assertSee('<dd>初診</dd>')
              ->assertSee('<dt><label for="patient_no">診察券番号</label></dt>')
              ->assertSee('<dd><input type="text" id="patient_no" name="patient_no" value="ABC0123456" /></dd>')
-             ->assertSee('<dt><label for="name">飼い主氏名</label></dt>')
+             ->assertSee('<dt><label for="name">受診される方のお名前</label></dt>')
              ->assertSee('<dd><input type="text" id="name" name="name" value="一番太郎" /></dd>')
              ->assertSee('<dt><label for="email">メールアドレス</label></dt>')
              ->assertSee('<dd><input type="email" id="email" name="email" value="m-fujisawa@it-craft.co.jp" /></dd>')
              ->assertSee('<dt><label for="tel">電話番号</label></dt>')
              ->assertSee('<dd><input type="tel" id="tel" name="tel" value="0123456789" /></dd>')
-             ->assertSee('<dt><label for="pet_type">ペットの種類</label></dt>')
-             ->assertSee('<dt class="required"><label for="pet_name">ペットの名前</label></dt>')
-             ->assertSee('<dd><input type="text" id="pet_name" name="pet_name" value="ジロー" /></dd>')
              ->assertSee('<dt><label for="pet_symptom">症状など</label></dt>')
              ->assertSee('<dd><textarea id="pet_symptom" name="pet_symptom" rows="5">腕の骨折</textarea></dd>')
              ->assertSee('<a href="http://localhost/index" class="btn_cancel">戻　る</a>')
@@ -505,7 +506,8 @@ class ReserveTest extends TestCase
           'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>20,
           'medical_card_no'=>'ABC0123456','name'=>'一番太郎',
           'email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789',
-          'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                    'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
           'call_time' => $call_time,
           'created_at'=>date('Y-m-d'),]);
           factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
@@ -515,14 +517,15 @@ class ReserveTest extends TestCase
           'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>20,
           'medical_card_no'=>'ABC0123456','name'=>'一番太郎',
           'email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0123456789',
-          'pet_name'=>'ジロー','conditions'=>'腕の骨折',
+                    'age'    => '23',
+          'gender'    => '1','conditions'=>'腕の骨折',
           'call_time' => $call_time,
           'created_at'=>date('Y-m-d'),]);
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>受付 - 管理画面 - サンプル動物病院 - リザベル</title>')
-             ->assertSee('<h1>サンプル動物病院　受付情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - サンプルクリニック - リザベル</title>')
+             ->assertSee('<h1>サンプルクリニック　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -536,15 +539,12 @@ class ReserveTest extends TestCase
              ->assertSee('<dd>初診</dd>')
              ->assertSee('<dt><label for="patient_no">診察券番号</label></dt>')
              ->assertSee('<dd><input type="text" id="patient_no" name="patient_no" value="ABC0123456" /></dd>')
-             ->assertSee('<dt><label for="name">飼い主氏名</label></dt>')
+             ->assertSee('<dt><label for="name">受診される方のお名前</label></dt>')
              ->assertSee('<dd><input type="text" id="name" name="name" value="一番太郎" /></dd>')
              ->assertSee('<dt><label for="email">メールアドレス</label></dt>')
              ->assertSee('<dd><input type="email" id="email" name="email" value="m-fujisawa@it-craft.co.jp" /></dd>')
              ->assertSee('<dt><label for="tel">電話番号</label></dt>')
              ->assertSee('<dd><input type="tel" id="tel" name="tel" value="0123456789" /></dd>')
-             ->assertSee('<dt><label for="pet_type">ペットの種類</label></dt>')
-             ->assertSee('<dt class="required"><label for="pet_name">ペットの名前</label></dt>')
-             ->assertSee('<dd><input type="text" id="pet_name" name="pet_name" value="ジロー" /></dd>')
              ->assertSee('<dt><label for="pet_symptom">症状など</label></dt>')
              ->assertSee('<dd><textarea id="pet_symptom" name="pet_symptom" rows="5">腕の骨折</textarea></dd>')
              ->assertSee('<a href="http://localhost/index" class="btn_cancel">戻　る</a>')
@@ -571,8 +571,8 @@ class ReserveTest extends TestCase
 
         $this->get('/reserve/1/edit')
              ->assertStatus(200)
-             ->assertSee('<title>受付 - 管理画面 - サンプル動物病院 - リザベル</title>')
-             ->assertSee('<h1>サンプル動物病院　受付情報編集</h1>')
+             ->assertSee('<title>受付 - 管理画面 - サンプルクリニック - リザベル</title>')
+             ->assertSee('<h1>サンプルクリニック　受付情報編集</h1>')
              ->assertSee('/reserve/1" method="POST">')
              ->assertSee('<dt><span>受付番号</span></dt>')
              ->assertSee('<dd>1</dd>')
@@ -586,15 +586,12 @@ class ReserveTest extends TestCase
              ->assertSee('<dd>初診</dd>')
              ->assertSee('<dt><label for="patient_no">診察券番号</label></dt>')
              ->assertSee('<dd><input type="text" id="patient_no" name="patient_no" value="ABC0123456" /></dd>')
-             ->assertSee('<dt><label for="name">飼い主氏名</label></dt>')
+             ->assertSee('<dt><label for="name">受診される方のお名前</label></dt>')
              ->assertSee('<dd><input type="text" id="name" name="name" value="一番太郎" /></dd>')
              ->assertSee('<dt><label for="email">メールアドレス</label></dt>')
              ->assertSee('<dd><input type="email" id="email" name="email" value="m-fujisawa@it-craft.co.jp" /></dd>')
              ->assertSee('<dt><label for="tel">電話番号</label></dt>')
              ->assertSee('<dd><input type="tel" id="tel" name="tel" value="0123456789" /></dd>')
-             ->assertSee('<dt><label for="pet_type">ペットの種類</label></dt>')
-             ->assertSee('<dt class="required"><label for="pet_name">ペットの名前</label></dt>')
-             ->assertSee('<dd><input type="text" id="pet_name" name="pet_name" value="ジロー" /></dd>')
              ->assertSee('<dt><label for="pet_symptom">症状など</label></dt>')
              ->assertSee('<dd><textarea id="pet_symptom" name="pet_symptom" rows="5">腕の骨折</textarea></dd>')
              ->assertSee('<a href="http://localhost/index" class="btn_cancel">戻　る</a>')
@@ -633,8 +630,8 @@ class ReserveTest extends TestCase
           'patient_no'=> '123',
           'email'=>'j-lee@it-craft.co.jp',
           'tel'=>'0312345678',
-          
-          'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
           'pet_symptom'=>'風邪',
           ])
           ->assertStatus(302)
@@ -651,8 +648,8 @@ class ReserveTest extends TestCase
         'medical_card_no'=> '123',
         'email'=>'j-lee@it-craft.co.jp',
         'tel'=>'0312345678',
-        
-        'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
         'conditions'=>'風邪',
         ]);
         Log::Info('受付情報編集保存テスト End');
@@ -689,8 +686,8 @@ class ReserveTest extends TestCase
           'medical_card_no'=> '123',
           'email'=>'j-lee@it-craft.co.jp',
           'tel'=>'0312345678',
-          
-          'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
           'pet_symptom'=>'風邪',
           ])
           ->assertStatus(302)
@@ -731,7 +728,8 @@ class ReserveTest extends TestCase
           'patient_no'=> 'ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇ',
           'email'=>'j-lee@it-craft.co.jp',
           'tel'=>'0312345678',
-          'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
           'pet_symptom'=>'風邪',
           ])
           ->assertStatus(302)
@@ -775,7 +773,8 @@ class ReserveTest extends TestCase
           'medical_card_no'=> '123',
           'email'=>'ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇ',
           'tel'=>'0312345678',
-          'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
           'pet_symptom'=>'風邪',
           ])
           ->assertStatus(302)
@@ -820,7 +819,8 @@ class ReserveTest extends TestCase
           'medical_card_no'=> '123',
           'email'=>'j-lee@it-craft.co.jp',
           'tel'=>'0312345678123124124124',
-          'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
           'pet_symptom'=>'風邪',
           ])
           ->assertStatus(302)
@@ -832,7 +832,7 @@ class ReserveTest extends TestCase
   
         Log::Info('受付情報編集エラー(電話番号)テスト End');
     }
-
+/*
     //受付情報編集エラー(ペット名前255文字以上)テスト
     public function testPetNameValidationError_editData()
     {
@@ -877,7 +877,7 @@ class ReserveTest extends TestCase
           ->assertDontSee('<li>pet_name.max</li>');
     
         Log::Info('受付情報編集エラー(ペット名255文字以上)テスト End');
-    }
+    }*/
 
     //受付情報編集エラー(症状255文字以上)テスト
     public function testConditionsValidationError_editData()
@@ -888,20 +888,15 @@ class ReserveTest extends TestCase
         $this->actingAs($login);
     
         $reserve1 = factory(Reserve::class)->create(['place'=>1,'reception_no'=>1,'care_type'=>1,
-        'status'=>10,'medical_card_no'=> null,'name'=>null,'email'=>null,'tel'=>null,
-        'pet_name'=>null,'conditions'=>null,'created_at'=>date('Y-m-d'),
+        'status'=>10,'medical_card_no'=> null,'name'=>null,'email'=>null,'tel'=>null, 'age' => '23', 'gender' => '1',
+        'conditions'=>null,'created_at'=>date('Y-m-d'),
         ]);
-
-        factory(PetType::class)->create(['reserve_id'=>$reserve1->id, 'pet_type' => 1]);
-        $this->assertDatabaseHas('pet_type', ['reserve_id'=>$reserve1->id,'pet_type' => 1]);
 
         $this->assertDatabaseHas('reserves', ['id'=>$reserve1->id,
         'place'=>1,'reception_no'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=> null,
-        'name'=>null,'email'=>null,'tel'=>null,'pet_name'=>null,
+        'name'=>null,'email'=>null,'tel'=>null,'age' => '23', 'gender' => '1',
         'conditions'=>null,'created_at'=>date('Y-m-d'),
         ]);
-        
-    
     
         $this->put("/reserve/$reserve1->id", [
           'id'=>$reserve1->id,
@@ -910,8 +905,8 @@ class ReserveTest extends TestCase
           'medical_card_no'=> '123',
           'email'=>'j-lee@it-craft.co.jp',
           'tel'=>'0312345678',
-          'pet_type'=> [0 => '1', 1 => '2'],
-          'pet_name'=>'ポチ',
+          'age'    => '23',
+          'gender'    => '1',
           'pet_symptom'=>'ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんぁあぃいぅうぇ',
           ])
           ->assertStatus(302)

@@ -30,55 +30,23 @@
 					<dd><input type="text" id="patient_no" name="patient_no" maxlength="4" placeholder="例）1000 " required />
 					</dd>
 					@endif
-					<dt class="required"><label for="name">飼い主氏名</label></dt>
-					<dd><input type="text" id="name" name="name" value="{{old('name')}}" placeholder="例）動物　太郎" required /></dd>
+					<dt class="required"><label for="name">受診される方のお名前</label></dt>
+					<dd><input type="text" id="name" name="name" value="{{old('name')}}" placeholder="例）医療　太郎" required /></dd>
+					<dt class="required"><label for="age">年齢</label></dt>
+					<dd><input type="text" id="age" name="age" value="{{old('age')}}" required /></dd>
+					<dt class="required"><label for="purpose">性別</label></dt>
+						@foreach (config('const.GENDER') as $genderKey => $gender)
+						<label class="form_item_group">
+							<input type="radio" id="gender_{{$genderKey}}" name="gender" value="{{$genderKey}}" {{ old("gender") == $genderKey ? 'checked="checked"' : '' }}/>{{$gender}}
+						</label>
+						@endforeach
 					<dt class="required"><label for="email">メールアドレス</label></dt>
-					<dd><input type="email" id="email" name="email" value="{{old('email')}}" placeholder="例）taro.animal@gmail.com" required /></dd>
+					<dd><input type="email" id="email" name="email" value="{{old('email')}}" placeholder="例）taro.medical@gmail.com" required /></dd>
 					<dt class="required"><label for="tel">電話番号</label></dt>
 					<dd><input type="tel" id="tel" name="tel" value="{{old('tel')}}" placeholder="例）0331234567" required /></dd>
-					<dt class="required"><label  for="pet_type">ペットの種類</label></dt>
-					<dd>
-					@foreach (config('const.PET_TYPE_NAME') as $petKey => $petName)
-					<label class="form_item_group">
-						<input type="checkbox" value="{{$petKey}}" id="pet_type_{{$petKey}}" name="pet_type[]"  {{ is_array(old("pet_type")) && in_array("$petKey", old("pet_type"), true)? 'checked="checked"' : '' }}/>{{$petName}}
-					</label>
-					@endforeach
-					</dd>
-					<dt class="required"><label for="pet_name">ペットの名前</label></dt>
-					<dd><input type="text" id="pet_name" name="pet_name" value="{{old('pet_name')}}" placeholder="例）ポチ、ミケなど" required /></dd>
-					@if($careType==config('const.CARE_TYPE.REGULAR') || $careType==config('const.CARE_TYPE.FIRST'))
-					<dt class="required"><label for="purpose">来院目的</label></dt>
-					<dd id="new_line">
-@foreach (config('const.PURPOSE_REGULAR_1') as $purposeKey => $purpose)
-						<label class="form_item_group">
-							<input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
-						</label>
-						@endforeach
-						<br>
-						@foreach (config('const.PURPOSE_REGULAR_2') as $purposeKey => $purpose)
-						<label class="form_item_group">
-							<input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
-						</label>
-						@endforeach
-				</label>
-@elseif($careType==config('const.CARE_TYPE.ETC'))
-					<dt class="required"><label for="purpose">来院目的</label></dt>
-					<dd id="new_line">
-					@foreach (config('const.PURPOSE_ETC_1') as $purposeKey => $purpose)
-					<label class="form_item_group">
-						<input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
-					</label>
-					@endforeach
-					<br>
-					@foreach (config('const.PURPOSE_ETC_2') as $purposeKey => $purpose)
-					<label class="form_item_group">
-						<input type="checkbox" id="purpose_{{$purposeKey}}" name="purpose[]" value="{{$purposeKey}}" {{ is_array(old("purpose")) && in_array("$purposeKey", old("purpose"), true)? 'checked="checked"' : '' }}/>{{$purpose}}
-					</label>
-					@endforeach
-					</dd>
-@endif
+
 					<dt><label for="pet_symptom">症状など</label></dt>
-					<dd><textarea id="pet_symptom" name="pet_symptom" placeholder="例）おもちゃを飲み込んだ" rows="5" accesskey="s"></textarea></dd>
+					<dd><textarea id="pet_symptom" name="pet_symptom" placeholder="例）微熱、のどの痛みがある" rows="5" accesskey="s"></textarea></dd>
 				</dl>
 				<div style="margin-bottom:10px; text-align:center;">
 					<input id="savable" type="checkbox"><label for="savable" style="margin-left:15px; margin-bottom:0;font-weight:bold;">入力内容をこのブラウザに保存する。</label>
@@ -146,7 +114,7 @@
 			 <p>当院の個人情報の取扱に関するお問い合せは下記までご連絡ください。</p>
 			</section>
 			<div class="privacy_address">
-		 <h3>サンプル動物病院</h3>
+		 <h3>サンプルクリニック</h3>
 		 <p>〒100-0001<br>
 			東京都中央区１丁目3−6<br>
 		 TEL:03-1234-5678</p>

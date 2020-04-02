@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class PassportTest extends TestCase
 {
-
+/*
     public function setUp(): void {
         parent::setUp();
         Artisan::call('migrate:refresh');
@@ -69,5 +69,5 @@ class PassportTest extends TestCase
 
         Log::Debug('アクセストークン失敗取得テスト End');
     }
-
+*/
 }

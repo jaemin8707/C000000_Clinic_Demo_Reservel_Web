@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class PassortGrantTestCase extends TestCase
 {
-
+/*
     protected $access_token = "";
 
     public function setUp(): void {
@@ -35,6 +35,6 @@ class PassortGrantTestCase extends TestCase
         Log::Debug('取得したアクセストークン：'.$this->access_token);
 
     }
-
+*/
 
 }

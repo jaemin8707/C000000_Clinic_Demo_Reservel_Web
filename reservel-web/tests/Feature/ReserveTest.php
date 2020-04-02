@@ -121,11 +121,11 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="clinicType clinicFirst">初診受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>初診</span></div>')
-             ->assertSee('飼い主氏名')
+             ->assertSee('受診される方のお名前')
+             ->assertSee('年齢')
+             ->assertSee('性別')
              ->assertSee('メールアドレス')
              ->assertSee('電話番号')
-             ->assertSee('ペットの種類')
-             ->assertSee('ペットの名前')
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
              ->assertSee('<p class="privacy_attention_prompt">上記事項をご確認の上、ご同意いただける方は下の「同意して次へ」をクリックしてください。</p>')
@@ -146,9 +146,8 @@ class ReserveTest extends TestCase
                         'name'        => '動物　太郎',
                         'email'       => 'm-fujisawa@it-craft.co.jp',
                         'tel'         => '0331234567',
-                        'pet_type'    		=> [0 => '1', 1 => '2'],
-                        'pet_name'    		=> 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'    		=> [0 => '1', 1 => '2'],
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
@@ -159,27 +158,18 @@ class ReserveTest extends TestCase
              ->assertSee('<input type="hidden" name="careType"        value="1" />')
              ->assertSee('<input type="hidden" name="patient_no" value="123456" />')
              ->assertSee('<input type="hidden" name="name"            value="動物　太郎" />')
+             ->assertSee('<input type="hidden" name="age"             value="23" />')
+             ->assertSee('<input type="hidden" name="gender"          value="1" />')
              ->assertSee('<input type="hidden" name="email"           value="m-fujisawa@it-craft.co.jp" />')
              ->assertSee('<input type="hidden" name="tel"             value="0331234567" />')
-             ->assertSee('<input type="hidden" name="pet_type[0][pet_type]" value="1" />')
-             ->assertSee('<input type="hidden" name="pet_type[1][pet_type]" value="2" />')
-             ->assertSee('<input type="hidden" name="pet_name"        value="ポチ、ミケ、ぴょん、ピー、ごまぞー" />')
              ->assertSee('<input type="hidden" name="pet_symptom"     value="おもちゃを飲み込んだ" />')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>初診</span></div>')
-             ->assertSee('<dt class="required"><span>飼い主氏名</span></dt>')
+             ->assertSee('<dt class="required"><span>受診される方のお名前</span></dt>')
              ->assertSee('<dd><span>動物　太郎</span></dd>')
              ->assertSee('<dt class="required"><span>メールアドレス</span></dt>')
              ->assertSee('<dd><span>m-fujisawa@it-craft.co.jp</span></dd>')
              ->assertSee('<dt class="required"><label for="tel">電話番号</label></dt>')
              ->assertSee('<dd><span>0331234567</span></dd>')
-             ->assertSee('<dt class="required"><span>ペットの種類</span></dt>')
-             ->assertSee('犬')
-             ->assertSee('猫')
-             ->assertSee('<dt class="required"><span>ペットの名前</span></dt>')
-             ->assertSee('<dd><span>ポチ、ミケ、ぴょん、ピー、ごまぞー</span></dd>')
-             ->assertSee('<dt class="required"><span>来院目的</span></dt>')
-             ->assertSee('体調不良')
-             ->assertSee('継続治療')
              ->assertSee('<dt><span>症状など</span></dt>')
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
@@ -204,9 +194,8 @@ class ReserveTest extends TestCase
                         'name'            => '動物　太郎',
                         'email'           => 'm-fujisawa@it-craft.co.jp',
                         'tel'             => '0331234567',
-                        'pet_type'        => [0 => ["pet_type" => "1"], 1 => ["pet_type" => "2"]],
-                        'pet_name'        => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'    		=> [0 => '1', 1 => '2'],
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom'     => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -226,9 +215,7 @@ class ReserveTest extends TestCase
              ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         // 登録されたことを確認
-        $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567' ,'pet_name'=>'ポチ、ミケ、ぴょん、ピー、ごまぞー','conditions'=>'おもちゃを飲み込んだ',]);
-        $this->assertDatabaseHas('pet_type', ['id'=>1,'reserve_id'=>1, 'pet_type' => 1]);
-        $this->assertDatabaseHas('pet_type', ['id'=>2,'reserve_id'=>1, 'pet_type' => 2]);
+        $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>1,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567', 'conditions'=>'おもちゃを飲み込んだ',]);
 
         // 1回送信されたことをアサート
         Mail::assertSent(\App\Mail\ReserveMail::class, 1);
@@ -257,12 +244,11 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="clinicType clinicRepeat">再診受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>再診</span></div')
-             ->assertSee('飼い主氏名')
+             ->assertSee('受診される方のお名前')
+             ->assertSee('年齢')
+             ->assertSee('性別')
              ->assertSee('メールアドレス')
              ->assertSee('電話番号')
-             ->assertSee('ペットの種類')
-             ->assertSee('ペットの名前')
-             ->assertSee('来院目的')
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
              ->assertSee('<p class="privacy_attention_prompt">上記事項をご確認の上、ご同意いただける方は下の「同意して次へ」をクリックしてください。</p>')
@@ -283,9 +269,8 @@ class ReserveTest extends TestCase
                         'name'        		=> '動物　太郎',
                         'email'       		=> 'm-fujisawa@it-craft.co.jp',
                         'tel'         		=> '0331234567',
-                        'pet_type'    		=> [0 => '1', 1 => '2'],
-                        'pet_name'    		=> 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'    		=> [0 => '1', 1 => '2'],
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' 		=> 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
@@ -294,20 +279,12 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="clinicType clinicRepeat">再診受付申し込み</div>')
              ->assertSee('/reserve" method="POST" onSubmit="return double()">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>再診</span></div>')
-             ->assertSee('<dt class="required"><span>飼い主氏名</span></dt>')
+             ->assertSee('<dt class="required"><span>受診される方のお名前</span></dt>')
              ->assertSee('<dd><span>動物　太郎</span></dd>')
              ->assertSee('<dt class="required"><span>メールアドレス</span></dt>')
              ->assertSee('<dd><span>m-fujisawa@it-craft.co.jp</span></dd>')
              ->assertSee('<dt class="required"><label for="tel">電話番号</label></dt>')
              ->assertSee('<dd><span>0331234567</span></dd>')
-             ->assertSee('<dt class="required"><span>ペットの種類</span></dt>')
-             ->assertSee('犬')
-             ->assertSee('猫')
-             ->assertSee('<dt class="required"><span>ペットの名前</span></dt>')
-             ->assertSee('<dd><span>ポチ、ミケ、ぴょん、ピー、ごまぞー</span></dd>')
-             ->assertSee('<dt class="required"><span>来院目的</span></dt>')
-             ->assertSee('体調不良')
-             ->assertSee('継続治療')
              ->assertSee('<dt><span>症状など</span></dt>')
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
@@ -333,9 +310,8 @@ class ReserveTest extends TestCase
                         'name'            => '動物　太郎',
                         'email'           => 'm-fujisawa@it-craft.co.jp',
                         'tel'             => '0331234567',
-                        'pet_type'        => [0 => ["pet_type" => "1"], 1 => ["pet_type" => "2"]],
-                        'pet_name'        => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'         => [0 => ["purpose" => "1"], 1 => ["purpose" => "2"]],
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom'     => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -355,11 +331,7 @@ class ReserveTest extends TestCase
              ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         // 登録されたことを確認
-        $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>2,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567', 'pet_name'=>'ポチ、ミケ、ぴょん、ピー、ごまぞー','conditions'=>'おもちゃを飲み込んだ',]);
-        $this->assertDatabaseHas('pet_type', ['id'=>1,'reserve_id'=>1, 'pet_type' => 1]);
-        $this->assertDatabaseHas('pet_type', ['id'=>2,'reserve_id'=>1, 'pet_type' => 2]);
-        $this->assertDatabaseHas('purpose', ['id'=>1,'reserve_id'=>1, 'purpose' => 1,]);
-        $this->assertDatabaseHas('purpose', ['id'=>2,'reserve_id'=>1, 'purpose' => 2,]);
+        $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>2,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567', 'conditions'=>'おもちゃを飲み込んだ',]);
 
 
         // 1回送信されたことをアサート
@@ -389,12 +361,11 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="clinicType clinicEtc">その他受付申し込み</div>')
              ->assertSee('/reserve/confirm" method="POST">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>その他</span></div')
-             ->assertSee('飼い主氏名')
+             ->assertSee('受診される方のお名前')
+             ->assertSee('年齢')
+             ->assertSee('性別')
              ->assertSee('メールアドレス')
              ->assertSee('電話番号')
-             ->assertSee('ペットの種類')
-             ->assertSee('ペットの名前')
-             ->assertSee('来院目的')
              ->assertSee('症状など')
              ->assertSee('/index" class="btn_cancel" accesskey="c">キャンセル</a>')
              ->assertSee('<button type="submit" id="btn_execution" class="btn_execution" accesskey="e">同意して次へ</button')
@@ -411,12 +382,11 @@ class ReserveTest extends TestCase
         $this->post('/reserve/confirm',[
                         'careType'        => 9,
                         'patient_no' => '123456',
-                        'name'        		=> '動物　太郎',
+                        'name'        		=> '医療　太郎',
                         'email'       		=> 'm-fujisawa@it-craft.co.jp',
                         'tel'         		=> '0331234567',
-                        'pet_type'    		=> [0 => '1', 1 => '2'],
-                        'pet_name'    		=> 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'    		=> [0 => '7', 1 => '8'],
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' 		=> 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(200)
@@ -425,20 +395,14 @@ class ReserveTest extends TestCase
              ->assertSee('<div class="clinicType clinicEtc">その他受付申し込み</div>')
              ->assertSee('/reserve" method="POST" onSubmit="return double()">')
              ->assertSee('<div class="type"><span>受付区分</span>：<span>その他</span></div>')
-             ->assertSee('<dt class="required"><span>飼い主氏名</span></dt>')
-             ->assertSee('<dd><span>動物　太郎</span></dd>')
+             ->assertSee('<dt class="required"><span>受診される方のお名前</span></dt>')
+             ->assertSee('<dd><span>医療　太郎</span></dd>')
+             ->assertSee('<dt class="required"><span>年齢</span></dt>')
+             ->assertSee('<dt class="required"><span>性別</span></dt>')
              ->assertSee('<dt class="required"><span>メールアドレス</span></dt>')
              ->assertSee('<dd><span>m-fujisawa@it-craft.co.jp</span></dd>')
              ->assertSee('<dt class="required"><label for="tel">電話番号</label></dt>')
              ->assertSee('<dd><span>0331234567</span></dd>')
-             ->assertSee('<dt class="required"><span>ペットの種類</span></dt>')
-             ->assertSee('犬')
-             ->assertSee('猫')
-             ->assertSee('<dt class="required"><span>ペットの名前</span></dt>')
-             ->assertSee('<dd><span>ポチ、ミケ、ぴょん、ピー、ごまぞー</span></dd>')
-             ->assertSee('<dt class="required"><span>来院目的</span></dt>')
-             ->assertSee('日常ケア ')
-             ->assertSee('面会')
              ->assertSee('<dt><span>症状など</span></dt>')
              ->assertSee('<dd><span class="symptom">おもちゃを飲み込んだ</span></dd>')
              ->assertSee('<a href="#" class="btn_cancel" onclick="javascript:window.history.back(-1);return false;">戻　る</a>')
@@ -464,9 +428,8 @@ class ReserveTest extends TestCase
                         'name'            => '動物　太郎',
                         'email'           => 'm-fujisawa@it-craft.co.jp',
                         'tel'             => '0331234567',
-                        'pet_type'        => [0 => ["pet_type" => "1"], 1 => ["pet_type" => "2"]],
-                        'pet_name'        => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'purpose'         => [0 => ["purpose" => "1"], 1 => ["purpose" => "2"]],
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom'     => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -486,11 +449,7 @@ class ReserveTest extends TestCase
              ->assertSee('<p>Copyright &copy; reservel All Rights Reserved.</p>');
 
         // 登録されたことを確認
-        $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>2,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567', 'pet_name'=>'ポチ、ミケ、ぴょん、ピー、ごまぞー','conditions'=>'おもちゃを飲み込んだ',]);
-        $this->assertDatabaseHas('pet_type', ['id'=>1,'reserve_id'=>1, 'pet_type' => 1]);
-        $this->assertDatabaseHas('pet_type', ['id'=>2,'reserve_id'=>1, 'pet_type' => 2]);
-        $this->assertDatabaseHas('purpose', ['id'=>1,'reserve_id'=>1, 'purpose' => 1,]);
-        $this->assertDatabaseHas('purpose', ['id'=>2,'reserve_id'=>1, 'purpose' => 2,]);
+        $this->assertDatabaseHas('reserves', ['id'=>1,'care_type'=>2,'status'=>10,'medical_card_no'=>'123456','name'=>'動物　太郎','age' => '23', 'gender' => '1', 'email'=>'m-fujisawa@it-craft.co.jp','tel'=>'0331234567', 'conditions'=>'おもちゃを飲み込んだ',]);
 
 
         // 1回送信されたことをアサート

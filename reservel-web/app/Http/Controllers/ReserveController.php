@@ -129,18 +129,15 @@ class ReserveController extends Controller {
             $reserve->care_type       = $request->careType;
             $reserve->place           = config('const.PLACE.OUT_HOSPITAL');
             $reserve->status          = config('const.RESERVE_STATUS.WAITING');
+            $reserve->age             = $request->age;
+            $reserve->gender          = $request->gender;
             $reserve->name            = $request->name;
             $reserve->email           = $request->email;
             $reserve->tel             = $request->tel;
-            $reserve->pet_name        = $request->pet_name;
             $reserve->conditions      = $request->pet_symptom;
             $reserve->cancel_token    = $token;
 
             $reserve->save();
-            $reserve->PetType()->createMany($request->pet_type);
-            if ($request->careType == config('const.CARE_TYPE.REGULAR')) {
-                $reserve->Purpose()->createMany($request->purpose);
-            }
         }catch(Exception $e){
             DB::rollback();
             return redirect(route('index'));

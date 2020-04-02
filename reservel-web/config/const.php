@@ -139,7 +139,11 @@ return [
         10 => 'お迎え',
         99 => 'その他',
     ],
-
+'GENDER' => [
+    '1' => '男性',
+    '2' => '女性',
+    '3' => 'その他',
+],
 
     'SETTINGBUTTON_BY_TABTICKETABLE' => [
         'true'  => [

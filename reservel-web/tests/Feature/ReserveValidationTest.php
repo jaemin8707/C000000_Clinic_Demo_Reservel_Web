@@ -28,8 +28,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => '',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -54,8 +54,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -80,8 +80,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => 'erroremail', //メール形式ではない。
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -103,8 +103,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => '', //メール未入力
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -126,8 +126,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => 'telNum',//電話番号に文字
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -137,7 +137,7 @@ class ReserveValidationTest extends TestCase
               ->assertSee('<li>電話番号を半角数字を8桁以上、11桁以下を入力してください。</li>');
         Log::Info('初診受付申込バリデーションエラー(電話番号形式)表示テスト End');
     }
-
+/*
      // 初診受付申込バリデーションエラーチェック（動物種類必須）
      public function testCanView_PetTypeValidationError_typeFirst()
      {
@@ -160,7 +160,8 @@ class ReserveValidationTest extends TestCase
                ->assertSee('<li>ペットの種類を必ず選択してください。</li>');
          Log::Info('初診受付申込バリデーションエラー(動物種類必須)表示テスト End');
      }
-    
+     */
+/*
     // 初診受付申込バリデーションエラーチェック（ペット名）
     public function testCanView_PetNameRequireValidationError_typeFirst()
     {
@@ -183,7 +184,8 @@ class ReserveValidationTest extends TestCase
               ->assertSee('<li>ペットの名前を必ず入力してください。</li>');
         Log::Info('初診受付申込バリデーションエラー(ペット名前必須)表示テスト End');
     }
-
+*/
+/*
     // 初診受付申込バリデーションエラーチェック（ペット名前255文字）
     public function testCanView_PetNameValidationError_typeFirst()
     {
@@ -206,7 +208,7 @@ class ReserveValidationTest extends TestCase
               ->assertSee('<li>ペットの名前を255文字以下入力してください。</li>');
         Log::Info('初診受付申込バリデーションエラー(ペット名前255文字)表示テスト End');
     }
-
+*/
 
     // 初診受付申込バリデーションエラーチェック（症状255文字）
     public function testCanView_PetSymptomValidationError_typeFirst()
@@ -219,8 +221,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0312345678',//電話番号に文字
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                     ])
              ->assertStatus(302)
@@ -243,8 +245,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => '',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -268,8 +270,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                     ])
              ->assertStatus(302)
@@ -293,8 +295,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => 'erroremail', //メール形式ではない。
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                         'purpose'     => [0 => '1', 1 => '2'],
                     ])
@@ -317,8 +319,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testname',
                         'email'       => '', //メール未入力
                         'tel'         => '0331234567',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                         'purpose'     => [0 => '1', 1 => '2'],
                     ])
@@ -341,8 +343,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => 'telNum',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
+                        'age'    => '23',
+                        'gender'    => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                         'purpose'     => [0 => '1', 1 => '2'],
                     ])
@@ -354,7 +356,7 @@ class ReserveValidationTest extends TestCase
         Log::Info('初診受付申込バリデーションエラー(電話番号形式)表示テスト End');
     }
     
-    
+    /*
     // 再診受付申込バリデーションエラーチェック（ペット名）
     public function testCanView_PetNameRequireValidationError_typeRefeat()
     {
@@ -366,8 +368,8 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0312345678',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => '',
+                        'age'         => '23',
+                        'gender'      => '1',
                         'pet_symptom' => 'おもちゃを飲み込んだ',
                         'purpose'     => [0 => '1', 1 => '2'],
                     ])
@@ -378,7 +380,8 @@ class ReserveValidationTest extends TestCase
               ->assertSee('<li>ペットの名前を必ず入力してください。</li>');
         Log::Info('初診受付申込バリデーションエラー(ペット名前必須)表示テスト End');
     }
-
+    */
+/*
     // 再診受付申込バリデーションエラーチェック（ペット名前255文字）
     public function testCanView_PetNameValidationError_typeRefeat()
     {
@@ -402,7 +405,8 @@ class ReserveValidationTest extends TestCase
               ->assertSee('<li>ペットの名前を255文字以下入力してください。</li>');
         Log::Info('初診受付申込バリデーションエラー(ペット名前255文字)表示テスト End');
     }
-
+    */
+/*
     // 再診受付申込バリデーションエラーチェック（動物種類必須）
     public function testCanView_PetTypeValidationError_typeRefeat()
     {
@@ -426,9 +430,9 @@ class ReserveValidationTest extends TestCase
             ->assertSee('<li>ペットの種類を必ず選択してください。</li>');
         Log::Info('初診受付申込バリデーションエラー(動物種類必須)表示テスト End');
     }
-
+*/
      // 再診受付申込バリデーションエラーチェック（来院目的必須）
-     public function testCanView_PurposeValidationError_typeRefeat()
+/*     public function testCanView_PurposeValidationError_typeRefeat()
      {
          Log::Info('再診受付申込バリデーションエラーチェック(来院目的必須)表示テスト Start');
  
@@ -450,6 +454,7 @@ class ReserveValidationTest extends TestCase
              ->assertSee('<li>来院目的を必ず選択してください。</li>');
          Log::Info('初診受付申込バリデーションエラー(来院目的必須)表示テスト End');
      }
+*/
     // 再診受付申込バリデーションエラーチェック（症状255文字）
     public function testCanView_PetSymptomValidationError_typeRefeat()
     {
@@ -461,10 +466,9 @@ class ReserveValidationTest extends TestCase
                         'name'        => 'testName',
                         'email'       => 'testEmail@test.com',
                         'tel'         => '0312345678',
-                        'pet_type'    => [0 => '1', 1 => '2'],
-                        'pet_name'    => 'ポチ、ミケ、ぴょん、ピー、ごまぞー',
-                        'pet_symptom' => 'x6QtlIaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
-                        'purpose'     => [0 => '1', 1 => '2'],
+                        'age'         => '23',
+                        'gender'      => '1',
+                        'pet_symptom' => 'x6QtlIasdfasdfasdfasdfasdfadfaP4E7dJEdH2d8o6tqj3kpRbtypR1MgdifCpQpvDSnUDVmsdfXcqDhEilglXnb1CCAkg0kOfVvina3e6gRSp0FcAShxSLLyV0UFfEjNHXyxTrIv6M3nh0isALy6F54KqX2pOYtbDSlE7vPfFEMPmijEC0L58yON4UoD6JjlQVSLmMHwQX15QlADLdcXqObqEYmOvhClotIH1f7nhyHl6Upbyfdnl5KyAVqCWpbkaAbDyA8WR6lSHBjyA7yFso',
                     ])
              ->assertStatus(302)
              ->assertRedirect('/reserve/create/2');

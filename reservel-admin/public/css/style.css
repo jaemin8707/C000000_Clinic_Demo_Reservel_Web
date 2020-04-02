@@ -439,7 +439,7 @@ ul.list {
 }
 
 .a_name {
- width: 8%;
+ width: 20%;
 }
 
 .a_button_area {
@@ -643,7 +643,8 @@ ul.list {
     border: solid 2px #acacac;
     width: 100%; }
   .form_items input[type="radio"]  {
-    width: 10%; }
+        width: auto;
+    margin-right: 0.5rem;}
   .form_items input[type="checkbox"]  {
     width: 10%; }
   .form_items dt label, .form_items dt span {

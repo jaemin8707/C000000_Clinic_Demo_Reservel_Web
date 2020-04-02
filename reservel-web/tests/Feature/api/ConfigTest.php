@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class ConfigTest extends PassortGrantTestCase
 {
-
+/*
     public function testCanGetConfig()
     {
 
@@ -101,5 +101,5 @@ class ConfigTest extends PassortGrantTestCase
         Log::Debug('発券可能への更新テスト2 End');
 
     }
-
+*/
 }

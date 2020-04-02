@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class ReserveTestApi extends PassortGrantTestCase
 {
-
+/*
     public function testCanGetReserveNoData()
     {
         Log::Debug('受付状況データ取得テスト(データなし) Start');
@@ -372,5 +372,5 @@ class ReserveTestApi extends PassortGrantTestCase
 
         Log::Debug('総待ち人数取得テスト End');
     }
-
+*/
 }

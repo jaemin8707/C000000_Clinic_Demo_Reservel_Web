@@ -118,22 +118,10 @@ class ReserveController extends Controller
     {
         Log::Debug('予約編集画面表示 Start');
         //ペット種類取得
-        $petTypes = Reserve::find($reserve->id)->petType;
-        $petType = [];
-        foreach($petTypes as $pet){
-            $petType[] = $pet->pet_type;
-        }
-
-        //来院目的取得
-        $purposes = Reserve::find($reserve->id)->purpose;
-        $purpose = [];
-        foreach($purposes as $purposeType){
-            $purpose[] = $purposeType->purpose;
-        }
         $scroll = $request->scroll;
         Log::Debug('予約編集画面表示 End');
 
-        return view('reserve.edit', compact('reserve', 'petType', 'purpose', 'scroll'));
+        return view('reserve.edit', compact('reserve', 'scroll'));
     }
 
     /**
@@ -158,21 +146,13 @@ class ReserveController extends Controller
             $reserve->status          = $request->status;
             $reserve->medical_card_no = $request->patient_no;
             $reserve->name            = $request->name;
+            $reserve->age             = $request->age;
+            $reserve->gender          = $request->gender;
             $reserve->email           = $request->email;
             $reserve->tel             = $request->tel;
-            $reserve->pet_name        = $request->pet_name;
             $reserve->conditions      = $request->pet_symptom;
             DB::enableQueryLog();
             $reserve->save();
-
-            $reserve->PetType()->delete();
-            if(isset($request->pet_type)) {
-                $reserve->PetType()->createMany($request->pet_type);
-            }
-            $reserve->Purpose()->delete();
-            if(isset($request->purpose)) {
-                $reserve->Purpose()->createMany($request->purpose);
-            }
             
             Log::Debug(DB::getQueryLog());
         }catch(Exception $e){

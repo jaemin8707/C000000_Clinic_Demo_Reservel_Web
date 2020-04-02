@@ -30,8 +30,8 @@ class LoginTest extends TestCase
 
         $this->get('/login')
              ->assertStatus(200)
-             ->assertSee('<title>ログイン - 管理画面 - サンプル動物病院 - リザベル</title>')
-             ->assertSee('<h1>サンプル動物病院　管理画面　ログイン</h1>')
+             ->assertSee('<title>ログイン - 管理画面 - サンプルクリニック - リザベル</title>')
+             ->assertSee('<h1>サンプルクリニック　管理画面　ログイン</h1>')
              ->assertSee('メールアドレス')
              ->assertSee('<input id="email" type="email" class="form-control" name="email" value="" required autofocus>')
              ->assertSee('パスワード')

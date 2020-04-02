@@ -28,16 +28,16 @@ class ClosedTest extends TestCase
 
       $curdate = date('Y/m/d');
           $closed = factory(Closed::class)->create([
-          'closed_day'=>'2019-'.date('m').'-01',
+          'closed_day'=>date('Y').'-'.date('m').'-01',
           'closed_type'=>1,]);
       $this->assertDatabaseHas('closed', [
           'id'=>$closed->id,
-          'closed_day'=>'2019-'.date('m').'-01',
+          'closed_day'=>date('Y').'-'.date('m').'-01',
           'closed_type'=>1,]);
 
       $this->get('/closed')
         ->assertStatus(200)
-        ->assertSee('<div class="a_closed_day">2019年'.date('m').'月01日')
+        ->assertSee('<div class="a_closed_day">'.date('Y').'年'.date('m').'月01日')
         ->assertSee('<div class="a_closed_type">現在：午前');
       Log::Info('登録されている休診日の表示 End');
   }
@@ -210,7 +210,7 @@ class ClosedTest extends TestCase
 
       $this->get('/closed?month='.date('Y-m'))
       ->assertStatus(200)
-      ->assertSee('<div class="a_closed_day">2019年'.date('m').'月'.date('d').'日')
+      ->assertSee('<div class="a_closed_day">'.date('Y').'年'.date('m').'月'.date('d').'日')
       ->assertSee('<div class="a_closed_type">現在：午後');
       Log::Info('休診日・午前→午後 Start');
   }
@@ -238,7 +238,7 @@ class ClosedTest extends TestCase
       ->assertRedirect("/closed?month=".date('Y-m'));  // /Indexへのリダイレクト
       $this->get('/closed?month='.date('Y-m'))
       ->assertStatus(200)
-      ->assertSee('<div class="a_closed_day">2019年'.date('m').'月'.date('d').'日')
+      ->assertSee('<div class="a_closed_day">'.date('Y').'年'.date('m').'月'.date('d').'日')
       ->assertSee('<div class="a_closed_type">現在：午前');
 
       Log::Info('休診日・午後→午前 End');
