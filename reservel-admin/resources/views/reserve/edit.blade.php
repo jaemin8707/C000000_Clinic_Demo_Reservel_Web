@@ -44,7 +44,7 @@
 					<dt><label for="name">受診される方のお名前</label></dt>
 					<dd><input type="text" id="name" name="name" value="{{old('name',$reserve->name)}}" /></dd>
 					<dt><label for="age">年齢</label></dt>
-					<dd><input type="text" id="age" name="age" value="{{$reserve->age}}" /></dd>
+					<dd><input type="text" style="width:5rem" id="age" name="age" value="{{$reserve->age}}" /></dd>
 					<dt><label for="purpose">性別</label></dt>
 					<dd id="new_line">
 							@foreach (config('const.GENDER') as $genderKey => $gender)

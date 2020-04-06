@@ -8,7 +8,7 @@
 @section('heading', '受付状況')
 @include('layouts.header')
 <main>
-	@if(count($notices) > 0)
+	{{--@if(count($notices) > 0)
 	<div class="information_box">
 		<div class="infomartion_inner">
 		 <div class="information_tilte">お知らせ</div>
@@ -21,7 +21,7 @@
 		</div>
 		</div>
 	</div>
-	@endif
+	@endif --}}
 	<div class="wrapper">
 		<div class="time">{{date('Y/m/d H:i')}} <span>時点の情報です</span></div>
 		<? $reserveFirstCnt = count($reserveFirst);$reserveRegularCnt = count($reserveRegular); $reserveEtcCnt = count($reserveEtc)?>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="etcCustomer">
+		{{-- <div class="etcCustomer">
 			<div class="label">その他<span class="count">{{$reserveEtcCnt}}</span><span class="bold">人</span></div>
 			<div class="number">
 				<ul class="number_items">
@@ -57,7 +57,7 @@
 					@endforeach
 				</ul>
 			</div>
-		</div>
+		</div> --}}
 		<div class="btns">
       @if($webTicketable==='false')
           <span class="receptionMsg" style="color:red;font-weight:900;">ただいま、受付を行っておりません。</span>
@@ -69,9 +69,9 @@
         <form method="GET" action="{{route('reserve.create',['diagnosisType'=>2])}}">
           <button class="btn_regular" accesskey="2"@if($webTicketable==='false') disabled @endif>再診受付</button>
 				</form>
-				<form method="GET" action="{{route('reserve.create',['diagnosisType'=>9])}}">
+				{{-- <form method="GET" action="{{route('reserve.create',['diagnosisType'=>9])}}">
           <button class="btn_etc" accesskey="9"@if($webTicketable==='false') disabled @endif>その他</button>
-        </form>
+        </form> --}}
       </div>
     </div>
   </div>

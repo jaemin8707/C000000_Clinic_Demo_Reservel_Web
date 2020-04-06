@@ -10,11 +10,12 @@
 <main>
     <div class="wrapper">
         <section>
-            <div class="console_closed">
+            {{-- <div class="console_closed">
               <a href="{{route('notice.index')}}">
                 <button class="btn_closed" type="submit" value="true">お知らせ管理</button>
               </a>
             </div>
+            --}}
             <div class="tools">
                 <div class="counter">
                     <span class="time">{{date('Y/m/d H:i')}}</span>
@@ -38,7 +39,7 @@
                           <input class="close_button" type="button" value="閉じる" name="close">
                         </div>
                       </form>
-                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>9])}}" onsubmit="getScroll()">
+{{--                    <form method="POST" action="{{route('reserve.create',['diagnosisType'=>9])}}" onsubmit="getScroll()">
                       @csrf
                       <input type="hidden" name="_method" value="PUT">
                       <button type="button" class="btn_reserve_etc btn_etc_reserve"   accesskey="9"><span>その他</span></button>
@@ -49,7 +50,8 @@
                         <input class="close_button" type="button" value="閉じる" name="close">
                       </div>
                     </form>
-                  </div> 
+--}}
+                </div> 
                 <div class="console_ticketable">
                     <form method="POST" action="{{route('setting.update.tabTicketable')}}">
                         <input type="hidden" name="_method" value="PUT">

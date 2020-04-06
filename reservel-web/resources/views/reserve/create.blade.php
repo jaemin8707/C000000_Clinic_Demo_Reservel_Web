@@ -33,13 +33,15 @@
 					<dt class="required"><label for="name">受診される方のお名前</label></dt>
 					<dd><input type="text" id="name" name="name" value="{{old('name')}}" placeholder="例）医療　太郎" required /></dd>
 					<dt class="required"><label for="age">年齢</label></dt>
-					<dd><input type="text" id="age" name="age" value="{{old('age')}}" required /></dd>
+					<dd><input type="text" id="age" name="age" style="width:5rem" svalue="{{old('age')}}" required /></dd>
 					<dt class="required"><label for="purpose">性別</label></dt>
-						@foreach (config('const.GENDER') as $genderKey => $gender)
+					<dd>
+					@foreach (config('const.GENDER') as $genderKey => $gender)
 						<label class="form_item_group">
 							<input type="radio" id="gender_{{$genderKey}}" name="gender" value="{{$genderKey}}" {{ old("gender") == $genderKey ? 'checked="checked"' : '' }}/>{{$gender}}
 						</label>
 						@endforeach
+					</dd>
 					<dt class="required"><label for="email">メールアドレス</label></dt>
 					<dd><input type="email" id="email" name="email" value="{{old('email')}}" placeholder="例）taro.medical@gmail.com" required /></dd>
 					<dt class="required"><label for="tel">電話番号</label></dt>
