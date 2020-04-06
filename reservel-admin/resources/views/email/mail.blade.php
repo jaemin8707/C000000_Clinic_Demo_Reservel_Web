@@ -7,7 +7,7 @@
 </head>
 <body>
  <div style="margin:24px auto;width:90%;">
- <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【しんか動物病院】</h1>
+ <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【サンプルクリニック】</h1>
  <p style="padding:8px 24px;">診察の順番が近づいています。</p>
  <p style="padding:8px 24px;">病院へお越し下さい。</p>
  <p style="padding:8px 24px;line-height:2.4em;">
@@ -24,8 +24,8 @@
   </div>
  </div>
  <div style="margin:0 24px;border:solid 1px #dcdcdc;padding:16px;text-align:center;">
- しんか動物病院<br>
- <span style="font-size:12px;">〒144-0034 東京都大田区西糀谷4-26-3 メゾン林1階<br>
+ サンプルクリニック<br>
+ <span style="font-size:12px;">〒100-0001 東京都中央区１丁目3−6<br>
  TEL：03-6423-6734</span>
  </div>
  </div>

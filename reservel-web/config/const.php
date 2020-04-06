@@ -168,8 +168,8 @@ return [
             'VALUE'   => 'true',
         ],
     ],
-    'RESERVE_MAIL_TITLE' => env('RESERVE_MAIL_TITLE', '[サンプル動物病院]ご予約を受付けしました'),
-    'REMIND_MAIL_TITLE'  => env('REMIND_MAIL_TITLE' , '[サンプル動物病院]まもなく診察の予定です'),
+    'RESERVE_MAIL_TITLE' => env('RESERVE_MAIL_TITLE', '[サンプルクリニック]ご予約を受付けしました'),
+    'REMIND_MAIL_TITLE'  => env('REMIND_MAIL_TITLE' , '[サンプルクリニック]まもなく診察の予定です'),
 
     'USER_ID' => [
       'api.reserve.numbering' => '-101',
