@@ -400,7 +400,7 @@ ul.list {
 
 .a_timer_title,
 .a_timer {
-  width: 6%; }
+  width: 8%; }
 
 .a_number {
  width: 6%;
@@ -416,11 +416,11 @@ ul.list {
  font-size:18px;
 }
 .a_status_edit {
- width: 14%
+ width: 12%
 }
 
 .a_remind {
-	width: 14%;
+	width: 8%;
  }
 
 .a_patient_no {
@@ -439,19 +439,19 @@ ul.list {
 }
 
 .a_name {
- width: 18%;
+ width: 20%;
 }
 
-.a_age {
- width: 4%;
+.a_age{
+ width:7%;
 }
 
-.a_gender {
- width: 4%;
+.a_gender{
+ width:7%;
 }
 
 .a_button_area {
- width: 6%;
+ width: 7%;
 }
 
 .a_closed_day {

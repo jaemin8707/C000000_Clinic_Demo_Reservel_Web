@@ -13,7 +13,7 @@
  <p style="padding:8px 24px;line-height:2.4em;">
   受付番号：<span style="font-size:36px;"><?php echo e($reserve->reception_no); ?></span><br>
   受付区分：<span><?php echo e(config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']); ?></span><br>
-  受診される方のお名前<span><?php echo e($reserve->name); ?></span>
+  受診される方のお名前：<span><?php echo e($reserve->name); ?></span>
  </p>
  <p style="padding:8px 24px;color:#246ee8;">受付をキャンセルされる場合は下記のボタンを押して、キャンセル手続きを行ってください。</p>
  <p style="margin:16px 24px 32px;">
