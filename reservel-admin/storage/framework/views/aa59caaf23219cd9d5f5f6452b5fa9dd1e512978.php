@@ -11,9 +11,9 @@
  <p style="padding:8px 24px;">診察の順番が近づいています。</p>
  <p style="padding:8px 24px;">病院へお越し下さい。</p>
  <p style="padding:8px 24px;line-height:2.4em;">
-  受付番号：<span style="font-size:36px;">{{$reserve->reception_no}}</span><br>
-  受付区分：<span>{{config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']}}</span><br>
-  受診される方のお名前：<span>{{$reserve->name}}</span>
+  受付番号：<span style="font-size:36px;"><?php echo e($reserve->reception_no); ?></span><br>
+  受付区分：<span><?php echo e(config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']); ?></span><br>
+  受診される方のお名前：<span><?php echo e($reserve->name); ?></span>
  </p>
   <div>
   <div style="padding:8px 24px 32px;line-height:2em;">
@@ -29,4 +29,4 @@
  </div>
  </div>
 </body>
-</html>
+</html><?php /**PATH /home/itc-dev/laravel_project/Clinic_Reservel_demo/reservel-admin/resources/views/email/mail.blade.php ENDPATH**/ ?>

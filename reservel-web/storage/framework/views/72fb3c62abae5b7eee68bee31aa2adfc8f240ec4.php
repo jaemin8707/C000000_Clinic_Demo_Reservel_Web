@@ -11,13 +11,13 @@
  <h1 style="padding-bottom:12px;font-size:24px;text-align:center;color:#646464;border-bottom:solid 1px #dcdcdc;">【サンプルクリニック】</h1>
  <p style="padding:8px 24px;">診察の受付を受け付けました。</p>
  <p style="padding:8px 24px;line-height:2.4em;">
-  受付番号：<span style="font-size:36px;">{{$reserve->reception_no}}</span><br>
-  受付区分：<span>{{config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']}}</span><br>
-  受診される方のお名前：<span>{{$reserve->name}}</span>
+  受付番号：<span style="font-size:36px;"><?php echo e($reserve->reception_no); ?></span><br>
+  受付区分：<span><?php echo e(config('const.CARE_TYPE_NAME')[$reserve->care_type]['name']); ?></span><br>
+  受診される方のお名前<span><?php echo e($reserve->name); ?></span>
  </p>
  <p style="padding:8px 24px;color:#246ee8;">受付をキャンセルされる場合は下記のボタンを押して、キャンセル手続きを行ってください。</p>
  <p style="margin:16px 24px 32px;">
- <a style="display:inline-block;width:240px;height:56px;border-radius:12px;background-color:#246ee8;color:#fff;line-height:56px;text-align:center;text-decoration:none;" href="{{route('reserve.cancel',['cancelToken'=>$reserve->cancel_token])}}" target="_blank">キャンセル手続きに進む</a></p>
+ <a style="display:inline-block;width:240px;height:56px;border-radius:12px;background-color:#246ee8;color:#fff;line-height:56px;text-align:center;text-decoration:none;" href="<?php echo e(route('reserve.cancel',['cancelToken'=>$reserve->cancel_token])); ?>" target="_blank">キャンセル手続きに進む</a></p>
   <div>
   <div style="padding:8px 24px 32px;line-height:2em;">
     <h2 style="margin-bottom:8px;font-size:16px;">※ご注意ください</h2>
@@ -32,4 +32,4 @@
  </div>
  </div>
 </body>
-</html>
+</html><?php /**PATH /home/itc-dev/laravel_project/Clinic_Reservel_demo/reservel-web/resources/views/email/mail.blade.php ENDPATH**/ ?>
